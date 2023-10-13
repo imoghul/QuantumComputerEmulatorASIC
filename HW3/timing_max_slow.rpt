@@ -1,0 +1,49 @@
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : counter
+Version: S-2021.06-SP3
+Date   : Thu Sep 14 17:52:03 2023
+****************************************
+
+Operating Conditions: slow   Library: NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
+Wire Load Model Mode: top
+
+  Startpoint: dec (input port clocked by clock)
+  Endpoint: value_reg[1]
+            (rising edge-triggered flip-flop clocked by clock)
+  Path Group: clock
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clock (rise edge)                0.0000     0.0000
+  clock network delay (ideal)            0.0000     0.0000
+  input external delay                   0.6580     0.6580 f
+  dec (in)                               0.0662     0.7242 f
+  U83/ZN (NOR2_X1)                       0.3189     1.0431 r
+  U69/ZN (NAND2_X2)                      0.1353     1.1784 f
+  U78/ZN (NAND2_X2)                      0.1672     1.3456 r
+  U72/ZN (NOR2_X2)                       0.0610     1.4066 f
+  U53/ZN (OAI21_X2)                      0.2160     1.6226 r
+  value_reg[1]/D (DFF_X1)                0.0000     1.6226 r
+  data arrival time                                 1.6226
+
+  clock clock (rise edge)                1.9000     1.9000
+  clock network delay (ideal)            0.0000     1.9000
+  clock uncertainty                     -0.0500     1.8500
+  value_reg[1]/CK (DFF_X1)               0.0000     1.8500 r
+  library setup time                    -0.2196     1.6304
+  data required time                                1.6304
+  -----------------------------------------------------------
+  data required time                                1.6304
+  data arrival time                                -1.6226
+  -----------------------------------------------------------
+  slack (MET)                                       0.0078
+
+
+1

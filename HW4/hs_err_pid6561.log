@@ -1,0 +1,9 @@
+#
+# An unexpected error has occurred (11)
+#
+Stack:
+/mnt/apps/public/COE/xilinx2021.1/Vivado/2021.1/tps/lnx64/jre11.0.2/lib//server/libjvm.so(+0xc04c3b) [0x7f709d8b9c3b]
+/mnt/apps/public/COE/xilinx2021.1/Vivado/2021.1/tps/lnx64/jre11.0.2/lib//server/libjvm.so(JVM_handle_linux_signal+0x14e) [0x7f709d8be8de]
+/mnt/apps/public/COE/xilinx2021.1/Vivado/2021.1/tps/lnx64/jre11.0.2/lib//server/libjvm.so(+0xbfd538) [0x7f709d8b2538]
+/lib64/libc.so.6(+0x36400) [0x7f70fdbfe400]
+[0x5f4c100]

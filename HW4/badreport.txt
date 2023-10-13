@@ -1,0 +1,71 @@
+Loading verilog file '/mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/badFSM.v'
+Detecting input file type automatically (-rtl or -netlist).
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Compiling source file /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/badFSM.v
+
+Statistics for case statements in always block at line 41 in file
+        '/mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/badFSM.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            42            |    auto/auto     |
+===============================================
+Warning:  /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/badFSM.v:68: Net outcell[8] or a directly connected net may be driven by more than one process or block. (ELAB-405)
+Warning:  /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/badFSM.v:68: Net outcell[7] or a directly connected net may be driven by more than one process or block. (ELAB-405)
+Warning:  /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/badFSM.v:68: Net outcell[6] or a directly connected net may be driven by more than one process or block. (ELAB-405)
+Warning:  /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/badFSM.v:68: Net outcell[5] or a directly connected net may be driven by more than one process or block. (ELAB-405)
+Warning:  /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/badFSM.v:68: Net outcell[4] or a directly connected net may be driven by more than one process or block. (ELAB-405)
+Warning:  /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/badFSM.v:68: Net outcell[3] or a directly connected net may be driven by more than one process or block. (ELAB-405)
+Warning:  /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/badFSM.v:68: Net outcell[2] or a directly connected net may be driven by more than one process or block. (ELAB-405)
+Warning:  /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/badFSM.v:68: Net outcell[1] or a directly connected net may be driven by more than one process or block. (ELAB-405)
+Warning:  /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/badFSM.v:68: Net outcell[0] or a directly connected net may be driven by more than one process or block. (ELAB-405)
+
+Inferred memory devices in process
+        in routine fsm line 34 in file
+                '/mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/badFSM.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  current_state_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine fsm line 41 in file
+                '/mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/badFSM.v'.
+===========================================================================
+|    Register Name    | Type  | Width | Bus | MB | AR | AS | SR | SS | ST |
+===========================================================================
+|    location_reg     | Latch |   9   |  Y  | N  | N  | N  | -  | -  | -  |
+|    inc_flag_reg     | Latch |   1   |  N  | N  | N  | N  | -  | -  | -  |
+===========================================================================
+
+Inferred memory devices in process
+        in routine fsm line 66 in file
+                '/mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/badFSM.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     outcell_reg     | Flip-flop |   9   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine fsm line 68 in file
+                '/mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/badFSM.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    outcell_reg2     | Flip-flop |   9   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Error:  /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/badFSM.v:68: Net 'outcell[8]' or a directly connected net is driven by more than one source, and not all drivers are three-state. (ELAB-366)
+Error:  /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/badFSM.v:68: Net 'outcell[7]' or a directly connected net is driven by more than one source, and not all drivers are three-state. (ELAB-366)
+Error:  /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/badFSM.v:68: Net 'outcell[6]' or a directly connected net is driven by more than one source, and not all drivers are three-state. (ELAB-366)
+Error:  /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/badFSM.v:68: Net 'outcell[5]' or a directly connected net is driven by more than one source, and not all drivers are three-state. (ELAB-366)
+Error:  /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/badFSM.v:68: Net 'outcell[4]' or a directly connected net is driven by more than one source, and not all drivers are three-state. (ELAB-366)
+Error:  /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/badFSM.v:68: Net 'outcell[3]' or a directly connected net is driven by more than one source, and not all drivers are three-state. (ELAB-366)
+Error:  /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/badFSM.v:68: Net 'outcell[2]' or a directly connected net is driven by more than one source, and not all drivers are three-state. (ELAB-366)
+Error:  /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/badFSM.v:68: Net 'outcell[1]' or a directly connected net is driven by more than one source, and not all drivers are three-state. (ELAB-366)
+Error:  /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/badFSM.v:68: Net 'outcell[0]' or a directly connected net is driven by more than one source, and not all drivers are three-state. (ELAB-366)
+*** Presto compilation terminated with 9 errors. ***
+Error: Can't read 'verilog' file '/mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/badFSM.v'. (UID-59)
+No designs were read

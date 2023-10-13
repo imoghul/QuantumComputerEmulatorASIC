@@ -1,0 +1,15 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:07 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Mon Sep 25 11:59:24 2023
+# Process ID: 3717
+# Current directory: /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4
+# Command line: vivado
+# Log file: /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/vivado.log
+# Journal file: /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/counter/counter.xpr
+update_compile_order -fileset sources_1
+set_property is_global_include true [get_files  /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/counter/counter.srcs/sources_1/new/counter.v]

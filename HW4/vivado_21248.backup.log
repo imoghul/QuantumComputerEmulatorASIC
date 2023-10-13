@@ -1,0 +1,23 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:07 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Sun Sep 24 18:09:43 2023
+# Process ID: 21248
+# Current directory: /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4
+# Command line: vivado
+# Log file: /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/vivado.log
+# Journal file: /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/counter/counter.xpr
+WARNING: [filemgmt 56-3] Default IP Output Path : Could not find the directory '/mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/counter/counter.gen/sources_1'.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/mnt/apps/public/COE/xilinx2021.1/Vivado/2021.1/data/ip'.
+INFO: [IP_Flow 19-3899] Cannot get the environment domain name variable for the component vendor name. Setting the vendor name to 'user.org'.
+open_project: Time (s): cpu = 00:00:30 ; elapsed = 00:00:24 . Memory (MB): peak = 0.000 ; gain = 0.000 ; free physical = 85198 ; free virtual = 172687
+update_compile_order -fileset sources_1
+export_ip_user_files -of_objects  [get_files /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4/counter/counter.v] -no_script -reset -force -quiet

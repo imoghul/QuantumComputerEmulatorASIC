@@ -1,0 +1,34 @@
+# //  ModelSim SE 2021.2 Apr 14 2021 Linux 3.10.0-1160.99.1.el7.x86_64
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# vsim -voptargs="+acc" -do "log -r *;run 239ns" test_fsm 
+# Start time: 16:20:34 on Sep 21,2023
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading work.test_fsm(fast)
+# Loading work.fsm(fast)
+# log -r *
+# run 239ns
+add wave -position insertpoint  \
+sim:/test_fsm/u1/s0 \
+sim:/test_fsm/u1/s1 \
+sim:/test_fsm/u1/clock \
+sim:/test_fsm/u1/reset \
+sim:/test_fsm/u1/start \
+sim:/test_fsm/u1/match_address \
+sim:/test_fsm/u1/done_flag \
+sim:/test_fsm/u1/inc_flag \
+sim:/test_fsm/u1/location \
+sim:/test_fsm/u1/outcell \
+sim:/test_fsm/u1/current_state \
+sim:/test_fsm/u1/next_state \
+sim:/test_fsm/u1/signal

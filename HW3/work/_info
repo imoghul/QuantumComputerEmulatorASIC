@@ -1,0 +1,95 @@
+m255
+K4
+z2
+Z0 !s99 nomlopt
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+!s11f vlog 2021.2 2021.04, Apr 14 2021
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z1 d/mnt/ncsudrive/i/immoghul/Programming/ECE564/HW3
+T_opt
+!s110 1694635804
+VkTjXl?BoPgbhGXPD0c^AR2
+04 16 4 work divide_by_two_tb fast 0
+=1-141877559b85-6502171b-9c889-bb0
+!s124 OEM100
+o-quiet -auto_acc_if_foreign -work work +acc
+Z2 tCvgOpt 0
+n@_opt
+OE;O;2021.2;73
+vcounter
+Z3 !s110 1694635748
+!i10b 1
+!s100 ]_ffXe^G>;5oEZQkZQ7::1
+IVn[>^=HfVmFdagSD=7CVZ2
+R1
+w1694613375
+8counter.v
+Fcounter.v
+!i122 21
+L0 1 9
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+Z5 OE;L;2021.2;73
+r1
+!s85 0
+31
+Z6 !s108 1694635747.000000
+Z7 !s107 divide_by_two_tb.v|counter.v|
+Z8 !s90 counter.v|divide_by_two_tb.v|
+!i113 0
+Z9 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R2
+vcounter_divider
+!s110 1694456813
+!i10b 1
+!s100 iZ?S^Knfok;72DbP@O5Yl0
+IK:AhCR7QCV4IDFB4gC4>>0
+R1
+w1694455130
+8divide_by_two.v
+Fdivide_by_two.v
+!i122 17
+L0 1 23
+R4
+R5
+r1
+!s85 0
+31
+!s108 1694456812.000000
+!s107 divide_by_two_tb.v|divide_by_two.v|
+!s90 divide_by_two.v|divide_by_two_tb.v|
+!i113 0
+R9
+R2
+vdivide_by_two_tb
+R3
+!i10b 1
+!s100 lbXoc4N>zEcSjFI9S_09R3
+I?2VgzZX^;aRIn=TkCE:==0
+R1
+w1694612568
+8divide_by_two_tb.v
+Fdivide_by_two_tb.v
+!i122 21
+L0 3 42
+R4
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R2

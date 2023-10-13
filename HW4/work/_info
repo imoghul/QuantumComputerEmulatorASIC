@@ -1,0 +1,82 @@
+m255
+K4
+z2
+Z0 !s99 nomlopt
+R0
+R0
+R0
+R0
+!s11f MIXED_VERSIONS
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z1 d/mnt/ncsudrive/i/immoghul/Programming/ECE564/HW4
+T_opt
+!s110 1695327636
+VX<z=3AR4UnhQccQ@bjC1]1
+Z2 04 8 4 work test_fsm fast 0
+=1-1866daf7ffd5-650ca593-3dfe8-3cc3
+Z3 !s124 OEM100
+o-quiet -auto_acc_if_foreign -work work +acc
+Z4 tCvgOpt 0
+n@_opt
+Z5 OE;O;2021.2;73
+R1
+T_opt1
+!s110 1695238869
+Vk]4OlLh>UbCl402[:UDGZ1
+R2
+=1-801844eb7c00-650b4ad4-a4125-3661
+R3
+o-quiet -auto_acc_if_foreign -work work
+R4
+n@_opt1
+R5
+R1
+vfsm
+Z6 !s110 1695327585
+!i10b 1
+!s100 aokLJ?MC9mJXb0a9[7:Kn2
+I?[jJ?_g<hi^^Fc^h0QPz]3
+R1
+w1695259673
+8badFSM_fixed.v
+FbadFSM_fixed.v
+!i122 17
+L0 3 68
+Z7 VDg1SIo80bB@j0V0VzS_@n1
+Z8 OE;L;2021.2;73
+r1
+!s85 0
+31
+Z9 !s108 1695327584.000000
+Z10 !s107 badFSM_test.v|badFSM_fixed.v|
+Z11 !s90 badFSM_fixed.v|badFSM_test.v|
+!i113 0
+Z12 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R4
+vtest_fsm
+R6
+!i10b 1
+!s100 e3nXomg`YB]zIQaKGX:n^2
+IJoICcai`k>XiLdQMeZ4Q_3
+R1
+w1695238799
+8badFSM_test.v
+FbadFSM_test.v
+!i122 17
+L0 3 67
+R7
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R4
