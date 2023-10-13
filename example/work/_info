@@ -1,0 +1,67 @@
+m255
+K4
+z2
+Z0 !s99 nomlopt
+R0
+!s11f vlog 2021.2 2021.04, Apr 14 2021
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z1 d/mnt/ncsudrive/i/immoghul/Programming/ECE564/example
+T_opt
+!s110 1694449084
+VV;:`TZ6@@FScl@aDU8hkS1
+04 12 4 work test_fixture fast 0
+=1-1866daf7ffd4-64ff3dba-5f2c-6aa3
+!s124 OEM100
+o-quiet -auto_acc_if_foreign -work work +acc
+Z2 tCvgOpt 0
+n@_opt
+OE;O;2021.2;73
+vcounter
+Z3 !s110 1694449030
+!i10b 1
+!s100 cnF6Al67J>8Z<eI90E2DM0
+I3`bKe^nIJ=>UHWX70k[LQ3
+R1
+w1694287018
+8counter.v
+Fcounter.v
+!i122 4
+L0 18 31
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+Z5 OE;L;2021.2;73
+r1
+!s85 0
+31
+Z6 !s108 1694449030.000000
+Z7 !s107 test.v|counter.v|counter_init.v|counter_final.v|
+Z8 !s90 counter_final.v|counter_init.v|counter.v|test.v|
+!i113 0
+Z9 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R2
+vtest_fixture
+R3
+!i10b 1
+!s100 cmk?`3l_KXGE<d9hjOJVT1
+IjBBl:gPaS;Rbkf;X[Vi932
+R1
+w1694287270
+8test.v
+Ftest.v
+!i122 4
+L0 1 27
+R4
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R2

@@ -1,0 +1,44 @@
+# //  ModelSim SE 2021.2 Apr 14 2021 Linux 3.10.0-1160.99.1.el7.x86_64
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# vsim -voptargs="+acc" -do "log -r *" test_fixture 
+# Start time: 12:18:01 on Sep 11,2023
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading work.test_fixture(fast)
+# Loading work.counter(fast)
+# log -r *
+run 200ns
+# ** Note: $finish    : test.v(15)
+#    Time: 136 ns  Iteration: 0  Instance: /test_fixture
+# 1
+# Break in Module test_fixture at test.v line 15
+add wave -position insertpoint  \
+sim:/test_fixture/u1/clock \
+sim:/test_fixture/u1/in \
+sim:/test_fixture/u1/latch \
+sim:/test_fixture/u1/dec \
+sim:/test_fixture/u1/zero \
+sim:/test_fixture/u1/value
+restart -f
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# Loading work.test_fixture(fast)
+# Loading work.counter(fast)
+run 1s
+# Invalid time value: 1s
+run 200ns
+# ** Note: $finish    : test.v(15)
+#    Time: 136 ns  Iteration: 0  Instance: /test_fixture
+# 1
+# Break in Module test_fixture at test.v line 15
+# End time: 12:22:33 on Sep 11,2023, Elapsed time: 0:04:32
+# Errors: 0, Warnings: 0
