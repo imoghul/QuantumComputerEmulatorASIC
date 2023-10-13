@@ -1,0 +1,93 @@
+m255
+K4
+z2
+Z0 !s99 nomlopt
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+!s11f MIXED_VERSIONS
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z1 d/mnt/ncsudrive/i/immoghul/Programming/ECE564/HW1
+T_opt
+!s110 1693097135
+VfR65?mUNY3@Zd]j2_c=?L3
+Z2 04 9 4 work review_tb fast 0
+=1-141877559b84-64ea9cae-87417-75d6
+Z3 !s124 OEM100
+Z4 o-quiet -auto_acc_if_foreign -work work +acc
+Z5 tCvgOpt 0
+n@_opt
+Z6 OE;O;2021.2;73
+R1
+T_opt1
+!s110 1693081850
+Vgmbc=9>@gocS43IC=eh6=0
+R2
+=1-141877559b84-64ea60f9-5cb72-666b
+R3
+R4
+R5
+n@_opt1
+R6
+R1
+vreview
+Z7 !s110 1694202306
+!i10b 1
+!s100 9`mGPz2V:XkPB:h<_O0on2
+INIBBI5ld7oPmb:b4[HCI62
+R1
+w1693097113
+8review.v
+Freview.v
+!i122 20
+L0 1 36
+Z8 VDg1SIo80bB@j0V0VzS_@n1
+Z9 OE;L;2021.2;73
+r1
+!s85 0
+31
+Z10 !s108 1694202306.000000
+!s107 review.v|review_tb.v|
+Z11 !s90 review_tb.v|review.v|
+!i113 0
+Z12 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R5
+vreview_tb
+R7
+!i10b 1
+!s100 eJhLkDJGCXc@T1=Sj`_hN3
+I01W[5ZDnUNa8T`_Y1HJzm0
+R1
+w1693091358
+8review_tb.v
+Freview_tb.v
+!i122 20
+L0 1 40
+R8
+R9
+r1
+!s85 0
+31
+R10
+Z13 !s107 review.v|review_tb.v|
+R11
+!i113 0
+R12
+R5
