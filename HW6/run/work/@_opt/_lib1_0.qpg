@@ -13,6 +13,9 @@ R0
 R0
 R0
 R0
+R0
+R0
+R0
 !s11f vlog 2021.2 2021.04, Apr 14 2021
 13
 !s112 1.1
@@ -22,20 +25,20 @@ R0
 cModel Technology
 Z1 d/mnt/ncsudrive/i/immoghul/Programming/ECE564/HW6/run
 T_opt
-!s110 1697224401
-VmQ:GkWa@0QdTLHjzRTc7F1
+!s110 1697318936
+VC=i7jCOUamz4DO^QPUC3U0
 Z2 04 6 4 work tb_top fast 0
-=10-1866daf7ffe2-652996cf-2d55-b12
+=1-801844eb7c03-652b0817-a86e0-6710
 Z3 !s124 OEM100
 Z4 o-quiet -auto_acc_if_foreign -work work +acc
 Z5 tCvgOpt 0
 n@_opt
 Z6 OE;O;2021.2;73
 T_opt1
-!s110 1697223019
-Vmj]aoXk^]_ffK9B7@Ce3g1
+!s110 1697227191
+VDJ5c]oTogmS4Y7ISaC9MB3
 R2
-=1-1866daf7ffe2-65299169-2bc02-751c
+=1-1866daf7ffe2-6529a1b4-e1d55-213c
 R3
 R4
 R5
@@ -522,5 +525,4 @@ r1
 R11
 R5
 n@d@w_fp_mult_@d@g
-vDW_fp_recip
-R
+vDW_
