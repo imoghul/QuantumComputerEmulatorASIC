@@ -1,0 +1,46 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : RequestQueue
+Version: S-2021.06-SP3
+Date   : Fri Oct  6 15:48:38 2023
+****************************************
+
+Operating Conditions: slow   Library: NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
+Wire Load Model Mode: top
+
+  Startpoint: R0 (input port clocked by clock)
+  Endpoint: currState_reg
+            (rising edge-triggered flip-flop clocked by clock)
+  Path Group: clock
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clock (rise edge)                0.0000     0.0000
+  clock network delay (ideal)            0.0000     0.0000
+  input external delay                   0.6580     0.6580 r
+  R0 (in)                                0.0227     0.6807 r
+  U10/ZN (INV_X1)                        0.0483     0.7290 f
+  U14/ZN (NOR3_X1)                       0.4052     1.1341 r
+  U9/ZN (AND2_X1)                        0.2394     1.3736 r
+  currState_reg/D (DFF_X1)               0.0000     1.3736 r
+  data arrival time                                 1.3736
+
+  clock clock (rise edge)                5.0000     5.0000
+  clock network delay (ideal)            0.0000     5.0000
+  clock uncertainty                     -0.0500     4.9500
+  currState_reg/CK (DFF_X1)              0.0000     4.9500 r
+  library setup time                    -0.1818     4.7682
+  data required time                                4.7682
+  -----------------------------------------------------------
+  data required time                                4.7682
+  data arrival time                                -1.3736
+  -----------------------------------------------------------
+  slack (MET)                                       3.3946
+
+
+1
