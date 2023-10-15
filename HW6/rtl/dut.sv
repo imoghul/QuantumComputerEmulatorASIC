@@ -43,7 +43,7 @@ module MyDesign (
   assign sram_write_address = sram_address;
   assign sram_read_address = sram_address;
   assign sram_write_enable = sram_write_enable_r;
-  assign sram_write_data = sum;
+  assign sram_write_data = sum_calculation;
 
   // This is test sub for the DW_fp_add, do not change any of the inputs to the
   // param list for the DW_fp_add, you will only need one DW_fp_add
@@ -61,9 +61,8 @@ module MyDesign (
   localparam IDLE = 0;
   localparam INITIALIZE_COUNT = 1;
   localparam ACCUMULATE = 2;
-  localparam WRITE = 3;
-  localparam RESET = 4;
-  reg [2:0] state, nextState;
+  localparam RESET = 3;
+  reg [1:0] state, nextState;
 
   always @(posedge clk) begin
     if (!reset_n) state <= IDLE;
@@ -100,20 +99,14 @@ module MyDesign (
         sram_write_enable_r = 0;
         start_addr_count = 1;
         dut_ready = 0;
-        if (addr_count == 0) nextState = IDLE;
+        if (addr_count == 0) nextState = RESET;
         else if (addr_count == 1) begin
-          start_addr_count = 2;
-          nextState = WRITE;
+          start_addr_count = 0;
+          sram_write_enable_r = 1;
+          nextState = RESET;
         end else begin
           nextState = ACCUMULATE;
         end
-      end
-      WRITE: begin
-        start_addr_count = 0;
-        dut_ready = 0;
-        sram_write_enable_r = 1;
-        start_accum = 0;
-        nextState = RESET;
       end
       RESET: begin
         dut_ready = 0;
