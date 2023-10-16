@@ -1,3 +1,341 @@
+dc_shell -no_gui -x "source run_all.tcl"
+
+                           Design Compiler Graphical 
+                                 DC Ultra (TM)
+                                  DFTMAX (TM)
+                              Power Compiler (TM)
+                                 DesignWare (R)
+                                 DC Expert (TM)
+                               Design Vision (TM)
+                               HDL Compiler (TM)
+                               VHDL Compiler (TM)
+                                  DFT Compiler
+                               Design Compiler(R)
+
+               Version T-2022.03-SP4 for linux64 - Aug 24, 2022 
+
+                    Copyright (c) 1988 - 2022 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+Initializing...
+# setup name of the clock in your design.
+set clkname clk
+# set variable "modname" to the name of topmost module in design
+set modname MyDesign
+# set variable "RTL_DIR" to the HDL directory w.r.t synthesis directory
+set RTL_DIR    ../rtl
+# set variable "type" to a name that distinguishes this synthesis run
+set type tut1
+#set the number of digits to be used for delay results
+set report_default_significant_digits 4
+set CLK_PER $::env(CLOCK_PER)
+set search_path [concat $search_path ../testbench/]
+set_svf -default ./svf/default.svf
+1
+#------------------------------------------------------------
+#
+# Basic Synthesis Script (TCL format)
+#                                  
+# Revision History                
+#   1/15/03  : Author Shane T. Gehring - from class example
+#   2/09/07  : Author Zhengtao Yu      - from class example
+#   12/14/07 : Author Ravi Jenkal      - updated to 180 nm & tcl
+#
+#------------------------------------------------------------
+#---------------------------------------------------------
+# Read in Verilog file and map (synthesize) onto a generic
+# library.
+# MAKE SURE THAT YOU CORRECT ALL WARNINGS THAT APPEAR
+# during the execution of the read command are fixed 
+# or understood to have no impact.
+# ALSO CHECK your latch/flip-flop list for unintended 
+# latches                                            
+#---------------------------------------------------------
+read_verilog -rtl $::env(RTL_FILES)
+Error: Required argument 'file_list' was not found (CMD-007)
+read_sverilog -rtl $::env(RTL_SV_FILES)
+Loading db file '/mnt/coe/workspace/ece/ece720-common/tech/nangate/NangateOpenCellLibrary_PDKv1_2_v2008_10/liberty/520/NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm.db'
+Loading db file '/mnt/apps/public/COE/synopsys_apps/syn/T-2022.03-SP4/libraries/syn/dw_foundation.sldb'
+Loading db file '/mnt/apps/public/COE/synopsys_apps/syn/T-2022.03-SP4/libraries/syn/gtech.db'
+Loading db file '/mnt/apps/public/COE/synopsys_apps/syn/T-2022.03-SP4/libraries/syn/standard.sldb'
+  Loading link library 'NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm'
+  Loading link library 'gtech'
+Loading sverilog file '/mnt/ncsudrive/i/immoghul/Programming/ECE564/HW6/rtl/dut.sv'
+Running PRESTO HDLC
+Compiling source file /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW6/rtl/dut.sv
+Warning: Could not open default SVF file /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW6/synthesis/svf/default.svf for writing.
+
+Statistics for case statements in always block at line 74 in file
+	'/mnt/ncsudrive/i/immoghul/Programming/ECE564/HW6/rtl/dut.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            80            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine MyDesign line 68 in file
+		'/mnt/ncsudrive/i/immoghul/Programming/ECE564/HW6/rtl/dut.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      state_reg      | Flip-flop |   2   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine MyDesign line 123 in file
+		'/mnt/ncsudrive/i/immoghul/Programming/ECE564/HW6/rtl/dut.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   addr_count_reg    | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine MyDesign line 133 in file
+		'/mnt/ncsudrive/i/immoghul/Programming/ECE564/HW6/rtl/dut.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  sram_address_reg   | Flip-flop |  16   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine MyDesign line 142 in file
+		'/mnt/ncsudrive/i/immoghul/Programming/ECE564/HW6/rtl/dut.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|       sum_reg       | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Current design is now '/mnt/ncsudrive/i/immoghul/Programming/ECE564/HW6/rtl/MyDesign.db:MyDesign'
+Loaded 1 design.
+Current design is 'MyDesign'.
+MyDesign
+#---------------------------------------------------------
+# Our first Optimization 'compile' is intended to      
+# produce a design that will meet hold-time            
+# under worst-case conditions:                         
+#    - slowest process corner                        
+#    - highest operating temperature and lowest Vcc  
+#    - expected worst case clock skew                
+#---------------------------------------------------------
+#---------------------------------------------------------
+# Set the current design to the top level instance name 
+# to make sure that you are working on the right design
+# at the time of constraint setting and compilation
+#---------------------------------------------------------
+##################################################
+# Revision History: 01/27/2010, by Chanyoun Won
+#                   01/19/2011, by Won Ha Choi
+#                   01/21/2011, by Zhuo Yan
+##################################################
+current_design $modname
+Current design is 'MyDesign'.
+#---------------------------------------------------------
+# Set the synthetic library variable to enable use of 
+# desigware blocks
+#---------------------------------------------------------
+set synthetic_library [list dw_foundation.sldb]
+#---------------------------------------------------------
+# Specify the worst case (slowest) libraries and       
+# slowest temperature/Vcc conditions                   
+# This would involve setting up the slow library as the 
+# target and setting the link library to the conctenation
+# of the target and the synthetic library
+#---------------------------------------------------------
+set target_library NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm.db
+set link_library   [concat  $target_library $synthetic_library]
+#---------------------------------------------------------
+# Specify a 5000ps clock period with 50% duty cycle     
+# and a skew of 50ps                                 
+#---------------------------------------------------------
+#set CLK_PER  5
+set CLK_SKEW 0.05
+create_clock -name $clkname -period $CLK_PER -waveform "0 [expr $CLK_PER / 2]" $clkname
+set_clock_uncertainty $CLK_SKEW $clkname
+#---------------------------------------------------------
+# Now set up the 'CONSTRAINTS' on the design:          
+# 1.  How much of the clock period is lost in the      
+#     modules connected to it                          
+# 2.  What type of cells are driving the inputs        
+# 3.  What type of cells and how many (fanout) must it 
+#     be able to drive                                 
+#---------------------------------------------------------
+# Following parameters have been modified based on Nangate 45nm library (slow conditional):
+# DFF_CKQ, IP_DELAY, DFF_SETUP, OP_DELAY, WIRE_LOAD_EST
+# These values are based on simulation. Credited to: Christopher Mineo
+#---------------------------------------------------------
+# ASSUME being driven by a slowest D-flip-flop         
+# The DFF cell has a clock-Q delay of 638 ps          
+# EX: 50um M3 has R of 178.57 Ohms and C of 12.5585fF. 0.69RC = 1.55ps, and wire load
+# of 50um M3 is 13fF. Therefore, roughly 20ps wire delay is assumed.                
+# NOTE: THESE ARE INITIAL ASSUMPTIONS ONLY             
+#---------------------------------------------------------
+#
+set DFF_CKQ 0.638
+set IP_DELAY [expr 0.02 + $DFF_CKQ]
+set_input_delay $IP_DELAY -clock $clkname [remove_from_collection [all_inputs] $clkname]
+#---------------------------------------------------------
+# ASSUME this module is driving a D-flip-flip          
+# The DFF cell has a set-up time of 546 ps             
+# Same wire delay as mentioned above           
+# NOTE: THESE ARE INITIAL ASSUMPTIONS ONLY             
+#---------------------------------------------------------
+set DFF_SETUP 0.546
+set OP_DELAY [expr 0.02 + $DFF_SETUP]
+set_output_delay $OP_DELAY -clock $clkname [all_outputs]
+#---------------------------------------------------------  
+# ASSUME being driven by a D-flip-flop                 
+#---------------------------------------------------------
+set DR_CELL_NAME DFFR_X1
+set DR_CELL_PIN  Q
+set_driving_cell -lib_cell "$DR_CELL_NAME" -pin "$DR_CELL_PIN" [remove_from_collection [all_inputs] $clkname]
+Warning: Design rule attributes from the driving cell will be set on the port 'reset_n'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'dut_valid'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[31]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[30]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[29]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[28]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[27]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[26]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[25]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[24]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[23]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[22]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[21]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[20]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[19]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[18]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[17]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[16]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[15]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[14]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[13]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[12]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[11]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[10]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[9]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[8]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[7]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[6]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[5]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[4]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[3]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[2]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[1]'. (UID-401)
+Warning: Design rule attributes from the driving cell will be set on the port 'sram_read_data[0]'. (UID-401)
+#---------------------------------------------------------
+# ASSUME the worst case output load is                 
+# 4 D-flip-flop (D-inputs) and                         
+# 0.013 units of wiring capacitance                     
+#---------------------------------------------------------
+set PORT_LOAD_CELL  NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm/DFFR_X1/D
+set WIRE_LOAD_EST   0.013
+set FANOUT          4
+set PORT_LOAD [expr $WIRE_LOAD_EST + $FANOUT * [load_of $PORT_LOAD_CELL]]
+set_load $PORT_LOAD [all_outputs]
+#---------------------------------------------------------
+# Now set the GOALS for the compile                    
+# In most cases you want minimum area, so set the      
+# goal for maximum area to be 0                        
+#---------------------------------------------------------
+set_max_area 0
+#---------------------------------------------------------
+# This command prevents feedthroughs from input to output and avoids assign statements                 
+#--------------------------------------------------------- 
+set_fix_multiple_port_nets -all -buffer_constants [get_designs]
+#------------------------------------------------------
+# For logic reduction, I want to make one flat design    
+#                                                      
+#------------------------------------------------------
+ungroup -flatten -all
+Warning: Design has no hierarchy.  No cells can be ungrouped. (UID-228)
+#---------------------------------------------------------
+# check the design before optimization  
+#---------------------------------------------------------
+#---------------------------------------------------------
+# check_design checks for consistency of design and issues
+# warnings and errors. An error would imply the design is 
+# not compilable. See > man check_design for more information.
+#---------------------------------------------------------
+check_design
+ 
+****************************************
+check_design summary:
+Version:     T-2022.03-SP4
+Date:        Sun Oct 15 20:45:55 2023
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+Inputs/Outputs                                                     16
+    Shorted outputs (LINT-31)                                      16
+
+Cells                                                               2
+    Cells do not drive (LINT-1)                                     2
+
+Nets                                                                8
+    Unloaded nets (LINT-2)                                          8
+--------------------------------------------------------------------------------
+
+Warning: In design 'MyDesign', cell 'C381' does not drive any nets. (LINT-1)
+Warning: In design 'MyDesign', cell 'C400' does not drive any nets. (LINT-1)
+Warning: In design 'MyDesign', net 'status[0]' driven by pin 'fp_add_mod/status_0' has no loads. (LINT-2)
+Warning: In design 'MyDesign', net 'status[1]' driven by pin 'fp_add_mod/status_1' has no loads. (LINT-2)
+Warning: In design 'MyDesign', net 'status[2]' driven by pin 'fp_add_mod/status_2' has no loads. (LINT-2)
+Warning: In design 'MyDesign', net 'status[3]' driven by pin 'fp_add_mod/status_3' has no loads. (LINT-2)
+Warning: In design 'MyDesign', net 'status[4]' driven by pin 'fp_add_mod/status_4' has no loads. (LINT-2)
+Warning: In design 'MyDesign', net 'status[5]' driven by pin 'fp_add_mod/status_5' has no loads. (LINT-2)
+Warning: In design 'MyDesign', net 'status[6]' driven by pin 'fp_add_mod/status_6' has no loads. (LINT-2)
+Warning: In design 'MyDesign', net 'status[7]' driven by pin 'fp_add_mod/status_7' has no loads. (LINT-2)
+Warning: In design 'MyDesign', output port 'sram_write_address[15]' is connected directly to output port 'sram_read_address[15]'. (LINT-31)
+Warning: In design 'MyDesign', output port 'sram_write_address[14]' is connected directly to output port 'sram_read_address[14]'. (LINT-31)
+Warning: In design 'MyDesign', output port 'sram_write_address[13]' is connected directly to output port 'sram_read_address[13]'. (LINT-31)
+Warning: In design 'MyDesign', output port 'sram_write_address[12]' is connected directly to output port 'sram_read_address[12]'. (LINT-31)
+Warning: In design 'MyDesign', output port 'sram_write_address[11]' is connected directly to output port 'sram_read_address[11]'. (LINT-31)
+Warning: In design 'MyDesign', output port 'sram_write_address[10]' is connected directly to output port 'sram_read_address[10]'. (LINT-31)
+Warning: In design 'MyDesign', output port 'sram_write_address[9]' is connected directly to output port 'sram_read_address[9]'. (LINT-31)
+Warning: In design 'MyDesign', output port 'sram_write_address[8]' is connected directly to output port 'sram_read_address[8]'. (LINT-31)
+Warning: In design 'MyDesign', output port 'sram_write_address[7]' is connected directly to output port 'sram_read_address[7]'. (LINT-31)
+Warning: In design 'MyDesign', output port 'sram_write_address[6]' is connected directly to output port 'sram_read_address[6]'. (LINT-31)
+Warning: In design 'MyDesign', output port 'sram_write_address[5]' is connected directly to output port 'sram_read_address[5]'. (LINT-31)
+Warning: In design 'MyDesign', output port 'sram_write_address[4]' is connected directly to output port 'sram_read_address[4]'. (LINT-31)
+Warning: In design 'MyDesign', output port 'sram_write_address[3]' is connected directly to output port 'sram_read_address[3]'. (LINT-31)
+Warning: In design 'MyDesign', output port 'sram_write_address[2]' is connected directly to output port 'sram_read_address[2]'. (LINT-31)
+Warning: In design 'MyDesign', output port 'sram_write_address[1]' is connected directly to output port 'sram_read_address[1]'. (LINT-31)
+Warning: In design 'MyDesign', output port 'sram_write_address[0]' is connected directly to output port 'sram_read_address[0]'. (LINT-31)
+#---------------------------------------------------------
+# link performs check for presence of the design components 
+# instantiated within the design. It makes sure that all the 
+# components (either library unit or other designs within the
+# heirarchy) are present in the search path and connects all 
+# of the disparate components logically to the present design
+#---------------------------------------------------------
+link 
+
+  Linking design 'MyDesign'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm (library)
+                              /mnt/coe/workspace/ece/ece720-common/tech/nangate/NangateOpenCellLibrary_PDKv1_2_v2008_10/liberty/520/NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm.db
+  dw_foundation.sldb (library)
+                              /mnt/apps/public/COE/synopsys_apps/syn/T-2022.03-SP4/libraries/syn/dw_foundation.sldb
+
+1
 #---------------------------------------------------------
 # Now resynthesize the design to meet constraints,     
 # and try to best achieve the goal, and using the      
@@ -88,13 +426,13 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
   --------- --------- --------- --------- --------- ------------------------- ---------
-    0:00:54    2828.4      2.86     163.7     930.5                           15704974.0000
-    0:00:54    2782.9      3.11     177.5     930.5                           15401602.0000
+    0:01:26    2828.4      2.86     163.7     930.5                           15704974.0000
+    0:01:26    2782.9      3.11     177.5     930.5                           15401602.0000
 
   Beginning Constant Register Removal
   -----------------------------------
-    0:00:54    2806.3      3.18     181.5     930.5                           16256603.0000
-    0:00:54    2806.3      3.18     181.5     930.5                           16256603.0000
+    0:01:26    2806.3      3.18     181.5     930.5                           16256603.0000
+    0:01:26    2806.3      3.18     181.5     930.5                           16256603.0000
 
   Beginning Global Optimizations
   ------------------------------
@@ -136,47 +474,47 @@ Information: Updating design information... (UID-85)
 
   Beginning Delay Optimization
   ----------------------------
-    0:00:55    2607.6      3.32     192.7     219.0                           11909506.0000
-    0:01:10    2918.0      0.55      28.3     203.9                           15155704.0000
-    0:01:10    2918.0      0.55      28.3     203.9                           15155704.0000
-    0:01:10    2917.0      0.55      28.5     203.9                           15139797.0000
-    0:01:11    2890.6      0.55      21.0     203.9                           14975818.0000
-    0:01:11    2884.0      0.55      21.0     203.9                           14948893.0000
+    0:01:27    2607.6      3.32     192.7     219.0                           11909506.0000
+    0:01:48    2918.0      0.55      28.3     203.9                           15155704.0000
+    0:01:48    2918.0      0.55      28.3     203.9                           15155704.0000
+    0:01:48    2917.0      0.55      28.5     203.9                           15139797.0000
+    0:01:49    2890.6      0.55      21.0     203.9                           14975818.0000
+    0:01:49    2884.0      0.55      21.0     203.9                           14948893.0000
 
   Beginning WLM Backend Optimization
   --------------------------------------
 
   Beginning Delay Optimization HSVT Pass
   --------------------------------------
-    0:01:13    2808.4      0.49      17.4     203.9                           13827765.0000
-    0:01:13    2808.4      0.49      17.4     203.9                           13827765.0000
-    0:01:13    2808.4      0.49      17.4     203.9                           13827765.0000
-    0:01:15    2854.2      0.27       7.6     203.9                           14512630.0000
-    0:01:15    2854.2      0.27       7.6     203.9                           14512630.0000
-    0:01:16    2847.0      0.12       2.0     203.9                           14473806.0000
-    0:01:16    2847.0      0.12       2.0     203.9                           14473806.0000
-    0:01:16    2846.7      0.12       2.0     203.9                           14430487.0000
-    0:01:16    2846.7      0.12       2.0     203.9                           14430487.0000
-    0:01:17    2840.1      0.00       0.0     204.0                           14766925.0000
-    0:01:17    2840.1      0.00       0.0     204.0                           14766925.0000
-    0:01:17    2840.1      0.00       0.0     204.0                           14766925.0000
-    0:01:17    2840.1      0.00       0.0     204.0                           14766925.0000
-    0:01:17    2840.1      0.00       0.0     204.0                           14766925.0000
-    0:01:17    2840.1      0.00       0.0     204.0                           14766925.0000
-    0:01:17    2840.1      0.00       0.0     204.0                           14766925.0000
-    0:01:17    2840.1      0.00       0.0     204.0                           14766925.0000
-    0:01:17    2840.1      0.00       0.0     204.0                           14766925.0000
+    0:01:53    2808.4      0.49      17.4     203.9                           13827765.0000
+    0:01:53    2808.4      0.49      17.4     203.9                           13827765.0000
+    0:01:53    2808.4      0.49      17.4     203.9                           13827765.0000
+    0:01:55    2854.2      0.27       7.6     203.9                           14512630.0000
+    0:01:55    2854.2      0.27       7.6     203.9                           14512630.0000
+    0:01:56    2847.0      0.12       2.0     203.9                           14473806.0000
+    0:01:56    2847.0      0.12       2.0     203.9                           14473806.0000
+    0:01:56    2846.7      0.12       2.0     203.9                           14430487.0000
+    0:01:56    2846.7      0.12       2.0     203.9                           14430487.0000
+    0:01:57    2840.1      0.00       0.0     204.0                           14766925.0000
+    0:01:57    2840.1      0.00       0.0     204.0                           14766925.0000
+    0:01:57    2840.1      0.00       0.0     204.0                           14766925.0000
+    0:01:57    2840.1      0.00       0.0     204.0                           14766925.0000
+    0:01:57    2840.1      0.00       0.0     204.0                           14766925.0000
+    0:01:57    2840.1      0.00       0.0     204.0                           14766925.0000
+    0:01:57    2840.1      0.00       0.0     204.0                           14766925.0000
+    0:01:57    2840.1      0.00       0.0     204.0                           14766925.0000
+    0:01:57    2840.1      0.00       0.0     204.0                           14766925.0000
 
   Beginning Delay Optimization
   ----------------------------
-    0:01:17    2840.1      0.00       0.0     204.0                           14766925.0000
-    0:01:17    2840.1      0.00       0.0     204.0                           14766925.0000
-    0:01:17    2840.1      0.00       0.0     204.0                           14766925.0000
-    0:01:17    2840.1      0.00       0.0     204.0                           14766925.0000
-    0:01:17    2840.1      0.00       0.0     204.0                           14766925.0000
-    0:01:17    2840.1      0.00       0.0     204.0                           14766925.0000
-    0:01:17    2840.1      0.00       0.0     204.0                           14766925.0000
-    0:01:17    2840.1      0.00       0.0     204.0                           14766925.0000
+    0:01:57    2840.1      0.00       0.0     204.0                           14766925.0000
+    0:01:57    2840.1      0.00       0.0     204.0                           14766925.0000
+    0:01:57    2840.1      0.00       0.0     204.0                           14766925.0000
+    0:01:57    2840.1      0.00       0.0     204.0                           14766925.0000
+    0:01:57    2840.1      0.00       0.0     204.0                           14766925.0000
+    0:01:57    2840.1      0.00       0.0     204.0                           14766925.0000
+    0:01:57    2840.1      0.00       0.0     204.0                           14766925.0000
+    0:01:57    2840.1      0.00       0.0     204.0                           14766925.0000
 
 
   Beginning Design Rule Fixing  (max_transition)  (max_capacitance)
@@ -186,12 +524,12 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
   --------- --------- --------- --------- --------- ------------------------- ---------
-    0:01:17    2840.1      0.00       0.0     204.0                           14766925.0000
+    0:01:57    2840.1      0.00       0.0     204.0                           14766925.0000
   Global Optimization (Phase 31)
   Global Optimization (Phase 32)
   Global Optimization (Phase 33)
-    0:01:17    2840.1      0.00       0.0       0.0                           14795871.0000
-    0:01:17    2840.1      0.00       0.0       0.0                           14795871.0000
+    0:01:57    2840.1      0.00       0.0       0.0                           14795871.0000
+    0:01:57    2840.1      0.00       0.0       0.0                           14795871.0000
 
 
   Beginning Leakage Power Optimization  (max_leakage_power 0)
@@ -201,7 +539,7 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
   --------- --------- --------- --------- --------- ------------------------- ---------
-    0:01:17    2840.1      0.00       0.0       0.0                           14795871.0000
+    0:01:57    2840.1      0.00       0.0       0.0                           14795871.0000
   Global Optimization (Phase 34)
   Global Optimization (Phase 35)
   Global Optimization (Phase 36)
@@ -218,53 +556,53 @@ Information: Updating design information... (UID-85)
   Global Optimization (Phase 47)
   Global Optimization (Phase 48)
   Global Optimization (Phase 49)
-    0:01:19    2684.2      0.00       0.0       0.0 sram_write_data[20]       12996664.0000
-    0:01:19    2684.2      0.00       0.0       0.0                           12996664.0000
-    0:01:19    2684.2      0.00       0.0       0.0                           12996664.0000
-    0:01:19    2684.2      0.00       0.0       0.0                           12996664.0000
-    0:01:19    2684.2      0.00       0.0       0.0                           12959526.0000
-    0:01:19    2684.2      0.00       0.0       0.0                           12959526.0000
-    0:01:19    2684.2      0.00       0.0       0.0                           12959526.0000
-    0:01:19    2684.2      0.00       0.0       0.0                           12959526.0000
-    0:01:19    2684.2      0.00       0.0       0.0                           12959526.0000
-    0:01:19    2684.2      0.00       0.0       0.0                           12959526.0000
-    0:01:19    2684.2      0.00       0.0       0.0                           12959526.0000
-    0:01:19    2684.2      0.00       0.0       0.0                           12959526.0000
-    0:01:19    2684.2      0.00       0.0       0.0                           12959526.0000
-    0:01:19    2684.2      0.00       0.0       0.0                           12959526.0000
-    0:01:19    2684.2      0.00       0.0       0.0                           12959526.0000
-    0:01:19    2684.2      0.00       0.0       0.0                           12959526.0000
-    0:01:19    2684.2      0.00       0.0       0.0                           12959526.0000
-    0:01:19    2684.2      0.00       0.0       0.0                           12959526.0000
-    0:01:19    2684.2      0.00       0.0       0.0                           12959526.0000
-    0:01:19    2684.2      0.00       0.0       0.0                           12959526.0000
-    0:01:19    2684.2      0.00       0.0       0.0                           12959526.0000
-    0:01:19    2684.2      0.00       0.0       0.0                           12959526.0000
-    0:01:19    2684.2      0.00       0.0       0.0                           12959526.0000
+    0:02:00    2684.2      0.00       0.0       0.0 sram_write_data[20]       12996664.0000
+    0:02:00    2684.2      0.00       0.0       0.0                           12996664.0000
+    0:02:00    2684.2      0.00       0.0       0.0                           12996664.0000
+    0:02:00    2684.2      0.00       0.0       0.0                           12996664.0000
+    0:02:00    2684.2      0.00       0.0       0.0                           12959526.0000
+    0:02:00    2684.2      0.00       0.0       0.0                           12959526.0000
+    0:02:00    2684.2      0.00       0.0       0.0                           12959526.0000
+    0:02:00    2684.2      0.00       0.0       0.0                           12959526.0000
+    0:02:00    2684.2      0.00       0.0       0.0                           12959526.0000
+    0:02:00    2684.2      0.00       0.0       0.0                           12959526.0000
+    0:02:00    2684.2      0.00       0.0       0.0                           12959526.0000
+    0:02:00    2684.2      0.00       0.0       0.0                           12959526.0000
+    0:02:00    2684.2      0.00       0.0       0.0                           12959526.0000
+    0:02:00    2684.2      0.00       0.0       0.0                           12959526.0000
+    0:02:00    2684.2      0.00       0.0       0.0                           12959526.0000
+    0:02:00    2684.2      0.00       0.0       0.0                           12959526.0000
+    0:02:00    2684.2      0.00       0.0       0.0                           12959526.0000
+    0:02:00    2684.2      0.00       0.0       0.0                           12959526.0000
+    0:02:00    2684.2      0.00       0.0       0.0                           12959526.0000
+    0:02:00    2684.2      0.00       0.0       0.0                           12959526.0000
+    0:02:00    2684.2      0.00       0.0       0.0                           12959526.0000
+    0:02:00    2684.2      0.00       0.0       0.0                           12959526.0000
+    0:02:00    2684.2      0.00       0.0       0.0                           12959526.0000
 
                                   TOTAL                                                
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
   --------- --------- --------- --------- --------- ------------------------- ---------
-    0:01:19    2684.2      0.00       0.0       0.0                           12959526.0000
-    0:01:19    2622.5      0.54      19.9       0.0                           11224688.0000
-    0:01:20    2628.9      0.00       0.0       0.0                           11603027.0000
-    0:01:20    2628.9      0.00       0.0       0.0                           11603027.0000
-    0:01:20    2628.9      0.00       0.0       0.0                           11603027.0000
+    0:02:00    2684.2      0.00       0.0       0.0                           12959526.0000
+    0:02:01    2622.5      0.54      19.9       0.0                           11224688.0000
+    0:02:01    2628.9      0.00       0.0       0.0                           11603027.0000
+    0:02:01    2628.9      0.00       0.0       0.0                           11603027.0000
+    0:02:02    2628.9      0.00       0.0       0.0                           11603027.0000
 
   Beginning Delay Optimization HSVT Pass
   --------------------------------------
-    0:01:21    2628.9      0.00       0.0       0.0                           11603027.0000
-    0:01:21    2628.9      0.00       0.0       0.0                           11603027.0000
-    0:01:21    2628.9      0.00       0.0       0.0                           11603027.0000
-    0:01:21    2628.9      0.00       0.0       0.0                           11603027.0000
-    0:01:22    2626.5      0.00       0.0       0.0                           11486739.0000
-    0:01:22    2626.5      0.00       0.0       0.0                           11486739.0000
-    0:01:22    2626.5      0.00       0.0       0.0                           11486739.0000
-    0:01:22    2626.5      0.00       0.0       0.0                           11486739.0000
-    0:01:22    2626.5      0.00       0.0       0.0                           11486739.0000
-    0:01:22    2626.5      0.00       0.0       0.0                           11486739.0000
-    0:01:22    2623.8      0.00       0.0       0.0                           11453324.0000
+    0:02:02    2628.9      0.00       0.0       0.0                           11603027.0000
+    0:02:02    2628.9      0.00       0.0       0.0                           11603027.0000
+    0:02:02    2628.9      0.00       0.0       0.0                           11603027.0000
+    0:02:02    2628.9      0.00       0.0       0.0                           11603027.0000
+    0:02:03    2626.5      0.00       0.0       0.0                           11486739.0000
+    0:02:03    2626.5      0.00       0.0       0.0                           11486739.0000
+    0:02:03    2626.5      0.00       0.0       0.0                           11486739.0000
+    0:02:03    2626.5      0.00       0.0       0.0                           11486739.0000
+    0:02:03    2626.5      0.00       0.0       0.0                           11486739.0000
+    0:02:03    2626.5      0.00       0.0       0.0                           11486739.0000
+    0:02:04    2623.8      0.00       0.0       0.0                           11453324.0000
 Loading db file '/mnt/coe/workspace/ece/ece720-common/tech/nangate/NangateOpenCellLibrary_PDKv1_2_v2008_10/liberty/520/NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm.db'
 
 
@@ -5532,3 +5870,10 @@ write_sdf ./sdf/${modname}_max.sdf
 Information: Annotated 'cell' delays are assumed to include load delay. (UID-282)
 Information: Writing timing information to file '/mnt/ncsudrive/i/immoghul/Programming/ECE564/HW6/synthesis/sdf/MyDesign_max.sdf'. (WT-3)
 1
+
+Memory usage for this session 179 Mbytes.
+Memory usage for this session including child processes 179 Mbytes.
+CPU usage for this session 93 seconds ( 0.03 hours ).
+Elapsed time for this session 151 seconds ( 0.04 hours ).
+
+Thank you...

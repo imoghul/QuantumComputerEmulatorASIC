@@ -150,7 +150,7 @@ check_design
 ****************************************
 check_design summary:
 Version:     T-2022.03-SP4
-Date:        Sat Oct 14 19:51:34 2023
+Date:        Mon Oct 16 09:21:04 2023
 ****************************************
 
                    Name                                            Total
@@ -165,8 +165,8 @@ Nets                                                                8
     Unloaded nets (LINT-2)                                          8
 --------------------------------------------------------------------------------
 
-Warning: In design 'MyDesign', cell 'C377' does not drive any nets. (LINT-1)
-Warning: In design 'MyDesign', cell 'C396' does not drive any nets. (LINT-1)
+Warning: In design 'MyDesign', cell 'C381' does not drive any nets. (LINT-1)
+Warning: In design 'MyDesign', cell 'C400' does not drive any nets. (LINT-1)
 Warning: In design 'MyDesign', net 'status[0]' driven by pin 'fp_add_mod/status_0' has no loads. (LINT-2)
 Warning: In design 'MyDesign', net 'status[1]' driven by pin 'fp_add_mod/status_1' has no loads. (LINT-2)
 Warning: In design 'MyDesign', net 'status[2]' driven by pin 'fp_add_mod/status_2' has no loads. (LINT-2)

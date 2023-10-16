@@ -58,14 +58,15 @@ module MyDesign (
 
 
   // control
-  localparam IDLE = 0;
-  localparam INITIALIZE_COUNT = 1;
-  localparam ACCUMULATE = 2;
-  localparam RESET = 3;
+  localparam RESET = 0;
+  localparam IDLE = 1;
+  localparam INITIALIZE_COUNT = 2;
+  localparam ACCUMULATE = 3;
+  
   reg [1:0] state, nextState;
 
   always @(posedge clk) begin
-    if (!reset_n) state <= IDLE;
+    if (!reset_n) state <= RESET;
     else state <= nextState;
   end
 
@@ -112,7 +113,7 @@ module MyDesign (
         dut_ready = 0;
         nextState = IDLE;
       end
-      default: nextState = IDLE;
+      default: nextState = RESET;
     endcase
   end
 

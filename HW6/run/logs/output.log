@@ -3,7 +3,7 @@ Reading pref.tcl
 # 2021.2
 
 # vsim -c -voptargs="+acc" tb_top "+TIMEOUT=10000000" "+num_of_testcases=4" "+epsilon_mult=1.0" "+input_dir=../inputs" "+info_level=0" -do "run -all" 
-# Start time: 19:53:42 on Oct 14,2023
+# Start time: 17:42:43 on Oct 15,2023
 # ** Note: (vsim-3813) Design is being optimized due to module recompilation...
 # ** Note: (vopt-143) Recognized 1 FSM in module "MyDesign(fast)".
 # //  ModelSim SE 2021.2 Apr 14 2021 Linux 3.10.0-1160.99.1.el7.x86_64
@@ -25,7 +25,7 @@ Reading pref.tcl
 # Loading work.MyDesign(fast)
 # Loading work.DW_fp_add(fast)
 # Loading work.DW_fp_addsub(fast)
-# Loading /tmp/immoghul@grendel33.ece.ncsu.edu_dpi_27162/linux_gcc-7.4.0/vsim_auto_compile.so
+# Loading /tmp/immoghul@grendel31.ece.ncsu.edu_dpi_6523/linux_gcc-7.4.0/vsim_auto_compile.so
 # run -all
 # INFO: number of testcases:           4
 # INFO: DONE WITH RESETING DUT
@@ -49,5 +49,5 @@ Reading pref.tcl
 # 
 # ** Note: $finish    : ../testbench/testbench.sv(246)
 #    Time: 16560 ns  Iteration: 1  Instance: /tb_top
-# End time: 19:53:45 on Oct 14,2023, Elapsed time: 0:00:03
+# End time: 17:42:49 on Oct 15,2023, Elapsed time: 0:00:06
 # Errors: 0, Warnings: 0
