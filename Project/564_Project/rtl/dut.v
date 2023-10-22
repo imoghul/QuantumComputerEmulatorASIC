@@ -169,9 +169,9 @@ module MyDesign (
   reg [`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1:0] QM;
   wire [2:0] Q;  /*[(`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1)/2:0]*/
   wire [(`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1)/2:0] M;
-  wire [3:0] Qshift;  /*[`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1:0]*/
+  wire [4:0] Qshift;  /*[`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1:0]*/
   wire [15:0] Qshift_squared;
-  wire [3:0] bitmask;
+  wire [4:0] bitmask;
   reg [`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1:0] q_gates_offset;
   reg [(`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1)/2:0] MCounter;
   wire Addr_counter_done;
@@ -271,17 +271,17 @@ module MyDesign (
             nextState = RESET;
           end
         else begin
-
+          
           en_MCounter = 1;
-
+          
           clr_q_gates_offset = 0;
           en_q_gates_offset = 1;
 
           clr_rdscratch_wrinp = 0;
           en_rdscratch_wrinp = 1;
-
+          
           clr_Addr_Count = 1;
-
+          
           nextState = CALCULATE;
         end
       end

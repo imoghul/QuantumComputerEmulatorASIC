@@ -52,3 +52,40 @@
 # transcript error: error writing "stdout": broken pipe
     while executing
 "puts -nonewline stdout $s"
+# transcript error: error writing "stdout": broken pipe
+    while executing
+"puts -nonewline stdout $s"
+# Current time Sun Oct 22 17:57:30 2023
+# ModelSim SE Stack Trace
+# Program = vish
+# Id = "2021.2"
+# Version = "2021.04"
+# Date = "Apr 14 2021"
+# Platform = "linux"
+# 0    0xf7fd9430: '<unknown (@0xf7fd9430)>'
+# 1    0xf7fd93fb: '<unknown (@0xf7fd93fb)>'
+# 2    0x0000f10b: '<unknown (@0xf10b)>'
+# 3    0x00000005: '<unknown (@0x5)>'
+# transcript error: error writing "stdout": broken pipe
+    while executing
+"puts -nonewline stdout $s"
+# Current time Sun Oct 22 17:57:40 2023
+# ModelSim SE Stack Trace
+# Program = vish
+# Id = "2021.2"
+# Version = "2021.04"
+# Date = "Apr 14 2021"
+# Platform = "linux"
+# 0    0xf7fd9430: '<unknown (@0xf7fd9430)>'
+# 1    0xf7fd940b: '<unknown (@0xf7fd940b)>'
+# 2    0x0000f10b: '<unknown (@0xf10b)>'
+# 3    0x00000005: '<unknown (@0x5)>'
+# transcript error: error writing "stdout": broken pipe
+    while executing
+"puts -nonewline stdout $s"
+# transcript error: error writing "stdout": broken pipe
+    while executing
+"puts -nonewline stdout $s"
+# transcript error: error writing "stdout": broken pipe
+    while executing
+"puts -nonewline stdout $s"

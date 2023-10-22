@@ -1,0 +1,51 @@
+Reading pref.tcl
+
+# 2021.2
+
+# vsim -c -voptargs="+acc" tb_top "+TIMEOUT=1000000000" "+num_of_testcases=6" "+epsilon_mult=" "+input_dir=../inputs/input3" "+output_dir=../inputs/output3" -do "run -all" 
+# Start time: 17:48:37 on Oct 22,2023
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-143) Recognized 1 FSM in module "MyDesign(fast)".
+# //  ModelSim SE 2021.2 Apr 14 2021 Linux 3.10.0-1160.102.1.el7.x86_64
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.MyDesign(fast)
+# Loading work.Addr_Counter(fast)
+# Loading work.ArithmeticUnit(fast)
+# Loading work.DW_fp_mult_inst(fast)
+# Loading work.DW_fp_mult(fast)
+# Loading work.DW_fp_add_inst(fast)
+# Loading work.DW_fp_add(fast)
+# Loading work.DW_fp_addsub(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (16) does not match connection size (128) for port 'q_gates_offset'. The port definition is at: ../rtl/dut.v(16).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/address_counter File: ../rtl/dut.v Line: 321
+# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (32) for port 'inst_rnd'. The port definition is at: ../rtl/dut.v(435).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/ALU File: ../rtl/dut.v Line: 345
+# run -all
+# INFO: number of testcases:           6
+# +CLASS+464
+# INFO: DONE WITH RESETING DUT
+# INFO: ######## Running Test: 1 ########
+# INFO: Reading memory file: ../inputs/input3/test1_B.dat
+# ** Warning: (vsim-7) Failed to open readmem file "../inputs/input3/test1_B.dat" in read mode.
+# No such file or directory. (errno = ENOENT)    : ../testbench/sram.sv(77)
+#    Time: 840 ns  Iteration: 1  Instance: /tb_top
+# INFO: Reading memory file: ../inputs/input3/test1_A.dat
+# ** Warning: (vsim-7) Failed to open readmem file "../inputs/input3/test1_A.dat" in read mode.
+# No such file or directory. (errno = ENOENT)    : ../testbench/sram.sv(77)
+#    Time: 840 ns  Iteration: 1  Instance: /tb_top
