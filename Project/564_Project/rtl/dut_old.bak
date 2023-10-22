@@ -1,0 +1,371 @@
+
+`include "defines.vh"
+
+module ArithmeticUnit #(
+    parameter inst_sig_width = 52,
+    parameter inst_exp_width = 11,
+    parameter inst_ieee_compliance = 3
+) (
+
+    input wire [2:0] inst_rnd,
+
+    input wire [(inst_sig_width+inst_exp_width+1)*2-1 : 0] A,
+    input wire [(inst_sig_width+inst_exp_width+1)*2-1 : 0] B,
+    input wire [(inst_sig_width+inst_exp_width+1)*2-1 : 0] prev,
+
+    output wire [(inst_sig_width+inst_exp_width+1)*2-1 : 0] result
+);
+
+  wire [inst_sig_width+inst_exp_width : 0] Areal, Aimag, Breal, Bimag, prevreal, previmag;
+  assign Areal = A[(inst_sig_width+inst_exp_width+1)*2-1:inst_sig_width+inst_exp_width+1];
+  assign Aimag = A[inst_sig_width+inst_exp_width:0];
+  assign Breal = B[(inst_sig_width+inst_exp_width+1)*2-1:inst_sig_width+inst_exp_width+1];
+  assign Bimag = B[inst_sig_width+inst_exp_width:0];
+  assign prevreal = prev[(inst_sig_width+inst_exp_width+1)*2-1:inst_sig_width+inst_exp_width+1];
+  assign previmag = prev[inst_sig_width+inst_exp_width:0];
+
+  wire [inst_sig_width+inst_exp_width : 0] term1;
+  wire [7 : 0] status_term1;
+  wire [inst_sig_width+inst_exp_width : 0] term2;
+  wire [inst_sig_width+inst_exp_width : 0] term2negative;
+  assign term2negative = {
+    ~term2[inst_sig_width+inst_exp_width], term2[inst_sig_width+inst_exp_width-1 : 0]
+  };
+  wire [7 : 0] status_term2;
+  wire [inst_sig_width+inst_exp_width : 0] term3;
+  wire [7 : 0] status_term3;
+  wire [inst_sig_width+inst_exp_width : 0] term4;
+  wire [7 : 0] status_term4;
+
+  wire [inst_sig_width+inst_exp_width : 0] sumreal;
+  wire [7 : 0] status_sumreal;
+  wire [inst_sig_width+inst_exp_width : 0] sumimag;
+  wire [7 : 0] status_sumimag;
+
+  wire [inst_sig_width+inst_exp_width : 0] resultreal;
+  wire [7 : 0] status_resultreal;
+  wire [inst_sig_width+inst_exp_width : 0] resultimag;
+  wire [7 : 0] status_resultimag;
+
+  assign result = {resultreal, resultimag};
+
+
+  // This is test stub for passing input/outputs to a DP_fp_mac, there many
+  // more DW macros that you can choose to use
+  DW_fp_mult_inst FP_MULT_TERM1 (
+      Areal,
+      Breal,
+      inst_rnd,
+      term1,
+      status_term1
+  );
+  DW_fp_mult_inst FP_MULT_TERM2 (
+      Aimag,
+      Bimag,
+      inst_rnd,
+      term2,
+      status_term2
+  );
+  DW_fp_mult_inst FP_MULT_TERM3 (
+      Areal,
+      Bimag,
+      inst_rnd,
+      term3,
+      status_term3
+  );
+  DW_fp_mult_inst FP_MULT_TERM4 (
+      Aimag,
+      Breal,
+      inst_rnd,
+      term4,
+      status_term4
+  );
+
+  DW_fp_add_inst FP_ADD_SUMREAL (
+      term1,
+      term2negative,
+      inst_rnd,
+      sumreal,
+      status_sumreal
+  );
+  DW_fp_add_inst FP_ADD_SUMIMAG (
+      term3,
+      term4,
+      inst_rnd,
+      sumimag,
+      status_sumimag
+  );
+
+  DW_fp_add_inst FP_ADD_RESULTREAL (
+      sumreal,
+      prevreal,
+      inst_rnd,
+      resultreal,
+      status_resultreal
+  );
+  DW_fp_add_inst FP_ADD_RESULTIMAG (
+      sumimag,
+      previmag,
+      inst_rnd,
+      resultimag,
+      status_resultimag
+  );
+
+
+endmodule
+
+//---------------------------------------------------------------------------
+// DUT 
+//---------------------------------------------------------------------------
+module MyDesign (
+    //---------------------------------------------------------------------------
+    //System signals
+    input wire reset_n,
+    input wire clk,
+
+    //---------------------------------------------------------------------------
+    //Control signals
+    input  wire dut_valid,
+    output wire dut_ready,
+
+    //---------------------------------------------------------------------------
+    //q_state_input SRAM interface
+    output wire                                               q_state_input_sram_write_enable,
+    output wire [`Q_STATE_INPUT_SRAM_ADDRESS_UPPER_BOUND-1:0] q_state_input_sram_write_address,
+    output wire [   `Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1:0] q_state_input_sram_write_data,
+    output wire [`Q_STATE_INPUT_SRAM_ADDRESS_UPPER_BOUND-1:0] q_state_input_sram_read_address,
+    input  wire [   `Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1:0] q_state_input_sram_read_data,
+
+    //---------------------------------------------------------------------------
+    //q_state_output SRAM interface
+    output wire                                                q_state_output_sram_write_enable,
+    output wire [`Q_STATE_OUTPUT_SRAM_ADDRESS_UPPER_BOUND-1:0] q_state_output_sram_write_address,
+    output wire [   `Q_STATE_OUTPUT_SRAM_DATA_UPPER_BOUND-1:0] q_state_output_sram_write_data,
+    output wire [`Q_STATE_OUTPUT_SRAM_ADDRESS_UPPER_BOUND-1:0] q_state_output_sram_read_address,
+    input  wire [   `Q_STATE_OUTPUT_SRAM_DATA_UPPER_BOUND-1:0] q_state_output_sram_read_data,
+
+    //---------------------------------------------------------------------------
+    //scratchpad SRAM interface
+    output wire                                            scratchpad_sram_write_enable,
+    output wire [`SCRATCHPAD_SRAM_ADDRESS_UPPER_BOUND-1:0] scratchpad_sram_write_address,
+    output wire [   `SCRATCHPAD_SRAM_DATA_UPPER_BOUND-1:0] scratchpad_sram_write_data,
+    output wire [`SCRATCHPAD_SRAM_ADDRESS_UPPER_BOUND-1:0] scratchpad_sram_read_address,
+    input  wire [   `SCRATCHPAD_SRAM_DATA_UPPER_BOUND-1:0] scratchpad_sram_read_data,
+
+    //---------------------------------------------------------------------------
+    //q_gates SRAM interface
+    output wire                                         q_gates_sram_write_enable,
+    output wire [`Q_GATES_SRAM_ADDRESS_UPPER_BOUND-1:0] q_gates_sram_write_address,
+    output wire [   `Q_GATES_SRAM_DATA_UPPER_BOUND-1:0] q_gates_sram_write_data,
+    output wire [`Q_GATES_SRAM_ADDRESS_UPPER_BOUND-1:0] q_gates_sram_read_address,
+    input  wire [   `Q_GATES_SRAM_DATA_UPPER_BOUND-1:0] q_gates_sram_read_data
+);
+
+  localparam inst_sig_width = 52;
+  localparam inst_exp_width = 11;
+  localparam inst_ieee_compliance = 3;
+
+  // datapath values
+  reg [`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1:0] QM;
+  wire [2:0] Q;  /*[(`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1)/2:0]*/
+  wire [(`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1)/2:0] M;
+  wire [3:0] Qshift;  /*[`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1:0]*/
+  wire [`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1:0] count_max;
+  wire [3:0] bitmask;  /*[`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1:0]*/
+  reg [`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1:0] Qcount;
+  reg [(inst_sig_width+inst_exp_width+1)*2-1 : 0] sum_reg;
+  wire [(inst_sig_width+inst_exp_width+1)*2-1 : 0] sum_calculation;
+  wire [`Q_STATE_INPUT_SRAM_ADDRESS_UPPER_BOUND-1:0] gates_x;
+  reg [`Q_STATE_OUTPUT_SRAM_ADDRESS_UPPER_BOUND-1:0] q_state_output_sram_write_address_r;
+
+  // control signals
+  reg storeQM;
+  reg clr_Q_count;
+  reg rd_info;
+  reg clr_sum;
+  reg dut_ready_r;
+  reg q_state_output_sram_write_enable_r;
+
+  // assigns
+  assign Q = QM[`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1:1 + (`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1)/2];
+  assign M = QM[(`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1)/2:0]<<Q;
+  assign Qshift = 1 << Q;
+  assign count_max = M << Q;
+  assign bitmask = Qshift - 1;
+  assign q_state_input_sram_write_enable = 1'b0;
+  assign q_gates_sram_write_enable = 1'b0;
+  assign q_state_output_sram_write_address = q_state_output_sram_write_address_r;//Qcount >> Q;
+  assign gates_x = (bitmask & Qcount);
+  assign q_state_input_sram_read_address = rd_info ? (0) : (1 + gates_x);
+  assign dut_ready = dut_ready_r;
+  assign q_state_output_sram_write_enable = q_state_output_sram_write_enable_r;
+  assign q_state_output_sram_write_data = sum_calculation;
+  assign q_gates_sram_read_address = Qcount;
+
+  always @(posedge clk)
+    if(!reset_n) q_state_output_sram_write_address_r <= 0;
+    else q_state_output_sram_write_address_r <= Qcount >> Q;
+
+  // controller
+
+  localparam RESET = 2'b00;
+  localparam IDLE = 2'b01;
+  localparam INITIALIZE = 2'b10;
+  localparam GO = 2'b11;
+
+  reg [1:0] state, nextState;
+
+  always @(posedge clk) begin
+    if (!reset_n) state <= RESET;
+    else state <= nextState;
+  end
+
+  always @(*) begin
+    clr_Q_count = 1;
+    storeQM = 0;
+    clr_sum = 1;
+    dut_ready_r = 0;
+    rd_info = 1;
+    q_state_output_sram_write_enable_r = 0;
+    case (state)
+      RESET: begin
+        nextState = IDLE;
+      end
+      IDLE: begin
+        dut_ready_r = 1;
+        if (dut_valid) nextState = INITIALIZE;
+        else nextState = IDLE;
+      end
+      INITIALIZE: begin
+        storeQM = 1;
+        clr_Q_count = 0;
+        rd_info = 0;
+        nextState = GO;
+      end
+      GO: begin
+        clr_Q_count = 0;
+        rd_info = 0;
+        clr_sum = gates_x == 0;
+        q_state_output_sram_write_enable_r = gates_x == 0;
+        if (gates_x == 0 && Qcount == count_max) begin
+          nextState = RESET;
+          clr_Q_count = 1;
+          clr_sum = 1;
+        end else begin
+          nextState = GO;
+        end
+      end
+      default: nextState = RESET;
+    endcase
+  end
+
+
+  // datapath
+  always @(posedge clk) begin
+    if (!reset_n) QM <= 0;
+    else begin
+      if (storeQM) QM <= q_state_input_sram_read_data;
+      else QM <= QM;
+    end
+  end
+
+  always @(posedge clk) begin
+    if (!reset_n) Qcount <= 0;
+    else begin
+      if (!clr_Q_count) Qcount <= Qcount + 1;
+      else Qcount <= 0;
+    end
+  end
+
+  always @(posedge clk) begin
+    if (!reset_n) sum_reg <= 0;
+    else begin
+      if (clr_sum) sum_reg <= 0;
+      else sum_reg <= sum_calculation;
+    end
+  end
+
+  ArithmeticUnit ALU (
+      .inst_rnd(0),
+      .A(q_state_input_sram_read_data),
+      .B(q_gates_sram_read_data),
+      .prev(sum_reg),
+      .result(sum_calculation)
+  );
+
+endmodule
+
+
+module DW_fp_mac_inst #(
+    parameter inst_sig_width = 52,
+    parameter inst_exp_width = 11,
+    parameter inst_ieee_compliance = 3  // These need to be fixed to decrease error
+) (
+    input wire [inst_sig_width+inst_exp_width : 0] inst_a,
+    input wire [inst_sig_width+inst_exp_width : 0] inst_b,
+    input wire [inst_sig_width+inst_exp_width : 0] inst_c,
+    input wire [2 : 0] inst_rnd,
+    output wire [inst_sig_width+inst_exp_width : 0] z_inst,
+    output wire [7 : 0] status_inst
+);
+
+  // Instance of DW_fp_mac
+  DW_fp_mac #(inst_sig_width, inst_exp_width, inst_ieee_compliance) U1 (
+      .a(inst_a),
+      .b(inst_b),
+      .c(inst_c),
+      .rnd(inst_rnd),
+      .z(z_inst),
+      .status(status_inst)
+  );
+
+endmodule
+
+
+module DW_fp_mult_inst #(
+    parameter inst_sig_width = 52,
+    parameter inst_exp_width = 11,
+    parameter inst_ieee_compliance = 3  // These need to be fixed to decrease error
+) (
+    input wire [inst_sig_width+inst_exp_width : 0] inst_a,
+    input wire [inst_sig_width+inst_exp_width : 0] inst_b,
+    input wire [2 : 0] inst_rnd,
+    output wire [inst_sig_width+inst_exp_width : 0] z_inst,
+    output wire [7 : 0] status_inst
+);
+
+  // Instance of DW_fp_mult
+  DW_fp_mult #(inst_sig_width, inst_exp_width, inst_ieee_compliance) U1 (
+      .a(inst_a),
+      .b(inst_b),
+      .rnd(inst_rnd),
+      .z(z_inst),
+      .status(status_inst)
+  );
+
+endmodule
+
+module DW_fp_add_inst #(
+    parameter inst_sig_width = 52,
+    parameter inst_exp_width = 11,
+    parameter inst_ieee_compliance = 3  // These need to be fixed to decrease error
+) (
+    input wire [inst_sig_width+inst_exp_width : 0] inst_a,
+    input wire [inst_sig_width+inst_exp_width : 0] inst_b,
+    input wire [2 : 0] inst_rnd,
+    output wire [inst_sig_width+inst_exp_width : 0] z_inst,
+    output wire [7 : 0] status_inst
+);
+
+  // Instance of DW_fp_add
+  DW_fp_add #(inst_sig_width, inst_exp_width, inst_ieee_compliance) U1 (
+      .a(inst_a),
+      .b(inst_b),
+      .rnd(inst_rnd),
+      .z(z_inst),
+      .status(status_inst)
+  );
+
+endmodule
+
+

@@ -1,0 +1,29 @@
+// states is a column vector length 4
+// gates is a 2 x 4 vector
+
+{signal: [
+  {name: 'clk', wave: 'p....................'},
+  {name: 'reset_n', wave: '01...................'},
+  {},
+  {name: 'sram_input_states_rd_en', wave: '01...................'},
+  {name: 'sram_input_states_rd_data', wave: 'xx=========', data:['info','ind0', 'ind1','ind2', 'ind3','ind0', 'ind1','ind2', 'ind3']},
+  {name: 's_input_states_index', wave: 'x=========',data:[0,1,2,3,4,1,2,3,4]},
+  {},//{name: 'INFO:', wave:'=.=...=.=.=.=...=..', data:"everytime s_gates_index_y hits it's max s_input_states_index increments"},
+  { name: "s_gates_index_y",     wave: "xx=...=...", data: [0,1] },
+  { name: "s_gates_index_x",     wave: "xx========", data: [0,1,2,3,0,1,2,3] },
+  {name: 'sram_gates_rd_en', wave: '01...................'},
+  {name: 'sram_gates_rd_data', wave: 'xxx========', data:["i0,0","i1,0","i2,0","i3,1","i0,1","i1,1","i2,1","i3,1"]},
+  {},
+  {name:"product",wave:"xxx========",data:["p00,0","p10,0","p20,1",'p30,1',"p01,0","p11,1","p21,2",'p31,3']},
+  {name:"sum_reg",wave:"xxx=========",data:["0","s00","s01",'s02',"0","s10","s11",'s12','0']},
+  {name:"sum_calculation",wave:"xxx========x",data:["s00","s01",'s02',"s03","s10","s11",'s12','s13']},
+  
+  {},
+  {name: 'sram_scratch_rd_en', wave: '01....01..0'},
+  {name: 'sram_scratch_rd_index', wave: 'xxxxxx=xxx=',data:[0,1]},
+  
+  //{},
+  //{name: 'sram_output_rd_en', wave: '01.010101010101010101'},
+  //{name: 'sram_output_rd_index', wave: 'xx=.=.=.=.=.=.=.=.',data:[0,1,2,3,0,1,2,3]},
+  //{name: 'sram_output_rd_data', wave: 'xxx=x=x=x=x=x=x' , data:[0,0,"0","0",]}
+]}
