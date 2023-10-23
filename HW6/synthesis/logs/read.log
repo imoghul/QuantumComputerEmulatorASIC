@@ -29,18 +29,19 @@ Loading db file '/mnt/apps/public/COE/synopsys_apps/syn/T-2022.03-SP4/libraries/
 Loading sverilog file '/mnt/ncsudrive/i/immoghul/Programming/ECE564/HW6/rtl/dut.sv'
 Running PRESTO HDLC
 Compiling source file /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW6/rtl/dut.sv
+Warning:  /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW6/rtl/dut.sv:81: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
 Warning: Could not open default SVF file /mnt/ncsudrive/i/immoghul/Programming/ECE564/HW6/synthesis/svf/default.svf for writing.
 
-Statistics for case statements in always block at line 74 in file
+Statistics for case statements in always block at line 75 in file
 	'/mnt/ncsudrive/i/immoghul/Programming/ECE564/HW6/rtl/dut.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
-|            80            |    auto/auto     |
+|            81            |    auto/auto     |
 ===============================================
 
 Inferred memory devices in process
-	in routine MyDesign line 68 in file
+	in routine MyDesign line 69 in file
 		'/mnt/ncsudrive/i/immoghul/Programming/ECE564/HW6/rtl/dut.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -49,7 +50,7 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
-	in routine MyDesign line 123 in file
+	in routine MyDesign line 124 in file
 		'/mnt/ncsudrive/i/immoghul/Programming/ECE564/HW6/rtl/dut.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -58,7 +59,7 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
-	in routine MyDesign line 133 in file
+	in routine MyDesign line 134 in file
 		'/mnt/ncsudrive/i/immoghul/Programming/ECE564/HW6/rtl/dut.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -67,7 +68,7 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
-	in routine MyDesign line 142 in file
+	in routine MyDesign line 143 in file
 		'/mnt/ncsudrive/i/immoghul/Programming/ECE564/HW6/rtl/dut.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |

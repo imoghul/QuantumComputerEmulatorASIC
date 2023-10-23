@@ -26,6 +26,9 @@ R0
 R0
 R0
 R0
+R0
+R0
+R0
 !s11f vlog 2021.2 2021.04, Apr 14 2021
 13
 !s112 1.1
@@ -35,16 +38,15 @@ R0
 cModel Technology
 Z1 d/mnt/ncsudrive/i/immoghul/Programming/ECE564/HW6/run
 T_opt
-!s110 1697406111
-VDgCb`9FdBPcHNElf78Wej0
+!s110 1697498961
+VFN[=gR]SG1DnZL]e0a3g63
 Z2 04 6 4 work tb_top fast 0
-=2-1866daf7ffd4-652c5c9d-103ac-6721
+=1-14187755b88d-652dc74c-cc254-6f17
 Z3 !s124 OEM100
 Z4 o-quiet -auto_acc_if_foreign -work work +acc
 Z5 tCvgOpt 0
 n@_opt
 Z6 OE;O;2021.2;73
-R1
 T_opt1
 !s110 1697406166
 V^[ie1ZZBY@AmX=J7OfzC53
@@ -55,6 +57,7 @@ R4
 R5
 n@_opt1
 R6
+R1
 vDW_fp_add
 Z7 !s110 1697220773
 !i10b 1
@@ -840,23 +843,23 @@ R5
 n@d@w_fp_sum4
 vMyDesign
 Z19 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
-Z20 !s110 1697406153
+Z20 !s110 1697498950
 !i10b 1
-!s100 cge7;]G;F^cnmkGRacPXB1
-I>4Odd>L<i0[@dOO9Q5CWD2
+!s100 Tc^U65jI1eh_IMnR81>A?0
+I?T13c^_6a4b0oWG4f<bDS0
 S1
 R1
-w1697405954
+w1697498947
 8../rtl/dut.sv
 F../rtl/dut.sv
-!i122 47
-L0 5 157
+!i122 51
+L0 5 158
 R9
 R10
 r1
 !s85 0
 31
-Z21 !s108 1697406152.000000
+Z21 !s108 1697498949.000000
 Z22 !s107 ../rtl/dut.sv|../testbench/sram.sv|../testbench/testbench.sv|
 Z23 !s90 -sv|+incdir+../testbench|../testbench/testbench.sv|../testbench/sram.sv|../rtl/dut.sv|../dpi/sum.c|
 !i113 0
@@ -875,7 +878,7 @@ R1
 w1693331220
 8../testbench/sram.sv
 F../testbench/sram.sv
-!i122 47
+!i122 51
 L0 5 105
 R9
 R10
@@ -900,7 +903,7 @@ R1
 w1697327304
 8../testbench/testbench.sv
 F../testbench/testbench.sv
-!i122 47
+!i122 51
 L0 3 246
 R9
 R10

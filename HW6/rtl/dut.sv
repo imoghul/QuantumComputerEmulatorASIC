@@ -56,14 +56,15 @@ module MyDesign (
   // translate_on 
   // synopsys translate_on
 
+  // controller
+  enum logic [1:0] {
+    RESET = 2'b00,
+    IDLE = 2'b01,
+    INITIALIZE_COUNT = 2'b10,
+    ACCUMULATE = 2'b11
+  }
+      state, nextState;
 
-  // control
-  localparam RESET = 0;
-  localparam IDLE = 1;
-  localparam INITIALIZE_COUNT = 2;
-  localparam ACCUMULATE = 3;
-  
-  reg [1:0] state, nextState;
 
   always @(posedge clk) begin
     if (!reset_n) state <= RESET;
