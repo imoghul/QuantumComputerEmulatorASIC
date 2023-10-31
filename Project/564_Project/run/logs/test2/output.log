@@ -3,8 +3,8 @@ Reading pref.tcl
 # 2021.2
 
 # vsim -c -voptargs="+acc" tb_top "+TIMEOUT=1000000000" "+num_of_testcases=8" "+epsilon_mult=" "+input_dir=../inputs/input2" "+output_dir=../inputs/output2" -do "run -all" 
-# Start time: 19:01:59 on Oct 22,2023
-# ** Note: (vsim-8009) Loading existing optimized design _opt
+# Start time: 17:14:05 on Oct 31,2023
+# ** Note: (vsim-8009) Loading existing optimized design _opt1
 # //  ModelSim SE 2021.2 Apr 14 2021 Linux 3.10.0-1160.102.1.el7.x86_64
 # //
 # //  Copyright 1991-2021 Mentor Graphics Corporation
@@ -32,28 +32,94 @@ Reading pref.tcl
 # Loading work.DW_fp_add(fast)
 # Loading work.DW_fp_addsub(fast)
 # ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (5) for port 'bitmask'. The port definition is at: ../rtl/dut.v(15).
-#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/address_counter File: ../rtl/dut.v Line: 321
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/address_counter File: ../rtl/dut.v Line: 367
 # ** Warning: (vsim-3015) [PCDPC] - Port size (16) does not match connection size (128) for port 'q_gates_offset'. The port definition is at: ../rtl/dut.v(16).
-#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/address_counter File: ../rtl/dut.v Line: 321
-# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (32) for port 'inst_rnd'. The port definition is at: ../rtl/dut.v(435).
-#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/ALU File: ../rtl/dut.v Line: 345
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/address_counter File: ../rtl/dut.v Line: 367
+# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (32) for port 'inst_rnd'. The port definition is at: ../rtl/dut.v(517).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/ALU File: ../rtl/dut.v Line: 421
 # run -all
 # INFO: number of testcases:           8
 # +CLASS+464
 # INFO: DONE WITH RESETING DUT
 # INFO: ######## Running Test: 1 ########
 # INFO: Reading memory file: ../inputs/input2/test1_B.dat
-# ** Warning: (vsim-7) Failed to open readmem file "../inputs/input2/test1_B.dat" in read mode.
-# No such file or directory. (errno = ENOENT)    : ../testbench/sram.sv(77)
-#    Time: 840 ns  Iteration: 1  Instance: /tb_top
 # INFO: Reading memory file: ../inputs/input2/test1_A.dat
-# ** Warning: (vsim-7) Failed to open readmem file "../inputs/input2/test1_A.dat" in read mode.
-# No such file or directory. (errno = ENOENT)    : ../testbench/sram.sv(77)
-#    Time: 840 ns  Iteration: 1  Instance: /tb_top
-###################################
-#              TIMEOUT               
-###################################
-# ** Note: $finish    : ../testbench/testbench.sv(218)
-#    Time: 10000000740 ns  Iteration: 1  Instance: /tb_top
-# End time: 19:32:46 on Oct 22,2023, Elapsed time: 0:30:47
-# Errors: 0, Warnings: 5
+# INFO: reading ../inputs/output2/test1_C.dat
+# INFO: Number of cases        : 2
+# INFO: Number of passed cases : 2
+# INFO: presentage passed     :  100.00
+# INFO: Test: 1, Result:  100.00
+# 
+# INFO: ######## Running Test: 2 ########
+# INFO: Reading memory file: ../inputs/input2/test2_B.dat
+# INFO: Reading memory file: ../inputs/input2/test2_A.dat
+# INFO: reading ../inputs/output2/test2_C.dat
+# INFO: Number of cases        : 4
+# INFO: Number of passed cases : 4
+# INFO: presentage passed     :  100.00
+# INFO: Test: 2, Result:  100.00
+# 
+# INFO: ######## Running Test: 3 ########
+# INFO: Reading memory file: ../inputs/input2/test3_B.dat
+# INFO: Reading memory file: ../inputs/input2/test3_A.dat
+# INFO: reading ../inputs/output2/test3_C.dat
+# INFO: Number of cases        : 8
+# INFO: Number of passed cases : 8
+# INFO: presentage passed     :  100.00
+# INFO: Test: 3, Result:  100.00
+# 
+# INFO: ######## Running Test: 4 ########
+# INFO: Reading memory file: ../inputs/input2/test4_B.dat
+# INFO: Reading memory file: ../inputs/input2/test4_A.dat
+# INFO: reading ../inputs/output2/test4_C.dat
+# INFO: Number of cases        : 16
+# INFO: Number of passed cases : 16
+# INFO: presentage passed     :  100.00
+# INFO: Test: 4, Result:  100.00
+# 
+# INFO: ######## Running Test: 5 ########
+# INFO: Reading memory file: ../inputs/input2/test5_B.dat
+# INFO: Reading memory file: ../inputs/input2/test5_A.dat
+# INFO: reading ../inputs/output2/test5_C.dat
+# INFO: Number of cases        : 16
+# INFO: Number of passed cases : 16
+# INFO: presentage passed     :  100.00
+# INFO: Test: 5, Result:  100.00
+# 
+# INFO: ######## Running Test: 6 ########
+# INFO: Reading memory file: ../inputs/input2/test6_B.dat
+# INFO: Reading memory file: ../inputs/input2/test6_A.dat
+# INFO: reading ../inputs/output2/test6_C.dat
+# INFO: Number of cases        : 16
+# INFO: Number of passed cases : 16
+# INFO: presentage passed     :  100.00
+# INFO: Test: 6, Result:  100.00
+# 
+# INFO: ######## Running Test: 7 ########
+# INFO: Reading memory file: ../inputs/input2/test7_B.dat
+# INFO: Reading memory file: ../inputs/input2/test7_A.dat
+# INFO: reading ../inputs/output2/test7_C.dat
+# INFO: Number of cases        : 16
+# INFO: Number of passed cases : 16
+# INFO: presentage passed     :  100.00
+# INFO: Test: 7, Result:  100.00
+# 
+# INFO: ######## Running Test: 8 ########
+# INFO: Reading memory file: ../inputs/input2/test8_B.dat
+# INFO: Reading memory file: ../inputs/input2/test8_A.dat
+# INFO: reading ../inputs/output2/test8_C.dat
+# INFO: Number of cases        : 16
+# INFO: Number of passed cases : 16
+# INFO: presentage passed     :  100.00
+# INFO: Test: 8, Result:  100.00
+# 
+# INFO: Total number of cases  : 94
+# INFO: Total number of passes : 94
+# INFO: Finial Results         : 100.00
+# INFO: Finial Time Result     : 60000 ns
+# INFO: Finial Cycle Result    : 12000 cycles
+# 
+# ** Note: $finish    : ../testbench/testbench.sv(348)
+#    Time: 60740 ns  Iteration: 1  Instance: /tb_top
+# End time: 17:14:06 on Oct 31,2023, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 3
