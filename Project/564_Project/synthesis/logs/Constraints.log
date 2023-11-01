@@ -619,7 +619,7 @@ set_fix_multiple_port_nets -all -buffer_constants [get_designs]
 #------------------------------------------------------
 ungroup -flatten -all
 Information: Updating graph... (UID-83)
-Warning: Design 'MyDesign' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Warning: Design 'MyDesign' contains 2 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
 #---------------------------------------------------------
 # check the design before optimization  
 #---------------------------------------------------------
@@ -633,7 +633,7 @@ check_design
 ****************************************
 check_design summary:
 Version:     T-2022.03-SP4
-Date:        Mon Oct 23 21:15:52 2023
+Date:        Tue Oct 31 21:00:14 2023
 ****************************************
 
                    Name                                            Total
@@ -655,8 +655,8 @@ Tristate                                                          148
     A tristate bus has a non tri-state driver (LINT-34)           148
 --------------------------------------------------------------------------------
 
-Warning: In design 'MyDesign', cell 'C969' does not drive any nets. (LINT-1)
-Warning: In design 'MyDesign', cell 'C983' does not drive any nets. (LINT-1)
+Warning: In design 'MyDesign', cell 'C971' does not drive any nets. (LINT-1)
+Warning: In design 'MyDesign', cell 'C985' does not drive any nets. (LINT-1)
 Warning: In design 'MyDesign', net 'ALU/status_term1[7]' driven by pin 'ALU/FP_MULT_TERM1/U1/status_7' has no loads. (LINT-2)
 Warning: In design 'MyDesign', net 'ALU/status_term1[6]' driven by pin 'ALU/FP_MULT_TERM1/U1/status_6' has no loads. (LINT-2)
 Warning: In design 'MyDesign', net 'ALU/status_term1[5]' driven by pin 'ALU/FP_MULT_TERM1/U1/status_5' has no loads. (LINT-2)
@@ -1492,24 +1492,24 @@ Warning: In design 'MyDesign', three-state bus 'q_gates_offset[124]' has non thr
 Warning: In design 'MyDesign', three-state bus 'q_gates_offset[125]' has non three-state driver 'q_gates_offset_reg[125]/Q'. (LINT-34)
 Warning: In design 'MyDesign', three-state bus 'q_gates_offset[126]' has non three-state driver 'q_gates_offset_reg[126]/Q'. (LINT-34)
 Warning: In design 'MyDesign', three-state bus 'q_gates_offset[127]' has non three-state driver 'q_gates_offset_reg[127]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'clr_Addr_Count' has non three-state driver 'C903/Z_0'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'bitmask[0]' has non three-state driver 'sub_206/Z_0'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'bitmask[1]' has non three-state driver 'sub_206/Z_1'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'bitmask[2]' has non three-state driver 'sub_206/Z_2'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'bitmask[3]' has non three-state driver 'sub_206/Z_3'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'bitmask[4]' has non three-state driver 'sub_206/Z_4'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'Qshift_squared[0]' has non three-state driver 'sll_205/Z_0'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'Qshift_squared[1]' has non three-state driver 'sll_205/Z_1'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'Qshift_squared[2]' has non three-state driver 'sll_205/Z_2'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'Qshift_squared[3]' has non three-state driver 'sll_205/Z_3'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'Qshift_squared[4]' has non three-state driver 'sll_205/Z_4'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'Qshift_squared[5]' has non three-state driver 'sll_205/Z_5'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'Qshift_squared[6]' has non three-state driver 'sll_205/Z_6'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'Qshift_squared[7]' has non three-state driver 'sll_205/Z_7'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'Qshift_squared[8]' has non three-state driver 'sll_205/Z_8'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'Qshift_squared[9]' has non three-state driver 'sll_205/Z_9'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'Qshift_squared[10]' has non three-state driver 'sll_205/Z_10'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'Qshift_squared[11]' has non three-state driver 'sll_205/Z_11'. (LINT-34)
+Warning: In design 'MyDesign', three-state bus 'clr_Addr_Count' has non three-state driver 'C899/Z_0'. (LINT-34)
+Warning: In design 'MyDesign', three-state bus 'bitmask[0]' has non three-state driver 'sub_233/Z_0'. (LINT-34)
+Warning: In design 'MyDesign', three-state bus 'bitmask[1]' has non three-state driver 'sub_233/Z_1'. (LINT-34)
+Warning: In design 'MyDesign', three-state bus 'bitmask[2]' has non three-state driver 'sub_233/Z_2'. (LINT-34)
+Warning: In design 'MyDesign', three-state bus 'bitmask[3]' has non three-state driver 'sub_233/Z_3'. (LINT-34)
+Warning: In design 'MyDesign', three-state bus 'bitmask[4]' has non three-state driver 'sub_233/Z_4'. (LINT-34)
+Warning: In design 'MyDesign', three-state bus 'Qshift_squared[0]' has non three-state driver 'sll_232/Z_0'. (LINT-34)
+Warning: In design 'MyDesign', three-state bus 'Qshift_squared[1]' has non three-state driver 'sll_232/Z_1'. (LINT-34)
+Warning: In design 'MyDesign', three-state bus 'Qshift_squared[2]' has non three-state driver 'sll_232/Z_2'. (LINT-34)
+Warning: In design 'MyDesign', three-state bus 'Qshift_squared[3]' has non three-state driver 'sll_232/Z_3'. (LINT-34)
+Warning: In design 'MyDesign', three-state bus 'Qshift_squared[4]' has non three-state driver 'sll_232/Z_4'. (LINT-34)
+Warning: In design 'MyDesign', three-state bus 'Qshift_squared[5]' has non three-state driver 'sll_232/Z_5'. (LINT-34)
+Warning: In design 'MyDesign', three-state bus 'Qshift_squared[6]' has non three-state driver 'sll_232/Z_6'. (LINT-34)
+Warning: In design 'MyDesign', three-state bus 'Qshift_squared[7]' has non three-state driver 'sll_232/Z_7'. (LINT-34)
+Warning: In design 'MyDesign', three-state bus 'Qshift_squared[8]' has non three-state driver 'sll_232/Z_8'. (LINT-34)
+Warning: In design 'MyDesign', three-state bus 'Qshift_squared[9]' has non three-state driver 'sll_232/Z_9'. (LINT-34)
+Warning: In design 'MyDesign', three-state bus 'Qshift_squared[10]' has non three-state driver 'sll_232/Z_10'. (LINT-34)
+Warning: In design 'MyDesign', three-state bus 'Qshift_squared[11]' has non three-state driver 'sll_232/Z_11'. (LINT-34)
 Warning: In design 'MyDesign', three-state bus '*Logic0*' has non three-state driver 'U2/**logic_0**'. (LINT-34)
 Warning: In design 'MyDesign', output port 'q_gates_sram_write_enable' is connected directly to 'logic 0'. (LINT-52)
 Warning: In design 'MyDesign', multiply-driven net '*Logic0*' is driven by constant 0. (LINT-54)

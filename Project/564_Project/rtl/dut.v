@@ -84,16 +84,16 @@ module Addr_Counter #(
 
   reg done1, done2, done3;
   always @(posedge clk)
-    if (!reset_n) begin 
+    if (!reset_n) begin
       done1 <= 0;
-      done2<= 0;
-      done3<=0;
-      done <= 0;
+      done2 <= 0;
+      done3 <= 0;
+      done  <= 0;
     end else begin
       done1 <= clr ? 0 : isMax;
-      done2 <= clr ? 0: done1;
-      done3 <= clr ? 0: done2;
-      done <= clr ? 0: done3;
+      done2 <= clr ? 0 : done1;
+      done3 <= clr ? 0 : done2;
+      done  <= clr ? 0 : done3;
     end
   always @(posedge clk)
     if (!reset_n) q_gates_addr <= 0;
@@ -110,30 +110,30 @@ module Addr_Counter #(
     else if (isMax) q_output_addr_r <= q_output_addr_r;
     else q_output_addr_r <= QcounterMasked == 0 ? q_output_addr_r + 1 : q_output_addr_r;
 
-  reg [ADDR_WIDTH-1:0] q_output_addr1,q_output_addr2,q_output_addr3;
-  reg [ADDR_WIDTH-1:0] q_wr_input_addr1,q_wr_input_addr2,q_wr_input_addr3;
+  reg [ADDR_WIDTH-1:0] q_output_addr1, q_output_addr2, q_output_addr3;
+  reg [ADDR_WIDTH-1:0] q_wr_input_addr1, q_wr_input_addr2, q_wr_input_addr3;
 
   reg [ADDR_WIDTH-1:0] q_output_addr_minus_one;
   always @(q_output_addr_r) q_output_addr_minus_one = q_output_addr_r - 1;
   always @(posedge clk)
     if (!reset_n) begin
-      {q_output_addr, q_wr_input_addr} <= 0;
+      {q_output_addr, q_wr_input_addr}   <= 0;
       {q_output_addr1, q_wr_input_addr1} <= 0;
       {q_output_addr2, q_wr_input_addr2} <= 0;
       {q_output_addr3, q_wr_input_addr3} <= 0;
     end else if (clr) begin
-      {q_output_addr, q_wr_input_addr} <= 0;
+      {q_output_addr, q_wr_input_addr}   <= 0;
       {q_output_addr1, q_wr_input_addr1} <= 0;
       {q_output_addr2, q_wr_input_addr2} <= 0;
       {q_output_addr3, q_wr_input_addr3} <= 0;
     end else begin
-      q_output_addr1   <= q_output_addr_minus_one;
+      q_output_addr1 <= q_output_addr_minus_one;
       q_wr_input_addr1 <= q_output_addr_minus_one + 1;
-      q_output_addr2   <= q_output_addr1;
+      q_output_addr2 <= q_output_addr1;
       q_wr_input_addr2 <= q_wr_input_addr1;
-      q_output_addr3   <= q_output_addr2;
+      q_output_addr3 <= q_output_addr2;
       q_wr_input_addr3 <= q_wr_input_addr2;
-      q_output_addr   <= q_output_addr3;
+      q_output_addr <= q_output_addr3;
       q_wr_input_addr <= q_wr_input_addr3;
     end
 endmodule
@@ -218,7 +218,7 @@ module MyDesign (
   reg en_MCounter;
   reg en_q_gates_offset;
   reg clr_q_gates_offset;
-  reg clr_sum_reg,clr_sum_reg1, clr_sum_reg2, clr_sum_reg3;
+  reg clr_sum_reg, clr_sum_reg1, clr_sum_reg2, clr_sum_reg3;
   reg clr_rdscratch_wrinp;
   reg en_rdscratch_wrinp;
   reg squash;
@@ -237,10 +237,9 @@ module MyDesign (
   localparam IDLE = 1;
   localparam INITIALIZE = 2;
   localparam CALCULATE_PARAMETERS = 3;
-  localparam CALCULATE = 7;
-  localparam WRITEBACK1 = 8;
-  localparam WRITEBACK2 = 9;
-  localparam WRITEBACK3 = 10;
+  localparam CALCULATE = 4;
+  localparam WRITEBACK1 = 5;
+  localparam WRITEBACK2 = 6;
 
   reg [3:0] state, nextState;
   always @(posedge clk) begin
@@ -285,36 +284,19 @@ module MyDesign (
         clr_q_gates_offset = 0;
         clr_rdscratch_wrinp = 0;
         if (Addr_counter_done) begin
-          nextState = WRITEBACK2;
-          // if (MCounter == 1) begin
-          //   en_rdscratch_wrinp = 0;
-          //   clr_Addr_Count = 0;
-          //   en_MCounter = 0;
-          //   nextState = RESET;
-          // end
+          nextState = WRITEBACK1;
         end else nextState = CALCULATE;
       end
-      // WRITEBACK1: begin
-      //   squash = 0;
-      //     clr_sum_reg = 0;
-      //     en_MCounter = 0;
-      //     clr_q_gates_offset = 0;
-      //     en_q_gates_offset = 0;
-      //     clr_rdscratch_wrinp = 0;
-      //     en_rdscratch_wrinp = 0;
-      //     clr_Addr_Count = 0;
-      //     nextState = WRITEBACK2;
-      // end
-      WRITEBACK2: begin
+      WRITEBACK1: begin
         en_MCounter = 0;
         clr_q_gates_offset = 0;
         en_q_gates_offset = 0;
         clr_rdscratch_wrinp = 0;
         en_rdscratch_wrinp = 0;
         clr_Addr_Count = 1;
-        nextState = WRITEBACK3;
+        nextState = WRITEBACK2;
       end
-      WRITEBACK3: begin
+      WRITEBACK2: begin
         if (MCounter == 1) begin
           en_rdscratch_wrinp = 0;
           clr_Addr_Count = 0;
@@ -384,7 +366,7 @@ module MyDesign (
   );
 
   always @(posedge clk)
-    if(!reset_n) begin
+    if (!reset_n) begin
       clr_sum_reg1 <= 0;
       clr_sum_reg2 <= 0;
       clr_sum_reg3 <= 0;
@@ -402,19 +384,19 @@ module MyDesign (
 
   reg enInput1, enInput2, enInput3;
   always @(posedge clk)
-    if(!reset_n) begin
+    if (!reset_n) begin
       enInput1 <= 0;
       enInput2 <= 0;
       enInput3 <= 0;
     end else begin
-      if(state==CALCULATE) begin
-        enInput1<= 1;
-        enInput2<= enInput1;
-        enInput3<= enInput2;
+      if (state == CALCULATE) begin
+        enInput1 <= 1;
+        enInput2 <= enInput1;
+        enInput3 <= enInput2;
       end else begin
-        enInput1<= 0;
-        enInput2<= 0;
-        enInput3<= 0;
+        enInput1 <= 0;
+        enInput2 <= 0;
+        enInput3 <= 0;
       end
     end
 
@@ -426,7 +408,7 @@ module MyDesign (
       .enInput(enInput3),
       .A(rdscratch_wrinp ? scratchpad_sram_read_data : q_state_input_sram_read_data),
       .B(q_gates_sram_read_data),
-      .prev(clr_sum_reg3?0:sum_calculation),
+      .prev(clr_sum_reg3 ? 0 : sum_calculation),
       .result(sum_calculation)
   );
 
@@ -525,10 +507,10 @@ module ArithmeticUnit #(
 );
 
   wire [inst_sig_width+inst_exp_width : 0] Areal, Aimag, Breal, Bimag, prevreal, previmag;
-  assign Areal = enInput?A[(inst_sig_width+inst_exp_width+1)*2-1:inst_sig_width+inst_exp_width+1]:0;
-  assign Aimag = enInput?A[inst_sig_width+inst_exp_width:0]:0;
-  assign Breal = enInput?B[(inst_sig_width+inst_exp_width+1)*2-1:inst_sig_width+inst_exp_width+1]:0;
-  assign Bimag = enInput?B[inst_sig_width+inst_exp_width:0]:0;
+  assign Areal = enInput ? A[(inst_sig_width+inst_exp_width+1)*2-1:inst_sig_width+inst_exp_width+1] : 0;
+  assign Aimag = enInput ? A[inst_sig_width+inst_exp_width:0] : 0;
+  assign Breal = enInput ? B[(inst_sig_width+inst_exp_width+1)*2-1:inst_sig_width+inst_exp_width+1] : 0;
+  assign Bimag = enInput ? B[inst_sig_width+inst_exp_width:0] : 0;
   assign prevreal = prev[(inst_sig_width+inst_exp_width+1)*2-1:inst_sig_width+inst_exp_width+1];
   assign previmag = prev[inst_sig_width+inst_exp_width:0];
 
@@ -549,17 +531,17 @@ module ArithmeticUnit #(
   wire [inst_sig_width+inst_exp_width : 0] term4_d;
   reg [inst_sig_width+inst_exp_width : 0] term4_q;
   wire [7 : 0] status_term4;
-  always @ (posedge clk) begin
-    if(!reset_n || squash) begin
-      term1_q<=0;
-      term2negative_q<=0;
-      term3_q<=0;
-      term4_q<=0;
+  always @(posedge clk) begin
+    if (!reset_n || squash) begin
+      term1_q <= 0;
+      term2negative_q <= 0;
+      term3_q <= 0;
+      term4_q <= 0;
     end else begin
-      term1_q<=term1_d;
-      term2negative_q<=term2negative_d;
-      term3_q<=term3_d;
-      term4_q<=term4_d;
+      term1_q <= term1_d;
+      term2negative_q <= term2negative_d;
+      term3_q <= term3_d;
+      term4_q <= term4_d;
     end
   end
 
@@ -570,13 +552,13 @@ module ArithmeticUnit #(
   wire [inst_sig_width+inst_exp_width : 0] sumimag_d;
   reg [inst_sig_width+inst_exp_width : 0] sumimag_q;
   wire [7 : 0] status_sumimag;
-  always @ (posedge clk) begin
-    if(!reset_n || squash) begin
-      sumreal_q<=0;
-      sumimag_q<=0;
+  always @(posedge clk) begin
+    if (!reset_n || squash) begin
+      sumreal_q <= 0;
+      sumimag_q <= 0;
     end else begin
-      sumreal_q<=sumreal_d;
-      sumimag_q<=sumimag_d;
+      sumreal_q <= sumreal_d;
+      sumimag_q <= sumimag_d;
     end
   end
 
@@ -587,13 +569,13 @@ module ArithmeticUnit #(
   wire [inst_sig_width+inst_exp_width : 0] resultimag_d;
   reg [inst_sig_width+inst_exp_width : 0] resultimag_q;
   wire [7 : 0] status_resultimag;
-  always @ (posedge clk) begin
-    if(!reset_n || squash) begin
-      resultreal_q<=0;
-      resultimag_q<=0;
+  always @(posedge clk) begin
+    if (!reset_n || squash) begin
+      resultreal_q <= 0;
+      resultimag_q <= 0;
     end else begin
-      resultreal_q<=resultreal_d;
-      resultimag_q<=resultimag_d;
+      resultreal_q <= resultreal_d;
+      resultimag_q <= resultimag_d;
     end
   end
 
