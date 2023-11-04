@@ -168,6 +168,38 @@ R0
 R0
 R0
 R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
 !s11f vlog 2021.2 2021.04, Apr 14 2021
 13
 !s112 1.1
@@ -177,20 +209,21 @@ R0
 cModel Technology
 Z1 d/mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/run
 T_opt
-!s110 1699059009
-VT3h_JmR2d?ciKhifi06Hm2
+!s110 1699062876
+VVM[eW0Yk_jU]05fPXhcl[3
 Z2 04 6 4 work tb_top fast 0
-=7-141877559b85-65459540-73c1b-552e
+=39-141877559b85-6545a45b-cb31e-552e
 Z3 !s124 OEM100
 Z4 o-quiet -auto_acc_if_foreign -work work +acc
 Z5 tCvgOpt 0
 n@_opt
 Z6 OE;O;2021.2;73
+R1
 T_opt1
-!s110 1699058786
-V4V7<P4:9QcP1LNdLGoHOD2
+!s110 1699061091
+VbJF_YFSY:n>>3BfI1^OY81
 R2
-=1-141877559b85-65459461-834c8-5e32
+=2-141877559b85-65459d61-f32af-640b
 R3
 R4
 R5
@@ -198,16 +231,15 @@ n@_opt1
 R6
 R1
 T_opt2
-!s110 1698010315
-V5;8[IL8iif8>4IhEj=TGc3
+!s110 1699062921
+VYPGZb@jQ5Vf6RM?^EFTgc1
 R2
-=1-1866daf7ffd7-653594ca-378d6-3466
+=1-141877559b85-6545a486-c1f0c-1fc8
 R3
 R4
 R5
 n@_opt2
 R6
-R1
 T_opt3
 !s110 1698011319
 VZ0cGO@;@okiAPQgV3Pnd73
@@ -220,22 +252,22 @@ n@_opt3
 R6
 R1
 vAddr_Counter
-Z7 !s110 1699059008
+Z7 !s110 1699062875
 !i10b 1
-!s100 8_n<85hA3T6=?[TjnQl`c1
-IHQkF:2>P5FMl^VB[Ob>=f3
+!s100 [V87KD]aOlTHaN:IFFOL63
+IK0aaOYENd2bXYVmadL6330
 R1
-Z8 w1699058893
+Z8 w1699062871
 Z9 8../rtl/dut.v
 Z10 F../rtl/dut.v
-!i122 265
-L0 651 113
+!i122 301
+L0 651 135
 Z11 VDg1SIo80bB@j0V0VzS_@n1
 Z12 OE;L;2021.2;73
 r1
 !s85 0
 31
-Z13 !s108 1699059007.000000
+Z13 !s108 1699062874.000000
 Z14 !s107 ../testbench/sram.sv|../testbench/defines.vh|../testbench/testbench.sv|../rtl/dut.v|
 Z15 !s90 +incdir+../testbench|../rtl/dut.v|../testbench/testbench.sv|
 !i113 0
@@ -252,7 +284,7 @@ R1
 R8
 R9
 R10
-!i122 265
+!i122 301
 L0 350 157
 R11
 R12
@@ -346,7 +378,7 @@ R1
 R8
 R9
 R10
-!i122 265
+!i122 301
 L0 326 22
 R11
 R12
@@ -830,7 +862,7 @@ R1
 R8
 R9
 R10
-!i122 265
+!i122 301
 L0 277 24
 R11
 R12
@@ -900,7 +932,7 @@ R1
 R8
 R9
 R10
-!i122 265
+!i122 301
 L0 303 22
 R11
 R12
@@ -1155,7 +1187,7 @@ R1
 R8
 R9
 R10
-!i122 265
+!i122 301
 L0 10 265
 R11
 R12
@@ -1181,7 +1213,7 @@ R1
 w1697740483
 8../testbench/sram.sv
 F../testbench/sram.sv
-!i122 265
+!i122 301
 L0 4 105
 R11
 R12
@@ -1206,7 +1238,7 @@ R1
 w1697740475
 8../testbench/testbench.sv
 F../testbench/testbench.sv
-!i122 265
+!i122 301
 L0 3 348
 R11
 R12

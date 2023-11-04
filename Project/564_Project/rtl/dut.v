@@ -679,8 +679,9 @@ module Addr_Counter #(
   assign QcounterMasked = Qcounter & bitmask;
 
   always @(posedge clk) begin
-    if (!reset_n) wraparound = 0;
-    else wraparound = QcounterMasked == 0;
+    if (!reset_n) wraparound <= 0;
+    // else if (clr) wraparound <= 0;
+    else wraparound <= QcounterMasked == 0;
   end
 
   always @(posedge clk) begin
@@ -700,8 +701,25 @@ module Addr_Counter #(
     if (!reset_n) q_input_addr <= 0;
     else q_input_addr <= clr ? 0 : (QcounterMasked + !rdscratch_wrinp);
 
-  wire output_counter_control;
-  assign output_counter_control = QcounterMasked==4;
+
+  // wire output_counter_control;
+  // assign output_counter_control = (Qcounter[2:0])==4;
+  reg output_counter_control,output_counter_control1,output_counter_control2,output_counter_control3;
+  wire output_counter_control_d;
+  assign output_counter_control_d = QcounterMasked==0;
+  always @(posedge clk)
+    if(!reset_n) begin
+      output_counter_control<=0;
+    output_counter_control1<=0;
+    end else if (clr) begin
+       output_counter_control<=0;
+       output_counter_control1<=0;
+    end else begin
+       output_counter_control1<=output_counter_control_d;
+       output_counter_control2<=output_counter_control1;
+       output_counter_control3<=output_counter_control2;
+       output_counter_control<=output_counter_control3;
+    end
   always @(posedge clk)
     if (!reset_n) begin
       q_output_addr <= 0;
@@ -709,10 +727,12 @@ module Addr_Counter #(
     end else if(clr) begin
       q_output_addr <= 0;
       q_wr_input_addr <= 0;
-    end else if(isMax) begin
-      q_output_addr <= q_output_addr;
-      q_wr_input_addr <= q_wr_input_addr;
-    end else if (output_counter_control) begin
+    end 
+    // else if(isMax) begin
+    //   q_output_addr <= q_output_addr;
+    //   q_wr_input_addr <= q_wr_input_addr;
+    // end 
+    else if (output_counter_control) begin
       q_output_addr <= q_wr_input_addr; // or assign q_output_addr = q_wr_input_addr - 1
       q_wr_input_addr <= q_wr_input_addr + 1;
     end else begin
@@ -729,7 +749,7 @@ module Addr_Counter #(
       q_input_wr_en <= 0;
       q_scratch_wr_en <= 0;
       q_output_wr_en <= 0;
-    end else if (output_counter_control) begin
+    end else if (output_counter_control3) begin
       q_input_wr_en <= rdscratch_wrinp;
       q_scratch_wr_en <= !rdscratch_wrinp;
       q_output_wr_en <= 1;
@@ -738,6 +758,8 @@ module Addr_Counter #(
       q_scratch_wr_en <= q_scratch_wr_en;
       q_output_wr_en <= q_output_wr_en;
     end
+    
+    
 
     reg done1,done2,done3;
     always @(posedge clk) begin 
