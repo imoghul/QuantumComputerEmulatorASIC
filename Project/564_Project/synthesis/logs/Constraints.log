@@ -39,7 +39,7 @@ set link_library   [concat  $target_library $synthetic_library]
 #set CLK_PER  5
 set CLK_SKEW 0.05
 create_clock -name $clkname -period $CLK_PER -waveform "0 [expr $CLK_PER / 2]" $clkname
-Error: Width mismatch on port 'bitmask' of reference to 'Addr_Counter' in 'MyDesign'. (LINK-3)
+Error: Width mismatch on port 'q_gates_offset' of reference to 'Addr_Counter' in 'MyDesign'. (LINK-3)
 Warning: Unable to resolve reference 'Addr_Counter' in 'MyDesign'. (LINK-5)
 set_clock_uncertainty $CLK_SKEW $clkname
 #---------------------------------------------------------
@@ -633,7 +633,7 @@ check_design
 ****************************************
 check_design summary:
 Version:     T-2022.03-SP4
-Date:        Wed Nov  1 20:37:22 2023
+Date:        Sat Nov  4 15:09:42 2023
 ****************************************
 
                    Name                                            Total
@@ -1530,6 +1530,6 @@ link
   dw_foundation.sldb (library)
                               /mnt/apps/public/COE/synopsys_apps/syn/T-2022.03-SP4/libraries/syn/dw_foundation.sldb
 
-Error: Width mismatch on port 'bitmask' of reference to 'Addr_Counter' in 'MyDesign'. (LINK-3)
+Error: Width mismatch on port 'q_gates_offset' of reference to 'Addr_Counter' in 'MyDesign'. (LINK-3)
 Warning: Unable to resolve reference 'Addr_Counter' in 'MyDesign'. (LINK-5)
 0

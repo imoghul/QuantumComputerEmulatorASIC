@@ -1,7 +1,7 @@
 #@ # 
 #@ # Running dc_shell Version T-2022.03-SP4 for linux64 -- Aug 24, 2022
-#@ # Date:   Wed Nov  1 20:37:17 2023
-#@ # Run by: immoghul@grendel29.ece.ncsu.edu
+#@ # Date:   Sat Nov  4 15:09:34 2023
+#@ # Run by: immoghul@grendel30.ece.ncsu.edu
 #@ 
 
 source /mnt/apps/public/COE/synopsys_apps/syn/T-2022.03-SP4/admin/setup/.synopsys_dc.setup
