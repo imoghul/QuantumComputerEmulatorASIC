@@ -231,6 +231,7 @@ module MyDesign (
   assign M = QM[(`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND/2)-1:0];
   // assign Qshift = 1 << Q;
   // assign Qshift_squared = Qshift << Q;
+  // assign bitmask = Qshift - 1;
   always @ (Q) begin
     casex(Q)
       3'bx01: begin
@@ -261,7 +262,6 @@ module MyDesign (
       end
     endcase
   end
-  // assign bitmask = Qshift - 1;
 
   // controller
   localparam RESET = 0;
