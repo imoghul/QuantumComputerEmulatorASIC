@@ -4,6 +4,142 @@
 `define MAX_NUM_QUBITS          4
 `define LOG2_MAX_NUM_QUBITS     3
 
+
+
+module Addr_Counter #(
+    parameter ADDR_WIDTH = `Q_STATE_INPUT_SRAM_ADDRESS_UPPER_BOUND,
+    parameter WIDTH = (1<<`MAX_NUM_QUBITS)
+) (
+    input wire reset_n,
+    input wire clk,
+    input wire clr,
+    input wire rdscratch_wrinp,
+
+    input wire [WIDTH-1:0] max,
+    input wire [`MAX_NUM_QUBITS:0] bitmask,
+    input wire [`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1:0] q_gates_offset,
+
+    output reg [ADDR_WIDTH-1:0] q_gates_addr,
+    output reg [ADDR_WIDTH-1:0] q_input_addr, // this will connect to q_input_states_rd_addr and q_sratchpad_rd_addr, will switch automatically
+    output reg [ADDR_WIDTH-1:0] q_output_addr, // this will connect to q_output_states_wr_addr and q_scratchpad_wr_addr
+    output reg [ADDR_WIDTH-1:0] q_wr_input_addr,  // this will connect to q_input_states_wr_addr
+
+    output reg done,
+    output reg q_input_wr_en,
+    output reg q_scratch_wr_en,
+    output reg q_output_wr_en,
+    output reg wraparound
+);
+  reg [WIDTH-1:0] Qcounter;
+  wire isMax;
+  wire [`MAX_NUM_QUBITS:0] QcounterMasked;
+  assign isMax = Qcounter == max - 1;
+  assign QcounterMasked = Qcounter & bitmask;
+
+  always @(posedge clk) begin
+    if (!reset_n) wraparound <= 0;
+    // else if (clr) wraparound <= 0;
+    else wraparound <= QcounterMasked == 0;
+  end
+
+  always @(posedge clk) begin
+    if (!reset_n) Qcounter <= 0;
+    else begin
+      if (clr) Qcounter <= 0;
+      else if (isMax) Qcounter <= Qcounter;
+      else Qcounter <= Qcounter + 1;
+    end
+  end
+
+  always @(posedge clk)
+    if (!reset_n) q_gates_addr <= 0;
+    else q_gates_addr <= clr ? 0 : (Qcounter + q_gates_offset);
+
+  always @(posedge clk)
+    if (!reset_n) q_input_addr <= 0;
+    else q_input_addr <= clr ? 0 : (QcounterMasked + !rdscratch_wrinp);
+
+
+  // wire output_counter_control;
+  // assign output_counter_control = (Qcounter[2:0])==4;
+  reg output_counter_control,output_counter_control1,output_counter_control2,output_counter_control3;
+  wire output_counter_control_d;
+  assign output_counter_control_d = QcounterMasked==0;
+  always @(posedge clk)
+    if(!reset_n) begin
+      output_counter_control<=0;
+    output_counter_control1<=0;
+    end else if (clr) begin
+       output_counter_control<=0;
+       output_counter_control1<=0;
+    end else begin
+       output_counter_control1<=output_counter_control_d;
+       output_counter_control2<=output_counter_control1;
+       output_counter_control3<=output_counter_control2;
+       output_counter_control<=output_counter_control3;
+    end
+  always @(posedge clk)
+    if (!reset_n) begin
+      q_output_addr <= 0;
+      q_wr_input_addr <= 0;
+    end else if(clr) begin
+      q_output_addr <= 0;
+      q_wr_input_addr <= 0;
+    end 
+    // else if(isMax) begin
+    //   q_output_addr <= q_output_addr;
+    //   q_wr_input_addr <= q_wr_input_addr;
+    // end 
+    else if (output_counter_control) begin
+      q_output_addr <= q_wr_input_addr; // or assign q_output_addr = q_wr_input_addr - 1
+      q_wr_input_addr <= q_wr_input_addr + 1;
+    end else begin
+      q_output_addr <= q_output_addr;
+      q_wr_input_addr <= q_wr_input_addr;
+    end
+
+  always @(posedge clk)
+    if(!reset_n) begin
+      q_input_wr_en <= 0;
+      q_scratch_wr_en <= 0;
+      q_output_wr_en <= 0;
+    end else if (clr) begin
+      q_input_wr_en <= 0;
+      q_scratch_wr_en <= 0;
+      q_output_wr_en <= 0;
+    end else if (output_counter_control3) begin
+      q_input_wr_en <= rdscratch_wrinp;
+      q_scratch_wr_en <= !rdscratch_wrinp;
+      q_output_wr_en <= 1;
+    end else begin
+      q_input_wr_en <= q_input_wr_en;
+      q_scratch_wr_en <= q_scratch_wr_en;
+      q_output_wr_en <= q_output_wr_en;
+    end
+
+    reg done1,done2,done3;
+    always @(posedge clk) begin 
+      if(!reset_n) begin
+        done <= 0;
+        done1 <= 0;
+        done2 <= 0;
+        done3 <= 0;
+      end else if (clr) begin
+        done <= 0;
+        done1 <= 0;
+        done2 <= 0;
+        done3 <= 0;
+      end else begin
+        done1 <= isMax;
+        done2 <= done1;
+        done3 <= done2;
+        done <= done3;
+      end
+    end
+
+
+endmodule
+
 //---------------------------------------------------------------------------
 // DUT 
 //---------------------------------------------------------------------------
@@ -293,7 +429,7 @@ module MyDesign (
       .clk(clk),
       .reset_n(reset_n),
       .squash(clr_sum_reg3),//(squash),
-      .inst_rnd(0),
+      .inst_rnd(3'b000),
       .enInput(enInput3),
       .Aselect(rdscratch_wrinp),
       .A1(scratchpad_sram_read_data),
@@ -471,141 +607,6 @@ endmodule
 
 
 
-
-
-module Addr_Counter #(
-    parameter ADDR_WIDTH = `Q_STATE_INPUT_SRAM_ADDRESS_UPPER_BOUND,
-    parameter WIDTH = (1<<`MAX_NUM_QUBITS)
-) (
-    input wire reset_n,
-    input wire clk,
-    input wire clr,
-    input wire rdscratch_wrinp,
-
-    input wire [WIDTH-1:0] max,
-    input wire [`MAX_NUM_QUBITS:0] bitmask,
-    input wire [WIDTH-1:0] q_gates_offset,
-
-    output reg [ADDR_WIDTH-1:0] q_gates_addr,
-    output reg [ADDR_WIDTH-1:0] q_input_addr, // this will connect to q_input_states_rd_addr and q_sratchpad_rd_addr, will switch automatically
-    output reg [ADDR_WIDTH-1:0] q_output_addr, // this will connect to q_output_states_wr_addr and q_scratchpad_wr_addr
-    output reg [ADDR_WIDTH-1:0] q_wr_input_addr,  // this will connect to q_input_states_wr_addr
-
-    output reg done,
-    output reg q_input_wr_en,
-    output reg q_scratch_wr_en,
-    output reg q_output_wr_en,
-    output reg wraparound
-);
-  reg [WIDTH-1:0] Qcounter;
-  wire isMax;
-  wire [`MAX_NUM_QUBITS:0] QcounterMasked;
-  assign isMax = Qcounter == max - 1;
-  assign QcounterMasked = Qcounter & bitmask;
-
-  always @(posedge clk) begin
-    if (!reset_n) wraparound <= 0;
-    // else if (clr) wraparound <= 0;
-    else wraparound <= QcounterMasked == 0;
-  end
-
-  always @(posedge clk) begin
-    if (!reset_n) Qcounter <= 0;
-    else begin
-      if (clr) Qcounter <= 0;
-      else if (isMax) Qcounter <= Qcounter;
-      else Qcounter <= Qcounter + 1;
-    end
-  end
-
-  always @(posedge clk)
-    if (!reset_n) q_gates_addr <= 0;
-    else q_gates_addr <= clr ? 0 : (Qcounter + q_gates_offset);
-
-  always @(posedge clk)
-    if (!reset_n) q_input_addr <= 0;
-    else q_input_addr <= clr ? 0 : (QcounterMasked + !rdscratch_wrinp);
-
-
-  // wire output_counter_control;
-  // assign output_counter_control = (Qcounter[2:0])==4;
-  reg output_counter_control,output_counter_control1,output_counter_control2,output_counter_control3;
-  wire output_counter_control_d;
-  assign output_counter_control_d = QcounterMasked==0;
-  always @(posedge clk)
-    if(!reset_n) begin
-      output_counter_control<=0;
-    output_counter_control1<=0;
-    end else if (clr) begin
-       output_counter_control<=0;
-       output_counter_control1<=0;
-    end else begin
-       output_counter_control1<=output_counter_control_d;
-       output_counter_control2<=output_counter_control1;
-       output_counter_control3<=output_counter_control2;
-       output_counter_control<=output_counter_control3;
-    end
-  always @(posedge clk)
-    if (!reset_n) begin
-      q_output_addr <= 0;
-      q_wr_input_addr <= 0;
-    end else if(clr) begin
-      q_output_addr <= 0;
-      q_wr_input_addr <= 0;
-    end 
-    // else if(isMax) begin
-    //   q_output_addr <= q_output_addr;
-    //   q_wr_input_addr <= q_wr_input_addr;
-    // end 
-    else if (output_counter_control) begin
-      q_output_addr <= q_wr_input_addr; // or assign q_output_addr = q_wr_input_addr - 1
-      q_wr_input_addr <= q_wr_input_addr + 1;
-    end else begin
-      q_output_addr <= q_output_addr;
-      q_wr_input_addr <= q_wr_input_addr;
-    end
-
-  always @(posedge clk)
-    if(!reset_n) begin
-      q_input_wr_en <= 0;
-      q_scratch_wr_en <= 0;
-      q_output_wr_en <= 0;
-    end else if (clr) begin
-      q_input_wr_en <= 0;
-      q_scratch_wr_en <= 0;
-      q_output_wr_en <= 0;
-    end else if (output_counter_control3) begin
-      q_input_wr_en <= rdscratch_wrinp;
-      q_scratch_wr_en <= !rdscratch_wrinp;
-      q_output_wr_en <= 1;
-    end else begin
-      q_input_wr_en <= q_input_wr_en;
-      q_scratch_wr_en <= q_scratch_wr_en;
-      q_output_wr_en <= q_output_wr_en;
-    end
-
-    reg done1,done2,done3;
-    always @(posedge clk) begin 
-      if(!reset_n) begin
-        done <= 0;
-        done1 <= 0;
-        done2 <= 0;
-        done3 <= 0;
-      end else if (clr) begin
-        done <= 0;
-        done1 <= 0;
-        done2 <= 0;
-        done3 <= 0;
-      end else begin
-        done1 <= isMax;
-        done2 <= done1;
-        done3 <= done2;
-        done <= done3;
-      end
-    end
-
-
-endmodule
 
 
 

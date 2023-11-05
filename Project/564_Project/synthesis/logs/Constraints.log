@@ -39,8 +39,6 @@ set link_library   [concat  $target_library $synthetic_library]
 #set CLK_PER  5
 set CLK_SKEW 0.05
 create_clock -name $clkname -period $CLK_PER -waveform "0 [expr $CLK_PER / 2]" $clkname
-Error: Width mismatch on port 'q_gates_offset' of reference to 'Addr_Counter' in 'MyDesign'. (LINK-3)
-Warning: Unable to resolve reference 'Addr_Counter' in 'MyDesign'. (LINK-5)
 set_clock_uncertainty $CLK_SKEW $clkname
 #---------------------------------------------------------
 # Now set up the 'CONSTRAINTS' on the design:          
@@ -619,7 +617,7 @@ set_fix_multiple_port_nets -all -buffer_constants [get_designs]
 #------------------------------------------------------
 ungroup -flatten -all
 Information: Updating graph... (UID-83)
-Warning: Design 'MyDesign' contains 2 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Warning: Design 'MyDesign' contains 3 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
 #---------------------------------------------------------
 # check the design before optimization  
 #---------------------------------------------------------
@@ -633,30 +631,28 @@ check_design
 ****************************************
 check_design summary:
 Version:     T-2022.03-SP4
-Date:        Sun Nov  5 12:05:02 2023
+Date:        Sun Nov  5 15:52:43 2023
 ****************************************
 
                    Name                                            Total
 --------------------------------------------------------------------------------
-Inputs/Outputs                                                    643
-    Multiply driven inputs (LINT-6)                                 2
+Inputs/Outputs                                                    641
     Unconnected ports (LINT-28)                                   320
     Shorted outputs (LINT-31)                                     320
     Constant outputs (LINT-52)                                      1
 
-Cells                                                               2
-    Cells do not drive (LINT-1)                                     2
+Cells                                                               5
+    Cells do not drive (LINT-1)                                     5
 
-Nets                                                               65
+Nets                                                               64
     Unloaded nets (LINT-2)                                         64
-    Multiply driven net with constant driver (LINT-54)              1
-
-Tristate                                                          140
-    A tristate bus has a non tri-state driver (LINT-34)           140
 --------------------------------------------------------------------------------
 
 Warning: In design 'MyDesign', cell 'C740' does not drive any nets. (LINT-1)
 Warning: In design 'MyDesign', cell 'C754' does not drive any nets. (LINT-1)
+Warning: In design 'MyDesign', cell 'address_counter/C491' does not drive any nets. (LINT-1)
+Warning: In design 'MyDesign', cell 'address_counter/B_3' does not drive any nets. (LINT-1)
+Warning: In design 'MyDesign', cell 'address_counter/B_2' does not drive any nets. (LINT-1)
 Warning: In design 'MyDesign', net 'ALU/status_term1[7]' driven by pin 'ALU/FP_MULT_TERM1/U1/status_7' has no loads. (LINT-2)
 Warning: In design 'MyDesign', net 'ALU/status_term1[6]' driven by pin 'ALU/FP_MULT_TERM1/U1/status_6' has no loads. (LINT-2)
 Warning: In design 'MyDesign', net 'ALU/status_term1[5]' driven by pin 'ALU/FP_MULT_TERM1/U1/status_5' has no loads. (LINT-2)
@@ -721,8 +717,6 @@ Warning: In design 'MyDesign', net 'ALU/status_resultimag[3]' driven by pin 'ALU
 Warning: In design 'MyDesign', net 'ALU/status_resultimag[2]' driven by pin 'ALU/FP_ADD_RESULTIMAG/U1/status_2' has no loads. (LINT-2)
 Warning: In design 'MyDesign', net 'ALU/status_resultimag[1]' driven by pin 'ALU/FP_ADD_RESULTIMAG/U1/status_1' has no loads. (LINT-2)
 Warning: In design 'MyDesign', net 'ALU/status_resultimag[0]' driven by pin 'ALU/FP_ADD_RESULTIMAG/U1/status_0' has no loads. (LINT-2)
-Warning: In design 'MyDesign', input port 'reset_n' drives wired logic; the port direction may have been specified incorrectly. (LINT-6)
-Warning: In design 'MyDesign', input port 'clk' drives wired logic; the port direction may have been specified incorrectly. (LINT-6)
 Warning: In design 'MyDesign', port 'q_state_output_sram_read_address[31]' is not connected to any nets. (LINT-28)
 Warning: In design 'MyDesign', port 'q_state_output_sram_read_address[30]' is not connected to any nets. (LINT-28)
 Warning: In design 'MyDesign', port 'q_state_output_sram_read_address[29]' is not connected to any nets. (LINT-28)
@@ -1363,148 +1357,7 @@ Warning: In design 'MyDesign', output port 'q_state_output_sram_write_address[3]
 Warning: In design 'MyDesign', output port 'q_state_output_sram_write_address[2]' is connected directly to output port 'scratchpad_sram_write_address[2]'. (LINT-31)
 Warning: In design 'MyDesign', output port 'q_state_output_sram_write_address[1]' is connected directly to output port 'scratchpad_sram_write_address[1]'. (LINT-31)
 Warning: In design 'MyDesign', output port 'q_state_output_sram_write_address[0]' is connected directly to output port 'scratchpad_sram_write_address[0]'. (LINT-31)
-Warning: In design 'MyDesign', three-state bus 'N1' has non three-state driver 'B_1/Z'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'N0' has non three-state driver 'B_0/Z'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'rdscratch_wrinp' has non three-state driver 'rdscratch_wrinp_reg/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[0]' has non three-state driver 'q_gates_offset_reg[0]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[1]' has non three-state driver 'q_gates_offset_reg[1]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[2]' has non three-state driver 'q_gates_offset_reg[2]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[3]' has non three-state driver 'q_gates_offset_reg[3]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[4]' has non three-state driver 'q_gates_offset_reg[4]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[5]' has non three-state driver 'q_gates_offset_reg[5]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[6]' has non three-state driver 'q_gates_offset_reg[6]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[7]' has non three-state driver 'q_gates_offset_reg[7]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[8]' has non three-state driver 'q_gates_offset_reg[8]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[9]' has non three-state driver 'q_gates_offset_reg[9]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[10]' has non three-state driver 'q_gates_offset_reg[10]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[11]' has non three-state driver 'q_gates_offset_reg[11]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[12]' has non three-state driver 'q_gates_offset_reg[12]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[13]' has non three-state driver 'q_gates_offset_reg[13]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[14]' has non three-state driver 'q_gates_offset_reg[14]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[15]' has non three-state driver 'q_gates_offset_reg[15]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[16]' has non three-state driver 'q_gates_offset_reg[16]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[17]' has non three-state driver 'q_gates_offset_reg[17]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[18]' has non three-state driver 'q_gates_offset_reg[18]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[19]' has non three-state driver 'q_gates_offset_reg[19]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[20]' has non three-state driver 'q_gates_offset_reg[20]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[21]' has non three-state driver 'q_gates_offset_reg[21]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[22]' has non three-state driver 'q_gates_offset_reg[22]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[23]' has non three-state driver 'q_gates_offset_reg[23]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[24]' has non three-state driver 'q_gates_offset_reg[24]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[25]' has non three-state driver 'q_gates_offset_reg[25]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[26]' has non three-state driver 'q_gates_offset_reg[26]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[27]' has non three-state driver 'q_gates_offset_reg[27]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[28]' has non three-state driver 'q_gates_offset_reg[28]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[29]' has non three-state driver 'q_gates_offset_reg[29]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[30]' has non three-state driver 'q_gates_offset_reg[30]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[31]' has non three-state driver 'q_gates_offset_reg[31]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[32]' has non three-state driver 'q_gates_offset_reg[32]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[33]' has non three-state driver 'q_gates_offset_reg[33]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[34]' has non three-state driver 'q_gates_offset_reg[34]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[35]' has non three-state driver 'q_gates_offset_reg[35]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[36]' has non three-state driver 'q_gates_offset_reg[36]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[37]' has non three-state driver 'q_gates_offset_reg[37]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[38]' has non three-state driver 'q_gates_offset_reg[38]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[39]' has non three-state driver 'q_gates_offset_reg[39]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[40]' has non three-state driver 'q_gates_offset_reg[40]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[41]' has non three-state driver 'q_gates_offset_reg[41]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[42]' has non three-state driver 'q_gates_offset_reg[42]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[43]' has non three-state driver 'q_gates_offset_reg[43]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[44]' has non three-state driver 'q_gates_offset_reg[44]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[45]' has non three-state driver 'q_gates_offset_reg[45]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[46]' has non three-state driver 'q_gates_offset_reg[46]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[47]' has non three-state driver 'q_gates_offset_reg[47]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[48]' has non three-state driver 'q_gates_offset_reg[48]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[49]' has non three-state driver 'q_gates_offset_reg[49]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[50]' has non three-state driver 'q_gates_offset_reg[50]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[51]' has non three-state driver 'q_gates_offset_reg[51]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[52]' has non three-state driver 'q_gates_offset_reg[52]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[53]' has non three-state driver 'q_gates_offset_reg[53]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[54]' has non three-state driver 'q_gates_offset_reg[54]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[55]' has non three-state driver 'q_gates_offset_reg[55]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[56]' has non three-state driver 'q_gates_offset_reg[56]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[57]' has non three-state driver 'q_gates_offset_reg[57]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[58]' has non three-state driver 'q_gates_offset_reg[58]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[59]' has non three-state driver 'q_gates_offset_reg[59]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[60]' has non three-state driver 'q_gates_offset_reg[60]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[61]' has non three-state driver 'q_gates_offset_reg[61]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[62]' has non three-state driver 'q_gates_offset_reg[62]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[63]' has non three-state driver 'q_gates_offset_reg[63]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[64]' has non three-state driver 'q_gates_offset_reg[64]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[65]' has non three-state driver 'q_gates_offset_reg[65]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[66]' has non three-state driver 'q_gates_offset_reg[66]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[67]' has non three-state driver 'q_gates_offset_reg[67]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[68]' has non three-state driver 'q_gates_offset_reg[68]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[69]' has non three-state driver 'q_gates_offset_reg[69]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[70]' has non three-state driver 'q_gates_offset_reg[70]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[71]' has non three-state driver 'q_gates_offset_reg[71]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[72]' has non three-state driver 'q_gates_offset_reg[72]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[73]' has non three-state driver 'q_gates_offset_reg[73]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[74]' has non three-state driver 'q_gates_offset_reg[74]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[75]' has non three-state driver 'q_gates_offset_reg[75]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[76]' has non three-state driver 'q_gates_offset_reg[76]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[77]' has non three-state driver 'q_gates_offset_reg[77]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[78]' has non three-state driver 'q_gates_offset_reg[78]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[79]' has non three-state driver 'q_gates_offset_reg[79]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[80]' has non three-state driver 'q_gates_offset_reg[80]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[81]' has non three-state driver 'q_gates_offset_reg[81]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[82]' has non three-state driver 'q_gates_offset_reg[82]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[83]' has non three-state driver 'q_gates_offset_reg[83]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[84]' has non three-state driver 'q_gates_offset_reg[84]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[85]' has non three-state driver 'q_gates_offset_reg[85]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[86]' has non three-state driver 'q_gates_offset_reg[86]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[87]' has non three-state driver 'q_gates_offset_reg[87]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[88]' has non three-state driver 'q_gates_offset_reg[88]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[89]' has non three-state driver 'q_gates_offset_reg[89]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[90]' has non three-state driver 'q_gates_offset_reg[90]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[91]' has non three-state driver 'q_gates_offset_reg[91]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[92]' has non three-state driver 'q_gates_offset_reg[92]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[93]' has non three-state driver 'q_gates_offset_reg[93]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[94]' has non three-state driver 'q_gates_offset_reg[94]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[95]' has non three-state driver 'q_gates_offset_reg[95]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[96]' has non three-state driver 'q_gates_offset_reg[96]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[97]' has non three-state driver 'q_gates_offset_reg[97]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[98]' has non three-state driver 'q_gates_offset_reg[98]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[99]' has non three-state driver 'q_gates_offset_reg[99]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[100]' has non three-state driver 'q_gates_offset_reg[100]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[101]' has non three-state driver 'q_gates_offset_reg[101]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[102]' has non three-state driver 'q_gates_offset_reg[102]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[103]' has non three-state driver 'q_gates_offset_reg[103]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[104]' has non three-state driver 'q_gates_offset_reg[104]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[105]' has non three-state driver 'q_gates_offset_reg[105]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[106]' has non three-state driver 'q_gates_offset_reg[106]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[107]' has non three-state driver 'q_gates_offset_reg[107]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[108]' has non three-state driver 'q_gates_offset_reg[108]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[109]' has non three-state driver 'q_gates_offset_reg[109]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[110]' has non three-state driver 'q_gates_offset_reg[110]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[111]' has non three-state driver 'q_gates_offset_reg[111]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[112]' has non three-state driver 'q_gates_offset_reg[112]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[113]' has non three-state driver 'q_gates_offset_reg[113]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[114]' has non three-state driver 'q_gates_offset_reg[114]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[115]' has non three-state driver 'q_gates_offset_reg[115]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[116]' has non three-state driver 'q_gates_offset_reg[116]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[117]' has non three-state driver 'q_gates_offset_reg[117]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[118]' has non three-state driver 'q_gates_offset_reg[118]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[119]' has non three-state driver 'q_gates_offset_reg[119]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[120]' has non three-state driver 'q_gates_offset_reg[120]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[121]' has non three-state driver 'q_gates_offset_reg[121]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[122]' has non three-state driver 'q_gates_offset_reg[122]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[123]' has non three-state driver 'q_gates_offset_reg[123]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[124]' has non three-state driver 'q_gates_offset_reg[124]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[125]' has non three-state driver 'q_gates_offset_reg[125]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[126]' has non three-state driver 'q_gates_offset_reg[126]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'q_gates_offset[127]' has non three-state driver 'q_gates_offset_reg[127]/Q'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'clr_Addr_Count' has non three-state driver 'C669/Z_0'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'bitmask[1]' has non three-state driver 'C651/Z_0'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'bitmask[2]' has non three-state driver 'C651/Z_1'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'bitmask[3]' has non three-state driver 'C651/Z_2'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'Qshift_squared_2' has non three-state driver 'C650/Z_0'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'Qshift_squared_4' has non three-state driver 'C650/Z_1'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'Qshift_squared_6' has non three-state driver 'C650/Z_2'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus 'Qshift_squared[8]' has non three-state driver 'C650/Z_3'. (LINT-34)
-Warning: In design 'MyDesign', three-state bus '*Logic0*' has non three-state driver 'U2/**logic_0**'. (LINT-34)
 Warning: In design 'MyDesign', output port 'q_gates_sram_write_enable' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'MyDesign', multiply-driven net '*Logic0*' is driven by constant 0. (LINT-54)
 #---------------------------------------------------------
 # link performs check for presence of the design components 
 # instantiated within the design. It makes sure that all the 
@@ -1522,6 +1375,4 @@ link
   dw_foundation.sldb (library)
                               /mnt/apps/public/COE/synopsys_apps/syn/T-2022.03-SP4/libraries/syn/dw_foundation.sldb
 
-Error: Width mismatch on port 'q_gates_offset' of reference to 'Addr_Counter' in 'MyDesign'. (LINK-3)
-Warning: Unable to resolve reference 'Addr_Counter' in 'MyDesign'. (LINK-5)
-0
+1
