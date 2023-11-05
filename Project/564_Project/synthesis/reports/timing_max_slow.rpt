@@ -7,15 +7,14 @@ Report : timing
         -max_paths 1
 Design : MyDesign
 Version: T-2022.03-SP4
-Date   : Sat Nov  4 15:19:18 2023
+Date   : Sun Nov  5 12:13:09 2023
 ****************************************
 
 Operating Conditions: slow   Library: NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
 Wire Load Model Mode: top
 
-  Startpoint: rdscratch_wrinp_reg
-              (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: ALU/term3_q_reg[52]
+  Startpoint: QM_reg[64] (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: q_gates_offset_reg[127]
             (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: max
@@ -24,86 +23,151 @@ Wire Load Model Mode: top
   -----------------------------------------------------------
   clock clk (rise edge)                  0.0000     0.0000
   clock network delay (ideal)            0.0000     0.0000
-  rdscratch_wrinp_reg/CK (DFF_X1)        0.0000     0.0000 r
-  rdscratch_wrinp_reg/Q (DFF_X1)         0.5972     0.5972 f
-  U8889/ZN (NOR2_X2)                     0.7049     1.3022 r
-  U8879/Z (BUF_X4)                       0.7343     2.0365 r
-  U13455/ZN (NAND2_X1)                   0.1617     2.1982 f
-  U13457/ZN (NAND2_X1)                   0.6735     2.8717 r
-  U10676/ZN (INV_X1)                     0.3098     3.1815 f
-  U13458/ZN (INV_X4)                     0.6278     3.8094 r
-  U13581/ZN (NOR2_X1)                    0.2311     4.0405 f
-  U8764/ZN (AND4_X1)                     0.3355     4.3760 f
-  U8752/ZN (AND4_X1)                     0.3986     4.7746 f
-  U8725/ZN (NAND2_X2)                    0.1348     4.9094 r
-  U8707/ZN (NAND2_X2)                    0.1742     5.0837 f
-  U8702/ZN (INV_X2)                      0.1756     5.2593 r
-  U8700/ZN (INV_X4)                      0.1970     5.4563 f
-  U13736/ZN (AOI21_X1)                   0.4010     5.8573 r
-  U13737/ZN (OAI21_X1)                   0.1714     6.0288 f
-  U13738/ZN (AOI21_X1)                   0.3749     6.4037 r
-  U13739/ZN (OAI21_X1)                   0.1714     6.5751 f
-  U8690/ZN (AOI21_X1)                    0.5871     7.1622 r
-  U13745/CO (HA_X1)                      0.3496     7.5118 r
-  U13744/S (FA_X1)                       0.7020     8.2138 f
-  U13778/ZN (XNOR2_X1)                   0.3210     8.5348 f
-  U27797/CO (FA_X1)                      0.6322     9.1669 f
-  U27796/CO (FA_X1)                      0.5172     9.6842 f
-  U27795/CO (FA_X1)                      0.5172    10.2014 f
-  U27794/CO (FA_X1)                      0.5172    10.7187 f
-  U27793/CO (FA_X1)                      0.5172    11.2359 f
-  U27791/CO (FA_X1)                      0.5172    11.7532 f
-  U27789/CO (FA_X1)                      0.5172    12.2704 f
-  U27787/CO (FA_X1)                      0.5172    12.7876 f
-  U27785/CO (FA_X1)                      0.5172    13.3049 f
-  U27784/CO (FA_X1)                      0.5172    13.8221 f
-  U22129/CO (FA_X1)                      0.4889    14.3110 f
-  U13783/ZN (XNOR2_X1)                   0.3144    14.6254 f
-  U13784/ZN (INV_X1)                     0.2658    14.8912 r
-  U27803/ZN (AND2_X2)                    0.2984    15.1896 r
-  U8660/ZN (OR2_X1)                      0.1629    15.3525 r
-  U27806/ZN (NAND2_X1)                   0.0918    15.4443 f
-  U54165/Z (XOR2_X1)                     0.3084    15.7527 f
-  U54621/CO (FA_X1)                      0.5044    16.2571 f
-  U54622/CO (FA_X1)                      0.5172    16.7744 f
-  U54169/CO (FA_X1)                      0.5172    17.2916 f
-  U54168/CO (FA_X1)                      0.5172    17.8089 f
-  U54172/CO (FA_X1)                      0.5172    18.3261 f
-  U54171/CO (FA_X1)                      0.5172    18.8434 f
-  U54166/CO (FA_X1)                      0.5038    19.3471 f
-  U8615/ZN (AND2_X2)                     0.1999    19.5470 f
-  U8611/ZN (AND2_X2)                     0.2013    19.7483 f
-  U8609/ZN (AND2_X2)                     0.2195    19.9678 f
-  U54626/CO (HA_X1)                      0.2558    20.2236 f
-  U54627/CO (HA_X1)                      0.2482    20.4718 f
-  U54628/Z (XOR2_X1)                     0.1978    20.6696 r
-  U54629/ZN (AOI211_X1)                  0.1859    20.8555 f
-  U54832/ZN (NOR3_X1)                    0.2568    21.1123 r
-  U54833/ZN (NAND2_X1)                   0.1520    21.2642 f
-  U57397/ZN (OAI21_X1)                   0.2493    21.5136 r
-  U57398/ZN (NAND2_X1)                   0.1261    21.6397 f
-  U57399/ZN (NOR2_X1)                    1.0337    22.6734 r
-  U58266/ZN (NAND2_X1)                   0.1448    22.8182 f
-  U58267/ZN (XNOR2_X1)                   0.3158    23.1339 r
-  U58268/ZN (INV_X1)                     0.0711    23.2050 f
-  U58269/ZN (AOI21_X1)                   0.4131    23.6181 r
-  U58272/ZN (NOR3_X1)                    0.1176    23.7357 f
-  U58273/ZN (AOI211_X1)                  0.5647    24.3004 r
-  U58274/ZN (AOI211_X1)                  0.2403    24.5407 f
-  ALU/term3_q_reg[52]/D (DFF_X1)         0.0000    24.5407 f
-  data arrival time                                24.5407
+  QM_reg[64]/CK (DFF_X1)                 0.0000     0.0000 r
+  QM_reg[64]/QN (DFF_X1)                 0.4904     0.4904 r
+  U8531/ZN (NOR2_X1)                     0.1087     0.5991 f
+  intadd_0/U126/CO (HA_X1)               0.2655     0.8646 f
+  intadd_0/U125/CO (HA_X1)               0.2722     1.1368 f
+  intadd_0/U124/CO (FA_X1)               0.4760     1.6128 f
+  intadd_0/U123/CO (HA_X1)               0.3038     1.9166 f
+  intadd_0/U122/CO (FA_X1)               0.4760     2.3926 f
+  intadd_0/U121/CO (HA_X1)               0.3038     2.6964 f
+  intadd_0/U120/CO (FA_X1)               0.4760     3.1724 f
+  intadd_0/U119/CO (HA_X1)               0.2945     3.4669 f
+  intadd_0/U118/CO (HA_X1)               0.2629     3.7298 f
+  intadd_0/U117/CO (HA_X1)               0.2629     3.9927 f
+  intadd_0/U116/CO (HA_X1)               0.2629     4.2556 f
+  intadd_0/U115/CO (HA_X1)               0.2629     4.5185 f
+  intadd_0/U114/CO (HA_X1)               0.2629     4.7814 f
+  intadd_0/U113/CO (HA_X1)               0.2629     5.0443 f
+  intadd_0/U112/CO (HA_X1)               0.2629     5.3072 f
+  intadd_0/U111/CO (HA_X1)               0.2629     5.5701 f
+  intadd_0/U110/CO (HA_X1)               0.2629     5.8330 f
+  intadd_0/U109/CO (HA_X1)               0.2893     6.1222 f
+  intadd_0/U108/CO (HA_X1)               0.2481     6.3704 f
+  intadd_0/U107/CO (HA_X1)               0.2234     6.5938 f
+  intadd_0/U106/CO (HA_X1)               0.2629     6.8567 f
+  intadd_0/U105/CO (HA_X1)               0.2893     7.1460 f
+  intadd_0/U104/CO (HA_X1)               0.2234     7.3694 f
+  intadd_0/U103/CO (HA_X1)               0.2629     7.6323 f
+  intadd_0/U102/CO (HA_X1)               0.2629     7.8952 f
+  intadd_0/U101/CO (HA_X1)               0.2893     8.1845 f
+  intadd_0/U100/CO (HA_X1)               0.2481     8.4326 f
+  intadd_0/U99/CO (HA_X1)                0.2234     8.6560 f
+  intadd_0/U98/CO (HA_X1)                0.2629     8.9189 f
+  intadd_0/U97/CO (HA_X1)                0.2629     9.1818 f
+  intadd_0/U96/CO (HA_X1)                0.2629     9.4447 f
+  intadd_0/U95/CO (HA_X1)                0.2629     9.7076 f
+  intadd_0/U94/CO (HA_X1)                0.2893     9.9969 f
+  intadd_0/U93/CO (HA_X1)                0.2481    10.2450 f
+  intadd_0/U92/CO (HA_X1)                0.2481    10.4931 f
+  intadd_0/U91/CO (HA_X1)                0.2234    10.7165 f
+  intadd_0/U90/CO (HA_X1)                0.2629    10.9794 f
+  intadd_0/U89/CO (HA_X1)                0.2629    11.2423 f
+  intadd_0/U88/CO (HA_X1)                0.2629    11.5052 f
+  intadd_0/U87/CO (HA_X1)                0.2629    11.7681 f
+  intadd_0/U86/CO (HA_X1)                0.2629    12.0310 f
+  intadd_0/U85/CO (HA_X1)                0.2629    12.2939 f
+  intadd_0/U84/CO (HA_X1)                0.2629    12.5568 f
+  intadd_0/U83/CO (HA_X1)                0.2629    12.8197 f
+  intadd_0/U82/CO (HA_X1)                0.2893    13.1090 f
+  intadd_0/U81/CO (HA_X1)                0.2481    13.3571 f
+  intadd_0/U80/CO (HA_X1)                0.2481    13.6052 f
+  intadd_0/U79/CO (HA_X1)                0.2481    13.8533 f
+  intadd_0/U78/CO (HA_X1)                0.2234    14.0767 f
+  intadd_0/U77/CO (HA_X1)                0.2629    14.3396 f
+  intadd_0/U76/CO (HA_X1)                0.2629    14.6025 f
+  intadd_0/U75/CO (HA_X1)                0.2629    14.8654 f
+  intadd_0/U74/CO (HA_X1)                0.2629    15.1283 f
+  intadd_0/U73/CO (HA_X1)                0.2629    15.3912 f
+  intadd_0/U72/CO (HA_X1)                0.2629    15.6541 f
+  intadd_0/U71/CO (HA_X1)                0.2629    15.9170 f
+  intadd_0/U70/CO (HA_X1)                0.2629    16.1799 f
+  intadd_0/U69/CO (HA_X1)                0.2629    16.4428 f
+  intadd_0/U68/CO (HA_X1)                0.2629    16.7057 f
+  intadd_0/U67/CO (HA_X1)                0.2629    16.9685 f
+  intadd_0/U66/CO (HA_X1)                0.2629    17.2314 f
+  intadd_0/U65/CO (HA_X1)                0.2893    17.5207 f
+  intadd_0/U64/CO (HA_X1)                0.2481    17.7688 f
+  intadd_0/U63/CO (HA_X1)                0.2234    17.9923 f
+  intadd_0/U62/CO (HA_X1)                0.2893    18.2816 f
+  intadd_0/U61/CO (HA_X1)                0.2481    18.5297 f
+  intadd_0/U60/CO (HA_X1)                0.2234    18.7531 f
+  intadd_0/U59/CO (HA_X1)                0.2629    19.0160 f
+  intadd_0/U58/CO (HA_X1)                0.2629    19.2789 f
+  intadd_0/U57/CO (HA_X1)                0.2629    19.5418 f
+  intadd_0/U56/CO (HA_X1)                0.2629    19.8047 f
+  intadd_0/U55/CO (HA_X1)                0.2629    20.0676 f
+  intadd_0/U54/CO (HA_X1)                0.2629    20.3305 f
+  intadd_0/U53/CO (HA_X1)                0.2629    20.5934 f
+  intadd_0/U52/CO (HA_X1)                0.2893    20.8826 f
+  intadd_0/U51/CO (HA_X1)                0.2481    21.1308 f
+  intadd_0/U50/CO (HA_X1)                0.2234    21.3542 f
+  intadd_0/U49/CO (HA_X1)                0.2629    21.6171 f
+  intadd_0/U48/CO (HA_X1)                0.2629    21.8800 f
+  intadd_0/U47/CO (HA_X1)                0.2629    22.1429 f
+  intadd_0/U46/CO (HA_X1)                0.2629    22.4058 f
+  intadd_0/U45/CO (HA_X1)                0.2893    22.6950 f
+  intadd_0/U44/CO (HA_X1)                0.2481    22.9432 f
+  intadd_0/U43/CO (HA_X1)                0.2234    23.1666 f
+  intadd_0/U42/CO (HA_X1)                0.2629    23.4295 f
+  intadd_0/U41/CO (HA_X1)                0.2629    23.6924 f
+  intadd_0/U40/CO (HA_X1)                0.2629    23.9553 f
+  intadd_0/U39/CO (HA_X1)                0.2893    24.2446 f
+  intadd_0/U38/CO (HA_X1)                0.2481    24.4927 f
+  intadd_0/U37/CO (HA_X1)                0.2234    24.7161 f
+  intadd_0/U36/CO (HA_X1)                0.2629    24.9790 f
+  intadd_0/U35/CO (HA_X1)                0.2629    25.2419 f
+  intadd_0/U34/CO (HA_X1)                0.2629    25.5048 f
+  intadd_0/U33/CO (HA_X1)                0.2629    25.7677 f
+  intadd_0/U32/CO (HA_X1)                0.2629    26.0306 f
+  intadd_0/U31/CO (HA_X1)                0.2629    26.2935 f
+  intadd_0/U30/CO (HA_X1)                0.2893    26.5827 f
+  intadd_0/U29/CO (HA_X1)                0.2481    26.8309 f
+  intadd_0/U28/CO (HA_X1)                0.2234    27.0543 f
+  intadd_0/U27/CO (HA_X1)                0.2629    27.3172 f
+  intadd_0/U26/CO (HA_X1)                0.2629    27.5801 f
+  intadd_0/U25/CO (HA_X1)                0.2629    27.8430 f
+  intadd_0/U24/CO (HA_X1)                0.2893    28.1323 f
+  intadd_0/U23/CO (HA_X1)                0.2481    28.3804 f
+  intadd_0/U22/CO (HA_X1)                0.2234    28.6038 f
+  intadd_0/U21/CO (HA_X1)                0.2629    28.8667 f
+  intadd_0/U20/CO (HA_X1)                0.2629    29.1296 f
+  intadd_0/U19/CO (HA_X1)                0.2629    29.3925 f
+  intadd_0/U18/CO (HA_X1)                0.2629    29.6554 f
+  intadd_0/U17/CO (HA_X1)                0.2629    29.9183 f
+  intadd_0/U16/CO (HA_X1)                0.2629    30.1812 f
+  intadd_0/U15/CO (HA_X1)                0.2629    30.4441 f
+  intadd_0/U14/CO (HA_X1)                0.2629    30.7070 f
+  intadd_0/U13/CO (HA_X1)                0.2893    30.9962 f
+  intadd_0/U12/CO (HA_X1)                0.2234    31.2197 f
+  intadd_0/U11/CO (HA_X1)                0.2893    31.5090 f
+  intadd_0/U10/CO (HA_X1)                0.2234    31.7324 f
+  intadd_0/U9/CO (HA_X1)                 0.2893    32.0217 f
+  intadd_0/U8/CO (HA_X1)                 0.2234    32.2451 f
+  intadd_0/U7/CO (HA_X1)                 0.2629    32.5080 f
+  intadd_0/U6/CO (HA_X1)                 0.2629    32.7709 f
+  intadd_0/U5/CO (HA_X1)                 0.2629    33.0338 f
+  intadd_0/U4/CO (HA_X1)                 0.2893    33.3231 f
+  intadd_0/U3/CO (HA_X1)                 0.2234    33.5465 f
+  intadd_0/U2/CO (HA_X1)                 0.2482    33.7947 f
+  U55686/Z (XOR2_X1)                     0.2728    34.0675 f
+  U6775/ZN (AOI22_X1)                    0.3236    34.3911 r
+  U9195/ZN (INV_X1)                      0.0929    34.4840 f
+  q_gates_offset_reg[127]/D (DFF_X1)     0.0000    34.4840 f
+  data arrival time                                34.4840
 
-  clock clk (rise edge)                 25.0000    25.0000
-  clock network delay (ideal)            0.0000    25.0000
-  clock uncertainty                     -0.0500    24.9500
-  ALU/term3_q_reg[52]/CK (DFF_X1)        0.0000    24.9500 r
-  library setup time                    -0.3858    24.5642
-  data required time                               24.5642
+  clock clk (rise edge)                 35.0000    35.0000
+  clock network delay (ideal)            0.0000    35.0000
+  clock uncertainty                     -0.0500    34.9500
+  q_gates_offset_reg[127]/CK (DFF_X1)    0.0000    34.9500 r
+  library setup time                    -0.3233    34.6267
+  data required time                               34.6267
   -----------------------------------------------------------
-  data required time                               24.5642
-  data arrival time                               -24.5407
+  data required time                               34.6267
+  data arrival time                               -34.4840
   -----------------------------------------------------------
-  slack (MET)                                       0.0234
+  slack (MET)                                       0.1427
 
 
 1

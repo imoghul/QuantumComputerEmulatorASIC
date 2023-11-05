@@ -28,19 +28,26 @@ Loading verilog file '/mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_P
 Running PRESTO HDLC
 Compiling source file /mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/rtl/dut.v
 Opening include file ../testbench//defines.vh
-Warning:  /mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/rtl/dut.v:96: signed to unsigned assignment occurs. (VER-318)
-Warning: Could not open default SVF file /mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/synthesis/svf/default.svf for writing.
 
-Statistics for case statements in always block at line 115 in file
+Statistics for case statements in always block at line 98 in file
 	'/mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/rtl/dut.v'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
-|           127            |    auto/auto     |
+|            99            |     auto/no      |
+===============================================
+Warning: Could not open default SVF file /mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/synthesis/svf/default.svf for writing.
+
+Statistics for case statements in always block at line 145 in file
+	'/mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/rtl/dut.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           157            |    auto/auto     |
 ===============================================
 
 Inferred memory devices in process
-	in routine MyDesign line 110 in file
+	in routine MyDesign line 140 in file
 		'/mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/rtl/dut.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -49,7 +56,7 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
-	in routine MyDesign line 184 in file
+	in routine MyDesign line 214 in file
 		'/mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/rtl/dut.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -58,7 +65,7 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
-	in routine MyDesign line 189 in file
+	in routine MyDesign line 219 in file
 		'/mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/rtl/dut.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -67,7 +74,7 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
-	in routine MyDesign line 195 in file
+	in routine MyDesign line 225 in file
 		'/mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/rtl/dut.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -76,7 +83,7 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
-	in routine MyDesign line 201 in file
+	in routine MyDesign line 231 in file
 		'/mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/rtl/dut.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -85,7 +92,7 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
-	in routine MyDesign line 233 in file
+	in routine MyDesign line 263 in file
 		'/mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/rtl/dut.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -96,7 +103,7 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
-	in routine MyDesign line 245 in file
+	in routine MyDesign line 275 in file
 		'/mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/rtl/dut.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -107,39 +114,39 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
+	in routine ArithmeticUnit line 355 in file
+		'/mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/rtl/dut.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     term3_q_reg     | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|     term4_q_reg     | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|     term1_q_reg     | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+| term2negative_q_reg | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine ArithmeticUnit line 376 in file
+		'/mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/rtl/dut.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    sumreal_q_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    sumimag_q_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
 	in routine ArithmeticUnit line 393 in file
 		'/mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/rtl/dut.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
-|     term4_q_reg     | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
-|     term1_q_reg     | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
-| term2negative_q_reg | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
-|     term3_q_reg     | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
-===============================================================================
-
-Inferred memory devices in process
-	in routine ArithmeticUnit line 414 in file
-		'/mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/rtl/dut.v'.
-===============================================================================
-|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
-===============================================================================
-|    sumimag_q_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
-|    sumreal_q_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
-===============================================================================
-
-Inferred memory devices in process
-	in routine ArithmeticUnit line 431 in file
-		'/mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/rtl/dut.v'.
-===============================================================================
-|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
-===============================================================================
-|  resultimag_q_reg   | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
 |  resultreal_q_reg   | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|  resultimag_q_reg   | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
 ===============================================================================
 
 Inferred memory devices in process
-	in routine Addr_Counter line 544 in file
+	in routine Addr_Counter line 506 in file
 		'/mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/rtl/dut.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -148,7 +155,7 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
-	in routine Addr_Counter line 550 in file
+	in routine Addr_Counter line 512 in file
 		'/mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/rtl/dut.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -157,7 +164,7 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
-	in routine Addr_Counter line 559 in file
+	in routine Addr_Counter line 521 in file
 		'/mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/rtl/dut.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -166,7 +173,7 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
-	in routine Addr_Counter line 563 in file
+	in routine Addr_Counter line 525 in file
 		'/mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/rtl/dut.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -175,7 +182,7 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
-	in routine Addr_Counter line 573 in file
+	in routine Addr_Counter line 535 in file
 		'/mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/rtl/dut.v'.
 =======================================================================================
 |        Register Name        |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -187,7 +194,7 @@ Inferred memory devices in process
 =======================================================================================
 
 Inferred memory devices in process
-	in routine Addr_Counter line 586 in file
+	in routine Addr_Counter line 548 in file
 		'/mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/rtl/dut.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -197,7 +204,7 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
-	in routine Addr_Counter line 606 in file
+	in routine Addr_Counter line 568 in file
 		'/mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/rtl/dut.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -208,7 +215,7 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
-	in routine Addr_Counter line 628 in file
+	in routine Addr_Counter line 588 in file
 		'/mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/rtl/dut.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -222,4 +229,4 @@ Presto compilation completed successfully.
 Current design is now '/mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/rtl/MyDesign.db:MyDesign'
 Loaded 6 designs.
 Current design is 'MyDesign'.
-MyDesign DW_fp_mac_inst DW_fp_mult_inst DW_fp_add_inst ArithmeticUnit Addr_Counter
+MyDesign ArithmeticUnit Addr_Counter DW_fp_mac_inst DW_fp_mult_inst DW_fp_add_inst
