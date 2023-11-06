@@ -3,7 +3,7 @@ Reading pref.tcl
 # 2021.2
 
 # vsim -c -voptargs="+acc" tb_top "+TIMEOUT=1000000000" "+num_of_testcases=4" "+epsilon_mult=1.0" "+input_dir=../inputs/input1" "+output_dir=../inputs/output1" -do "run -all" 
-# Start time: 12:28:07 on Nov 05,2023
+# Start time: 09:34:13 on Nov 06,2023
 # ** Note: (vsim-3813) Design is being optimized due to module recompilation...
 # ** Note: (vopt-143) Recognized 1 FSM in module "MyDesign(fast)".
 # //  ModelSim SE 2021.2 Apr 14 2021 Linux 3.10.0-1160.102.1.el7.x86_64
@@ -80,5 +80,5 @@ Reading pref.tcl
 # 
 # ** Note: $finish    : ../testbench/testbench.sv(348)
 #    Time: 22800 ns  Iteration: 1  Instance: /tb_top
-# End time: 12:28:12 on Nov 05,2023, Elapsed time: 0:00:05
+# End time: 09:34:26 on Nov 06,2023, Elapsed time: 0:00:13
 # Errors: 0, Warnings: 0

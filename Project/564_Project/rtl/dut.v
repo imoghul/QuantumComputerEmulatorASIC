@@ -17,7 +17,7 @@ module Addr_Counter #(
 
     input wire [WIDTH-1:0] max,
     input wire [`MAX_NUM_QUBITS:0] bitmask,
-    input wire [`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1:0] q_gates_offset,
+    input wire [ADDR_WIDTH-1:0] q_gates_offset,
 
     output reg [ADDR_WIDTH-1:0] q_gates_addr,
     output reg [ADDR_WIDTH-1:0] q_input_addr, // this will connect to q_input_states_rd_addr and q_sratchpad_rd_addr, will switch automatically
@@ -200,8 +200,8 @@ module MyDesign (
   reg [`MAX_NUM_QUBITS:0] Qshift; // this will equal to 2^Q
   reg [(1<<`MAX_NUM_QUBITS)-1:0] Qshift_squared; // this will equal to 2^2Q
   reg [`MAX_NUM_QUBITS:0] bitmask; // this will max at 2^Q - 1
-  reg [`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1:0] q_gates_offset;
-  reg [(`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1)/2:0] MCounter;
+  reg [`SCRATCHPAD_SRAM_ADDRESS_UPPER_BOUND-1:0] q_gates_offset;
+  reg [(`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND/2)-1:0] MCounter;
   wire Addr_counter_done;
   wire [(inst_sig_width+inst_exp_width+1)*2-1:0] sum_calculation;
   wire addr_count_wraparound;
@@ -222,7 +222,6 @@ module MyDesign (
   reg clr_sum_reg, clr_sum_reg1, clr_sum_reg2, clr_sum_reg3;
   reg clr_rdscratch_wrinp;
   reg en_rdscratch_wrinp;
-  reg squash;
 
 
   // assigns
@@ -232,7 +231,7 @@ module MyDesign (
   // assign Qshift = 1 << Q;
   // assign Qshift_squared = Qshift << Q;
   // assign bitmask = Qshift - 1;
-  always @ (Q) begin
+  always @ (*) begin // NOTE: This state machine assumes a max of 4 qubits
     casex(Q)
       3'bx01: begin
         Qshift = 2;
@@ -254,7 +253,6 @@ module MyDesign (
         Qshift_squared = 256;
         bitmask = 15;
       end
-      // 3'bxxx:
       default: begin
         Qshift = 1'bx;
         Qshift_squared = 1'bx;
@@ -289,7 +287,6 @@ module MyDesign (
     clr_sum_reg = 1;
     clr_rdscratch_wrinp = 1;
     en_rdscratch_wrinp = 0;
-    squash = 1;
     case (state)
       RESET: begin
         nextState = IDLE;
@@ -309,14 +306,15 @@ module MyDesign (
         nextState = CALCULATE;
       end
       CALCULATE: begin
-        squash = 0;
         clr_sum_reg = addr_count_wraparound;
         clr_Addr_Count = 0;
         clr_q_gates_offset = 0;
         clr_rdscratch_wrinp = 0;
         if (Addr_counter_done) begin
           nextState = WRITEBACK1;
-        end else nextState = CALCULATE;
+        end else begin
+          nextState = CALCULATE;
+        end
       end
       WRITEBACK1: begin
         en_MCounter = 0;
@@ -428,7 +426,7 @@ module MyDesign (
   ArithmeticUnit ALU (
       .clk(clk),
       .reset_n(reset_n),
-      .squash(clr_sum_reg3),//(squash),
+      .squash(clr_sum_reg3),
       .inst_rnd(3'b000),
       .enInput(enInput3),
       .Aselect(rdscratch_wrinp),

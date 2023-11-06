@@ -208,6 +208,13 @@ R0
 R0
 R0
 R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
 !s11f vlog 2021.2 2021.04, Apr 14 2021
 13
 !s112 1.1
@@ -217,10 +224,10 @@ R0
 cModel Technology
 Z1 d/mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/run
 T_opt1
-!s110 1699205289
-Vh]6:?oSOzl6LM`A_>XaFL0
+!s110 1699281264
+VzSCUD:3e;61JQ8aIAI?b:3
 Z2 04 6 4 work tb_top fast 0
-=1-14187755b88b-6547d0a7-91c11-4473
+=1-1866daf7ffd6-6548f969-9185b-7269
 Z3 !s124 OEM100
 Z4 o-quiet -auto_acc_if_foreign -work work +acc
 Z5 tCvgOpt 0
@@ -249,22 +256,22 @@ n@_opt3
 R6
 R1
 vAddr_Counter
-Z7 !s110 1699205279
+Z7 !s110 1699281236
 !i10b 1
-!s100 VTDDQSThhURRmi?XAn5bN0
-IZ4G[4ma9Wd9g_6;FR=W973
+!s100 @da2U6fJTdn7z1<iiBY_M3
+IR<]]OSbQ>NYk:jU6VC5H63
 R1
-Z8 w1699205275
+Z8 w1699280482
 Z9 8../rtl/dut.v
 Z10 F../rtl/dut.v
-!i122 316
+!i122 325
 L0 9 133
 Z11 VDg1SIo80bB@j0V0VzS_@n1
 Z12 OE;L;2021.2;73
 r1
 !s85 0
 31
-Z13 !s108 1699205278.000000
+Z13 !s108 1699281234.000000
 Z14 !s107 ../testbench/sram.sv|../testbench/defines.vh|../testbench/testbench.sv|../rtl/dut.v|
 Z15 !s90 +incdir+../testbench|../rtl/dut.v|../testbench/testbench.sv|
 !i113 0
@@ -275,14 +282,14 @@ n@addr_@counter
 vArithmeticUnit
 R7
 !i10b 1
-!s100 X872Rfn9oZ`:Mm^n]SmTD1
-I7<FW^j<MN:b<LD5cEA?_43
+!s100 cZ5>`F]Z1QANbVgcPolb]1
+ILg3[_d6N?]B2>boGD=7fj0
 R1
 R8
 R9
 R10
-!i122 316
-L0 444 161
+!i122 325
+L0 447 161
 R11
 R12
 r1
@@ -369,14 +376,14 @@ n@d@w_fp_add_@d@g
 vDW_fp_add_inst
 R7
 !i10b 1
-!s100 45iO[Oi2aoONPA57D0kR[1
-IjoC_5Ei;5YaSP3g[O9kSW0
+!s100 BWA=N>7ohgU9US;lEJki02
+IVVggQmcDh]`K]X@A49LkS2
 R1
 R8
 R9
 R10
-!i122 316
-L0 679 22
+!i122 325
+L0 682 22
 R11
 R12
 r1
@@ -853,14 +860,14 @@ n@d@w_fp_mac_@d@g
 vDW_fp_mac_inst
 R7
 !i10b 1
-!s100 lQ<c=i7k2ci@8F4<RejAW3
-IW=Ua58B8a@>4M;<ilCcaL1
+!s100 8LVVZE^o;BTj95L=;;gJ=0
+IE5X3n@J@QOE:3S41j3ZMY2
 R1
 R8
 R9
 R10
-!i122 316
-L0 630 24
+!i122 325
+L0 633 24
 R11
 R12
 r1
@@ -923,14 +930,14 @@ n@d@w_fp_mult_@d@g
 vDW_fp_mult_inst
 R7
 !i10b 1
-!s100 j?nS_3Y6lg444hEng=9J33
-IieHj;;^7UY^V<WbI9V;Zn2
+!s100 8R<Z]EdJb1AmSZL:0827h1
+Il2W2CV:j;o:S43`1Rg@lZ1
 R1
 R8
 R9
 R10
-!i122 316
-L0 656 22
+!i122 325
+L0 659 22
 R11
 R12
 r1
@@ -1178,14 +1185,14 @@ n@d@w_fp_sum4
 vMyDesign
 R7
 !i10b 1
-!s100 <UTDRg>5Q9M?Fk48<_Vz=0
-I>KlR8W1gG_6VkXlO6QUaG0
+!s100 Noi2z4eZieUfbBlmOz]<32
+IPDY:87P`KS[[RThMhZf_W0
 R1
 R8
 R9
 R10
-!i122 316
-L0 146 297
+!i122 325
+L0 146 300
 R11
 R12
 r1
@@ -1201,7 +1208,7 @@ R5
 n@my@design
 vsram
 Z26 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
-R7
+Z27 !s110 1699281237
 !i10b 1
 !s100 94<XlEJJ]kV1J;@Td<Y;F3
 Ie6^9<6nHUVjFbU=RP1`>k2
@@ -1210,7 +1217,7 @@ R1
 w1697740483
 8../testbench/sram.sv
 F../testbench/sram.sv
-!i122 316
+!i122 325
 L0 4 105
 R11
 R12
@@ -1226,7 +1233,7 @@ R17
 R5
 vtb_top
 R26
-R7
+R27
 !i10b 1
 !s100 e8iVIBmC_kbc`oCBzoMPY0
 I94So8[24jdn42?2mCX;e>3
@@ -1235,7 +1242,7 @@ R1
 w1697740475
 8../testbench/testbench.sv
 F../testbench/testbench.sv
-!i122 316
+!i122 325
 L0 3 348
 R11
 R12

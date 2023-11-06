@@ -631,7 +631,7 @@ check_design
 ****************************************
 check_design summary:
 Version:     T-2022.03-SP4
-Date:        Sun Nov  5 16:59:19 2023
+Date:        Mon Nov  6 10:17:51 2023
 ****************************************
 
                    Name                                            Total
@@ -648,8 +648,8 @@ Nets                                                               64
     Unloaded nets (LINT-2)                                         64
 --------------------------------------------------------------------------------
 
-Warning: In design 'MyDesign', cell 'C740' does not drive any nets. (LINT-1)
-Warning: In design 'MyDesign', cell 'C754' does not drive any nets. (LINT-1)
+Warning: In design 'MyDesign', cell 'C644' does not drive any nets. (LINT-1)
+Warning: In design 'MyDesign', cell 'C658' does not drive any nets. (LINT-1)
 Warning: In design 'MyDesign', cell 'address_counter/C491' does not drive any nets. (LINT-1)
 Warning: In design 'MyDesign', cell 'address_counter/B_3' does not drive any nets. (LINT-1)
 Warning: In design 'MyDesign', cell 'address_counter/B_2' does not drive any nets. (LINT-1)
