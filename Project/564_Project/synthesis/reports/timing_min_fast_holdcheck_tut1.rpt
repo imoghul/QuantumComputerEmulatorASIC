@@ -7,7 +7,7 @@ Report : timing
         -max_paths 1
 Design : ArithmeticUnit
 Version: T-2022.03-SP4
-Date   : Wed Nov  8 12:55:40 2023
+Date   : Thu Nov  9 09:55:12 2023
 ****************************************
 
 Operating Conditions: fast   Library: NangateOpenCellLibrary_PDKv1_2_v2008_10_fast_nldm
