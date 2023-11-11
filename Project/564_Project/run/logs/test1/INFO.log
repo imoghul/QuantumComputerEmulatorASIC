@@ -28,12 +28,20 @@
 # INFO: Reading memory file: ../inputs/input1/test4_B.dat
 # INFO: Reading memory file: ../inputs/input1/test4_A.dat
 # INFO: reading ../inputs/output1/test4_C.dat
+# INFO: Mismatch on           7
+# INFO: ref     check   diff
+# INFO: 0.145437579290032981127467337501, 0.145437579290032731327286796841, 0.000000000000000249800180540660
+# INFO: 0.003309485424308471635673756239, 0.003309485424308387935266040358, 0.000000000000000083700407715881
+# INFO: Mismatch on          15
+# INFO: ref     check   diff
+# INFO: 0.316561155792603410308316824739, 0.316561155792603410308316824739, 0.000000000000000000000000000000
+# INFO: 0.147776713554583938314834767880, 0.147776713554583633003502995962, 0.000000000000000305311331771918
 # INFO: Number of cases        : 16
-# INFO: Number of passed cases : 16
-# INFO: presentage passed     :  100.00
-# INFO: Test: 4, Result:  100.00
+# INFO: Number of passed cases : 14
+# INFO: presentage passed     :   87.00
+# INFO: Test: 4, Result:   87.00
 # INFO: Total number of cases  : 30
-# INFO: Total number of passes : 30
-# INFO: Finial Results         : 100.00
+# INFO: Total number of passes : 28
+# INFO: Finial Results         :  93.00
 # INFO: Finial Time Result     : 22060 ns
 # INFO: Finial Cycle Result    : 4412 cycles

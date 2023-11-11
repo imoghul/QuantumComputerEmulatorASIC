@@ -1,11 +1,11 @@
-# INFO: Test: 1, Result:  100.00
-# INFO: Test: 2, Result:  100.00
-# INFO: Test: 3, Result:  100.00
-# INFO: Test: 4, Result:  100.00
-# INFO: Test: 5, Result:  100.00
-# INFO: Test: 6, Result:  100.00
-# INFO: Test: 7, Result:  100.00
-# INFO: Test: 8, Result:  100.00
-# INFO: Finial Results         : 100.00
+# INFO: Test: 1, Result:    0.00
+# INFO: Test: 2, Result:    0.00
+# INFO: Test: 3, Result:    0.00
+# INFO: Test: 4, Result:    0.00
+# INFO: Test: 5, Result:    6.00
+# INFO: Test: 6, Result:    0.00
+# INFO: Test: 7, Result:    0.00
+# INFO: Test: 8, Result:    0.00
+# INFO: Finial Results         :   1.00
 # INFO: Finial Time Result     : 60000 ns
 # INFO: Finial Cycle Result    : 12000 cycles

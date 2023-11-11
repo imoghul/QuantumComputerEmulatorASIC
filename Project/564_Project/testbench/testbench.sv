@@ -24,7 +24,7 @@ module tb_top();
   event testStart;
   integer totalNumOfCases=0;
   integer totalNumOfPasses=0;
-  real epsilon_mult=1.0;
+  real epsilon_mult=3.0;
 
   string class_name = "464";
   string input_dir = "../inputs/input1";

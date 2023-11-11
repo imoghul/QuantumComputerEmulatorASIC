@@ -178,9 +178,8 @@ Inferred memory devices in process
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
-|  clr_sum_reg2_reg   | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
-|  clr_sum_reg3_reg   | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
 |  clr_sum_reg1_reg   | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|  clr_sum_reg2_reg   | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
 ===============================================================================
 
 Inferred memory devices in process

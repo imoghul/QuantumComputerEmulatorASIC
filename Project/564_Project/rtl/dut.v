@@ -196,12 +196,12 @@ module MyDesign (
   // datapath values
   reg [`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1:0] QM;
   wire [`LOG2_MAX_NUM_QUBITS-1:0] Q;
-  wire [(`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1)/2:0] M;
+  wire [10/*(`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1)/2*/:0] M;
   reg [`MAX_NUM_QUBITS:0] Qshift; // this will equal to 2^Q
   reg [(1<<`MAX_NUM_QUBITS)-1:0] Qshift_squared; // this will equal to 2^2Q
   reg [`MAX_NUM_QUBITS:0] bitmask; // this will max at 2^Q - 1
   reg [`SCRATCHPAD_SRAM_ADDRESS_UPPER_BOUND-1:0] q_gates_offset;
-  reg [(`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND/2)-1:0] MCounter;
+  reg [10/*(`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND/2)-1*/:0] MCounter;
   wire Addr_counter_done;
   wire [(inst_sig_width+inst_exp_width+1)*2-1:0] sum_calculation;
   wire addr_count_wraparound;
@@ -426,7 +426,7 @@ module MyDesign (
   ArithmeticUnit ALU (
       .clk(clk),
       .reset_n(reset_n),
-      .squash(clr_sum_reg3),
+      .squash(clr_sum_reg2),
       .inst_rnd(3'b000),
       .enInput(enInput3),
       .Aselect(rdscratch_wrinp),
@@ -601,6 +601,135 @@ module ArithmeticUnit #(
 
 endmodule
 
+// module ArithmeticUnit #(
+//     parameter inst_sig_width = 52,
+//     parameter inst_exp_width = 11,
+//     parameter inst_ieee_compliance = 3
+// ) (
+//     input wire clk,
+//     input wire reset_n,
+//     input wire squash,
+//     input wire [2:0] inst_rnd,
+
+//     input wire enInput,
+//     input wire Aselect,
+//     input wire [(inst_sig_width+inst_exp_width+1)*2-1 : 0] A1,
+//     input wire [(inst_sig_width+inst_exp_width+1)*2-1 : 0] A2,
+//     input wire [(inst_sig_width+inst_exp_width+1)*2-1 : 0] B,
+//     input wire [(inst_sig_width+inst_exp_width+1)*2-1 : 0] prev,
+
+//     output wire [(inst_sig_width+inst_exp_width+1)*2-1 : 0] result
+// );
+
+//   wire [inst_sig_width+inst_exp_width : 0] resultreal_d;
+//   reg [inst_sig_width+inst_exp_width : 0] resultreal_q;
+//   wire [7 : 0] status_resultreal;
+//   wire [inst_sig_width+inst_exp_width : 0] resultimag_d;
+//   reg [inst_sig_width+inst_exp_width : 0] resultimag_q;
+//   wire [7 : 0] status_resultimag;
+
+//   wire [(inst_sig_width+inst_exp_width+1)*2-1 : 0] A;
+//   assign A = Aselect? A1:A2;
+//   wire [inst_sig_width+inst_exp_width : 0] Areal, Aimag, Breal, Bimag, prevreal, previmag;
+//   assign Areal = enInput ? A[(inst_sig_width+inst_exp_width+1)*2-1:inst_sig_width+inst_exp_width+1] : 0;
+//   assign Aimag = enInput ? A[inst_sig_width+inst_exp_width:0] : 0;
+//   assign Breal = enInput ? B[(inst_sig_width+inst_exp_width+1)*2-1:inst_sig_width+inst_exp_width+1] : 0;
+//   assign Bimag = enInput ? B[inst_sig_width+inst_exp_width:0] : 0;
+//   assign prevreal = squash ? 128'b0:resultreal_d;
+//   assign previmag = squash ? 128'b0:resultimag_d;
+//   reg [inst_sig_width+inst_exp_width : 0] Areal_q, Aimag_q, AimagNegative_q, Breal_q, Bimag_q, Areal_q_1, Breal_q_1, Bimag_q_1;
+//   always @(posedge clk) begin
+//     if (!reset_n) begin
+//       Areal_q <= 0;
+//       Aimag_q <= 0;
+//       AimagNegative_q <= 0;
+//       Breal_q <= 0;
+//       Bimag_q <= 0;
+//       Areal_q_1 <= 0;
+//       Breal_q_1 <= 0;
+//       Bimag_q_1 <= 0;
+//     end else begin
+//       Areal_q <= Areal;
+//       Aimag_q<=Aimag;
+//       AimagNegative_q <= {~Aimag[inst_sig_width+inst_exp_width],Aimag[inst_sig_width+inst_exp_width-1:0]};
+//       Breal_q <= Breal;
+//       Bimag_q <= Bimag;
+//       Areal_q_1 <= Areal_q;
+//       Breal_q_1 <= Breal_q;
+//       Bimag_q_1 <= Bimag_q;
+//     end
+//   end
+
+//   // pipeline stage 1
+//   wire [inst_sig_width+inst_exp_width : 0] term1_d;
+//   reg [inst_sig_width+inst_exp_width : 0] term1_q;
+//   wire [inst_sig_width+inst_exp_width : 0] term2_d;
+//   reg [inst_sig_width+inst_exp_width : 0] term2_q;
+//   wire [7:0] status_term1,status_term2;
+//   always @(posedge clk) begin
+//     if (!reset_n) begin
+//       term1_q <= 0;
+//       term2_q <= 0;
+//     end else begin
+//       term1_q <= term1_d;
+//       term2_q <= term2_d;
+//     end
+//   end
+
+
+//   // pipeline stage 3
+//   always @(posedge clk) begin
+//     if (!reset_n) begin
+//       resultreal_q <= 0;
+//       resultimag_q <= 0;
+//     end else begin
+//       resultreal_q <= resultreal_d;
+//       resultimag_q <= resultimag_d;
+//     end
+//   end
+
+//   assign result = {resultreal_q, resultimag_q};
+
+
+
+//   DW_fp_mac_inst FP_MAC_TERM1 (
+//     .inst_a(AimagNegative_q),
+//     .inst_b(Bimag_q),
+//     .inst_c(prevreal),
+//     .inst_rnd(inst_rnd),
+//     .z_inst(term1_d),
+//     .status_inst(status_term1)
+//   );
+
+//   DW_fp_mac_inst FP_MAC_TERM2 (
+//     .inst_a(Aimag_q),
+//     .inst_b(Breal_q),
+//     .inst_c(previmag),
+//     .inst_rnd(inst_rnd),
+//     .z_inst(term2_d),
+//     .status_inst(status_term2)
+//   );
+
+//   DW_fp_mac_inst FP_MAC_SUMREAL (
+//     .inst_a(Areal_q_1),
+//     .inst_b(Breal_q_1),
+//     .inst_c(term1_q),
+//     .inst_rnd(inst_rnd),
+//     .z_inst(resultreal_d),
+//     .status_inst(status_resultreal)
+//   );
+
+//   DW_fp_mac_inst FP_MAC_SUMIMAG (
+//     .inst_a(Areal_q_1),
+//     .inst_b(Bimag_q_1),
+//     .inst_c(term2_q),
+//     .inst_rnd(inst_rnd),
+//     .z_inst(resultimag_d),
+//     .status_inst(status_resultimag)
+//   );
+
+
+// endmodule
 
 
 
@@ -628,7 +757,7 @@ endmodule
 module DW_fp_mac_inst #(
     parameter inst_sig_width = 52,
     parameter inst_exp_width = 11,
-    parameter inst_ieee_compliance = 3  // These need to be fixed to decrease error
+    parameter inst_ieee_compliance = 1  // These need to be fixed to decrease error
 ) (
     input wire [inst_sig_width+inst_exp_width : 0] inst_a,
     input wire [inst_sig_width+inst_exp_width : 0] inst_b,
@@ -654,7 +783,7 @@ endmodule
 module DW_fp_mult_inst #(
     parameter inst_sig_width = 52,
     parameter inst_exp_width = 11,
-    parameter inst_ieee_compliance = 3  // These need to be fixed to decrease error
+    parameter inst_ieee_compliance = 1  // These need to be fixed to decrease error
 ) (
     input wire [inst_sig_width+inst_exp_width : 0] inst_a,
     input wire [inst_sig_width+inst_exp_width : 0] inst_b,
@@ -677,7 +806,7 @@ endmodule
 module DW_fp_add_inst #(
     parameter inst_sig_width = 52,
     parameter inst_exp_width = 11,
-    parameter inst_ieee_compliance = 3  // These need to be fixed to decrease error
+    parameter inst_ieee_compliance = 1  // These need to be fixed to decrease error
 ) (
     input wire [inst_sig_width+inst_exp_width : 0] inst_a,
     input wire [inst_sig_width+inst_exp_width : 0] inst_b,
