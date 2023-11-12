@@ -1,4 +1,5 @@
 import git
+import atexit
 
 def get_commits_for_file(repo_path, file_path):
     repo = git.Repo(repo_path)
@@ -25,10 +26,11 @@ def return_to_latest_commit(repo):
 
 
 def main():
-    repo_path = '../../'
+    repo_path = '../..'
     file_path = 'Project/564_Project/synthesis/reports/cell_report_final.rpt'
 
     repo = git.Repo(repo_path)
+    atexit.register(lambda : return_to_latest_commit(repo))
     commits = get_commits_for_file(repo_path, file_path)
 
     for commit in commits:
@@ -39,8 +41,8 @@ def main():
 
         # Read the file content at the specific commit
         try:
-            file_content = read_file_at_commit(repo, commit, file_path)
-            print(f"File Content:\n{file_content}\n")
+            cell_report_final_contents = read_file_at_commit(repo, commit, 'synthesis/reports/cell_report_final.rpt').split(' ')[-2]
+            print(f"File Content:\n{cell_report_final_contents}\n")
         except Exception as e: print(str(e))
 
     return_to_latest_commit(repo)
