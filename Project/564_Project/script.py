@@ -9,10 +9,26 @@ def get_commits_for_file(repo_path, file_path):
 
     return file_commits
 
-def main():
-    repo_path = '.'
-    file_path = 'synthesis/reports/cell_report_final.rpt'
+def read_file_at_commit(repo, commit, file_path):
+    # Checkout the specific commit
+    repo.git.checkout(commit.hexsha, force=True)
 
+    # Read the content of the file
+    with open(file_path, 'r') as file:
+        content = file.read()
+
+    return content
+
+def return_to_latest_commit(repo):
+    # Return to the latest commit
+    repo.git.checkout('master', force=True)  # Replace 'master' with your branch name if it's different
+
+
+def main():
+    repo_path = '../../'
+    file_path = 'Project/564_Project/synthesis/reports/cell_report_final.rpt'
+
+    repo = git.Repo(repo_path)
     commits = get_commits_for_file(repo_path, file_path)
 
     for commit in commits:
@@ -20,7 +36,14 @@ def main():
         print(f"Author: {commit.author.name} <{commit.author.email}>")
         print(f"Date: {commit.authored_datetime}")
         print(f"Message: {commit.message}")
-        print("\n")
+
+        # Read the file content at the specific commit
+        try:
+            file_content = read_file_at_commit(repo, commit, file_path)
+            print(f"File Content:\n{file_content}\n")
+        except Exception as e: print(str(e))
+
+    return_to_latest_commit(repo)
 
 if __name__ == "__main__":
     main()
