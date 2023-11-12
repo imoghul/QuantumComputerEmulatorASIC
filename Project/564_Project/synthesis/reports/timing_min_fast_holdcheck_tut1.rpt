@@ -7,7 +7,7 @@ Report : timing
         -max_paths 1
 Design : MyDesign
 Version: T-2022.03-SP4
-Date   : Sun Nov 12 13:44:09 2023
+Date   : Sun Nov 12 16:06:46 2023
 ****************************************
 
 Operating Conditions: fast   Library: NangateOpenCellLibrary_PDKv1_2_v2008_10_fast_nldm
@@ -26,7 +26,7 @@ Wire Load Model Mode: top
   clock network delay (ideal)            0.0000     0.0000
   q_gates_offset_reg[17]/CK (DFF_X1)     0.0000     0.0000 r
   q_gates_offset_reg[17]/Q (DFF_X1)      0.0543     0.0543 r
-  U60275/ZN (AOI22_X1)                   0.0175     0.0718 f
+  U60296/ZN (AOI22_X1)                   0.0175     0.0718 f
   q_gates_offset_reg[17]/D (DFF_X1)      0.0000     0.0718 f
   data arrival time                                 0.0718
 
