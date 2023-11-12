@@ -41,8 +41,8 @@ def main():
 
         # Read the file content at the specific commit
         try:
-            cell_report_final_contents = read_file_at_commit(repo, commit, 'synthesis/reports/cell_report_final.rpt').split(' ')[-2]
-            print(f"File Content:\n{cell_report_final_contents}\n")
+            area = float((read_file_at_commit(repo, commit, 'synthesis/reports/cell_report_final.rpt').split('\n')[-3]).split(' ')[-1])
+            print(f"File Content:\n{area}\n")
         except Exception as e: print(str(e))
 
     return_to_latest_commit(repo)
