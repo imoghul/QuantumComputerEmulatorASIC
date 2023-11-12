@@ -3,7 +3,7 @@
   set clkname clk
 
 # set variable "modname" to the name of topmost module in design
-  set modname ArithmeticUnit
+  set modname MyDesign
 
 # set variable "RTL_DIR" to the HDL directory w.r.t synthesis directory
   set RTL_DIR    ../rtl

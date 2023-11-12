@@ -5,17 +5,17 @@ Report : timing
         -path full
         -delay min
         -max_paths 1
-Design : ArithmeticUnit
+Design : MyDesign
 Version: T-2022.03-SP4
-Date   : Fri Nov 10 20:38:21 2023
+Date   : Sun Nov 12 13:44:09 2023
 ****************************************
 
 Operating Conditions: fast   Library: NangateOpenCellLibrary_PDKv1_2_v2008_10_fast_nldm
 Wire Load Model Mode: top
 
-  Startpoint: term4_q_reg[63]
+  Startpoint: q_gates_offset_reg[17]
               (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: sumimag_q_reg[63]
+  Endpoint: q_gates_offset_reg[17]
             (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: min
@@ -24,26 +24,23 @@ Wire Load Model Mode: top
   -----------------------------------------------------------
   clock clk (rise edge)                  0.0000     0.0000
   clock network delay (ideal)            0.0000     0.0000
-  term4_q_reg[63]/CK (DFF_X1)            0.0000     0.0000 r
-  term4_q_reg[63]/Q (DFF_X1)             0.0575     0.0575 r
-  U29949/ZN (NAND2_X1)                   0.0155     0.0730 f
-  U29950/ZN (NAND2_X1)                   0.0268     0.0998 r
-  U31124/ZN (NAND4_X1)                   0.0300     0.1298 f
-  U31132/ZN (OAI21_X1)                   0.0374     0.1672 r
-  sumimag_q_reg[63]/D (DFF_X1)           0.0000     0.1672 r
-  data arrival time                                 0.1672
+  q_gates_offset_reg[17]/CK (DFF_X1)     0.0000     0.0000 r
+  q_gates_offset_reg[17]/Q (DFF_X1)      0.0543     0.0543 r
+  U60275/ZN (AOI22_X1)                   0.0175     0.0718 f
+  q_gates_offset_reg[17]/D (DFF_X1)      0.0000     0.0718 f
+  data arrival time                                 0.0718
 
   clock clk (rise edge)                  0.0000     0.0000
   clock network delay (ideal)            0.0000     0.0000
   clock uncertainty                      0.0500     0.0500
-  sumimag_q_reg[63]/CK (DFF_X1)          0.0000     0.0500 r
-  library hold time                     -0.0171     0.0329
-  data required time                                0.0329
+  q_gates_offset_reg[17]/CK (DFF_X1)     0.0000     0.0500 r
+  library hold time                      0.0004     0.0504
+  data required time                                0.0504
   -----------------------------------------------------------
-  data required time                                0.0329
-  data arrival time                                -0.1672
+  data required time                                0.0504
+  data arrival time                                -0.0718
   -----------------------------------------------------------
-  slack (MET)                                       0.1343
+  slack (MET)                                       0.0214
 
 
 1

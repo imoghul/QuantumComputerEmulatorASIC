@@ -1,4 +1,3 @@
-
 `include "defines.vh"
 
 `define MAX_NUM_QUBITS          4
@@ -196,12 +195,12 @@ module MyDesign (
   // datapath values
   reg [`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1:0] QM;
   wire [`LOG2_MAX_NUM_QUBITS-1:0] Q;
-  wire [10/*(`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1)/2*/:0] M;
+  wire [(`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1)/2:0] M;
   reg [`MAX_NUM_QUBITS:0] Qshift; // this will equal to 2^Q
   reg [(1<<`MAX_NUM_QUBITS)-1:0] Qshift_squared; // this will equal to 2^2Q
   reg [`MAX_NUM_QUBITS:0] bitmask; // this will max at 2^Q - 1
   reg [`SCRATCHPAD_SRAM_ADDRESS_UPPER_BOUND-1:0] q_gates_offset;
-  reg [10/*(`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND/2)-1*/:0] MCounter;
+  reg [(`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND/2)-1:0] MCounter;
   wire Addr_counter_done;
   wire [(inst_sig_width+inst_exp_width+1)*2-1:0] sum_calculation;
   wire addr_count_wraparound;
@@ -426,7 +425,7 @@ module MyDesign (
   ArithmeticUnit ALU (
       .clk(clk),
       .reset_n(reset_n),
-      .squash(clr_sum_reg2),
+      .squash(clr_sum_reg3),
       .inst_rnd(3'b000),
       .enInput(enInput3),
       .Aselect(rdscratch_wrinp),
@@ -539,6 +538,7 @@ module ArithmeticUnit #(
 
   // This is test stub for passing input/outputs to a DP_fp_mac, there many
   // more DW macros that you can choose to use
+
   DW_fp_mult_inst FP_MULT_TERM1 (
       Areal,
       Breal,
@@ -600,6 +600,97 @@ module ArithmeticUnit #(
 
 
 endmodule
+
+
+
+
+
+
+
+
+
+
+
+module DW_fp_mac_inst #(
+    parameter inst_sig_width = 52,
+    parameter inst_exp_width = 11,
+    parameter inst_ieee_compliance = 1  // These need to be fixed to decrease error
+) (
+    input wire [inst_sig_width+inst_exp_width : 0] inst_a,
+    input wire [inst_sig_width+inst_exp_width : 0] inst_b,
+    input wire [inst_sig_width+inst_exp_width : 0] inst_c,
+    input wire [2 : 0] inst_rnd,
+    output wire [inst_sig_width+inst_exp_width : 0] z_inst,
+    output wire [7 : 0] status_inst
+);
+
+  // Instance of DW_fp_mac
+  DW_fp_mac #(inst_sig_width, inst_exp_width, inst_ieee_compliance) U1 (
+      .a(inst_a),
+      .b(inst_b),
+      .c(inst_c),
+      .rnd(inst_rnd),
+      .z(z_inst),
+      .status(status_inst)
+  );
+
+endmodule
+
+
+module DW_fp_mult_inst #(
+    parameter inst_sig_width = 52,
+    parameter inst_exp_width = 11,
+    parameter inst_ieee_compliance = 1  // These need to be fixed to decrease error
+) (
+    input wire [inst_sig_width+inst_exp_width : 0] inst_a,
+    input wire [inst_sig_width+inst_exp_width : 0] inst_b,
+    input wire [2 : 0] inst_rnd,
+    output wire [inst_sig_width+inst_exp_width : 0] z_inst,
+    output wire [7 : 0] status_inst
+);
+
+  // Instance of DW_fp_mult
+  DW_fp_mult #(inst_sig_width, inst_exp_width, inst_ieee_compliance) U1 (
+      .a(inst_a),
+      .b(inst_b),
+      .rnd(inst_rnd),
+      .z(z_inst),
+      .status(status_inst)
+  );
+
+endmodule
+
+module DW_fp_add_inst #(
+    parameter inst_sig_width = 52,
+    parameter inst_exp_width = 11,
+    parameter inst_ieee_compliance = 1  // These need to be fixed to decrease error
+) (
+    input wire [inst_sig_width+inst_exp_width : 0] inst_a,
+    input wire [inst_sig_width+inst_exp_width : 0] inst_b,
+    input wire [2 : 0] inst_rnd,
+    output wire [inst_sig_width+inst_exp_width : 0] z_inst,
+    output wire [7 : 0] status_inst
+);
+
+  // Instance of DW_fp_add
+  DW_fp_add #(inst_sig_width, inst_exp_width, inst_ieee_compliance) U1 (
+      .a(inst_a),
+      .b(inst_b),
+      .rnd(inst_rnd),
+      .z(z_inst),
+      .status(status_inst)
+  );
+
+endmodule
+
+
+
+
+
+
+
+
+
 
 // module ArithmeticUnit #(
 //     parameter inst_sig_width = 52,
@@ -738,90 +829,3 @@ endmodule
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-module DW_fp_mac_inst #(
-    parameter inst_sig_width = 52,
-    parameter inst_exp_width = 11,
-    parameter inst_ieee_compliance = 1  // These need to be fixed to decrease error
-) (
-    input wire [inst_sig_width+inst_exp_width : 0] inst_a,
-    input wire [inst_sig_width+inst_exp_width : 0] inst_b,
-    input wire [inst_sig_width+inst_exp_width : 0] inst_c,
-    input wire [2 : 0] inst_rnd,
-    output wire [inst_sig_width+inst_exp_width : 0] z_inst,
-    output wire [7 : 0] status_inst
-);
-
-  // Instance of DW_fp_mac
-  DW_fp_mac #(inst_sig_width, inst_exp_width, inst_ieee_compliance) U1 (
-      .a(inst_a),
-      .b(inst_b),
-      .c(inst_c),
-      .rnd(inst_rnd),
-      .z(z_inst),
-      .status(status_inst)
-  );
-
-endmodule
-
-
-module DW_fp_mult_inst #(
-    parameter inst_sig_width = 52,
-    parameter inst_exp_width = 11,
-    parameter inst_ieee_compliance = 1  // These need to be fixed to decrease error
-) (
-    input wire [inst_sig_width+inst_exp_width : 0] inst_a,
-    input wire [inst_sig_width+inst_exp_width : 0] inst_b,
-    input wire [2 : 0] inst_rnd,
-    output wire [inst_sig_width+inst_exp_width : 0] z_inst,
-    output wire [7 : 0] status_inst
-);
-
-  // Instance of DW_fp_mult
-  DW_fp_mult #(inst_sig_width, inst_exp_width, inst_ieee_compliance) U1 (
-      .a(inst_a),
-      .b(inst_b),
-      .rnd(inst_rnd),
-      .z(z_inst),
-      .status(status_inst)
-  );
-
-endmodule
-
-module DW_fp_add_inst #(
-    parameter inst_sig_width = 52,
-    parameter inst_exp_width = 11,
-    parameter inst_ieee_compliance = 1  // These need to be fixed to decrease error
-) (
-    input wire [inst_sig_width+inst_exp_width : 0] inst_a,
-    input wire [inst_sig_width+inst_exp_width : 0] inst_b,
-    input wire [2 : 0] inst_rnd,
-    output wire [inst_sig_width+inst_exp_width : 0] z_inst,
-    output wire [7 : 0] status_inst
-);
-
-  // Instance of DW_fp_add
-  DW_fp_add #(inst_sig_width, inst_exp_width, inst_ieee_compliance) U1 (
-      .a(inst_a),
-      .b(inst_b),
-      .rnd(inst_rnd),
-      .z(z_inst),
-      .status(status_inst)
-  );
-
-endmodule
