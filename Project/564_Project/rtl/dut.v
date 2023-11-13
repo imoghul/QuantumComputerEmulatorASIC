@@ -461,12 +461,12 @@ module ArithmeticUnit #(
   wire [(inst_sig_width+inst_exp_width+1)*2-1 : 0] A;
   assign A = Aselect? A1:A2;
   wire [inst_sig_width+inst_exp_width : 0] Areal, Aimag, Breal, Bimag, prevreal, previmag;
-  assign Areal = enInput ? A[(inst_sig_width+inst_exp_width+1)*2-1:inst_sig_width+inst_exp_width+1] : 0;
-  assign Aimag = enInput ? A[inst_sig_width+inst_exp_width:0] : 0;
-  assign Breal = enInput ? B[(inst_sig_width+inst_exp_width+1)*2-1:inst_sig_width+inst_exp_width+1] : 0;
-  assign Bimag = enInput ? B[inst_sig_width+inst_exp_width:0] : 0;
-  assign prevreal = squash ? 0:prev[(inst_sig_width+inst_exp_width+1)*2-1:inst_sig_width+inst_exp_width+1];
-  assign previmag = squash ? 0:prev[inst_sig_width+inst_exp_width:0];
+  assign Areal = A[(inst_sig_width+inst_exp_width+1)*2-1:inst_sig_width+inst_exp_width+1];
+  assign Aimag = A[inst_sig_width+inst_exp_width:0];
+  assign Breal = B[(inst_sig_width+inst_exp_width+1)*2-1:inst_sig_width+inst_exp_width+1];
+  assign Bimag = B[inst_sig_width+inst_exp_width:0];
+  assign prevreal = prev[(inst_sig_width+inst_exp_width+1)*2-1:inst_sig_width+inst_exp_width+1];
+  assign previmag = prev[inst_sig_width+inst_exp_width:0];
 
   // pipeline stage 1
   wire [inst_sig_width+inst_exp_width : 0] term1_d;
@@ -492,10 +492,10 @@ module ArithmeticUnit #(
       term3_q <= 0;
       term4_q <= 0;
     end else begin
-      term1_q <= term1_d;
-      term2negative_q <= term2negative_d;
-      term3_q <= term3_d;
-      term4_q <= term4_d;
+      term1_q <= enInput ? term1_d : 0;
+      term2negative_q <= enInput ? term2negative_d : 0;
+      term3_q <= enInput ? term3_d : 0;
+      term4_q <= enInput ? term4_d : 0;
     end
   end
 
@@ -528,8 +528,8 @@ module ArithmeticUnit #(
       resultreal_q <= 0;
       resultimag_q <= 0;
     end else begin
-      resultreal_q <= resultreal_d;
-      resultimag_q <= resultimag_d;
+      resultreal_q <= squash ? sumreal_q : resultreal_d;
+      resultimag_q <= squash ? sumimag_q : resultimag_d;
     end
   end
 

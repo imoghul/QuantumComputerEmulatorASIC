@@ -7,40 +7,40 @@ Report : timing
         -max_paths 1
 Design : MyDesign
 Version: T-2022.03-SP4
-Date   : Sun Nov 12 16:06:46 2023
+Date   : Sun Nov 12 18:55:29 2023
 ****************************************
 
 Operating Conditions: fast   Library: NangateOpenCellLibrary_PDKv1_2_v2008_10_fast_nldm
 Wire Load Model Mode: top
 
-  Startpoint: q_gates_offset_reg[17]
+  Startpoint: address_counter/q_wr_input_addr_reg[0]
               (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: q_gates_offset_reg[17]
+  Endpoint: address_counter/q_wr_input_addr_reg[0]
             (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: min
 
-  Point                                    Incr       Path
-  -----------------------------------------------------------
-  clock clk (rise edge)                  0.0000     0.0000
-  clock network delay (ideal)            0.0000     0.0000
-  q_gates_offset_reg[17]/CK (DFF_X1)     0.0000     0.0000 r
-  q_gates_offset_reg[17]/Q (DFF_X1)      0.0543     0.0543 r
-  U60296/ZN (AOI22_X1)                   0.0175     0.0718 f
-  q_gates_offset_reg[17]/D (DFF_X1)      0.0000     0.0718 f
-  data arrival time                                 0.0718
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                 0.0000     0.0000
+  clock network delay (ideal)                           0.0000     0.0000
+  address_counter/q_wr_input_addr_reg[0]/CK (DFF_X2)    0.0000     0.0000 r
+  address_counter/q_wr_input_addr_reg[0]/Q (DFF_X2)     0.0521     0.0521 r
+  U57895/ZN (OAI22_X1)                                  0.0145     0.0666 f
+  address_counter/q_wr_input_addr_reg[0]/D (DFF_X2)     0.0000     0.0666 f
+  data arrival time                                                0.0666
 
-  clock clk (rise edge)                  0.0000     0.0000
-  clock network delay (ideal)            0.0000     0.0000
-  clock uncertainty                      0.0500     0.0500
-  q_gates_offset_reg[17]/CK (DFF_X1)     0.0000     0.0500 r
-  library hold time                      0.0004     0.0504
-  data required time                                0.0504
-  -----------------------------------------------------------
-  data required time                                0.0504
-  data arrival time                                -0.0718
-  -----------------------------------------------------------
-  slack (MET)                                       0.0214
+  clock clk (rise edge)                                 0.0000     0.0000
+  clock network delay (ideal)                           0.0000     0.0000
+  clock uncertainty                                     0.0500     0.0500
+  address_counter/q_wr_input_addr_reg[0]/CK (DFF_X2)    0.0000     0.0500 r
+  library hold time                                    -0.0002     0.0498
+  data required time                                               0.0498
+  --------------------------------------------------------------------------
+  data required time                                               0.0498
+  data arrival time                                               -0.0666
+  --------------------------------------------------------------------------
+  slack (MET)                                                      0.0168
 
 
 1
