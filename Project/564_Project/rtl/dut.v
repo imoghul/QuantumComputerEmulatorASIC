@@ -106,7 +106,7 @@ module Addr_Counter #(
       q_input_wr_en <= 0;
       q_scratch_wr_en <= 0;
       q_output_wr_en <= 0;
-    end else if (output_counter_control3) begin
+    end else if (output_counter_control) begin
       q_input_wr_en <= rdscratch_wrinp;
       q_scratch_wr_en <= !rdscratch_wrinp;
       q_output_wr_en <= 1;
