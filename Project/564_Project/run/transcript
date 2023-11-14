@@ -1,3 +1,6 @@
+# vsim -c -voptargs="+acc" tb_top "+TIMEOUT=1000000000" "+num_of_testcases=7" "+epsilon_mult=" "+input_dir=../inputs/input4" "+output_dir=../inputs/output4" -do "run -all" 
+# Start time: 11:09:06 on Nov 14,2023
+# ** Note: (vsim-8009) Loading existing optimized design _opt
 # //  ModelSim SE 2021.2 Apr 14 2021 Linux 3.10.0-1160.102.1.el7.x86_64
 # //
 # //  Copyright 1991-2021 Mentor Graphics Corporation
@@ -11,9 +14,6 @@
 # //  is prohibited from disclosure under the Trade Secrets Act,
 # //  18 U.S.C. Section 1905.
 # //
-# vsim -voptargs="+acc" tb_top "+TIMEOUT=1000000000" "+num_of_testcases=6" "+epsilon_mult=" "+input_dir=../inputs/input3" "+output_dir=../inputs/output3" 
-# Start time: 10:26:54 on Nov 14,2023
-# ** Note: (vsim-8009) Loading existing optimized design _opt
 # Loading sv_std.std
 # Loading work.tb_top(fast)
 # Loading work.sram(fast)
@@ -27,194 +27,80 @@
 # Loading work.DW_fp_add_inst(fast)
 # Loading work.DW_fp_add(fast)
 # Loading work.DW_fp_addsub(fast)
-make build ; restart -f ; run 10000ns
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# Loading work.tb_top(fast)
-# Loading work.sram(fast)
-# Loading work.sram(fast__1)
-# Loading work.sram(fast__2)
-# Loading work.MyDesign(fast)
-# Loading work.Addr_Counter(fast)
-# Loading work.ArithmeticUnit(fast)
-# Loading work.DW_fp_mult_inst(fast)
-# Loading work.DW_fp_mult(fast)
-# Loading work.DW_fp_add_inst(fast)
-# Loading work.DW_fp_add(fast)
-# Loading work.DW_fp_addsub(fast)
-# INFO: number of testcases:           6
+# run -all
+# INFO: number of testcases:           7
 # +CLASS+464
 # INFO: DONE WITH RESETING DUT
 # INFO: ######## Running Test: 1 ########
-# INFO: Reading memory file: ../inputs/input3/test1_B.dat
-# INFO: Reading memory file: ../inputs/input3/test1_A.dat
-# INFO: reading ../inputs/output3/test1_C.dat
-# INFO: Number of cases        : 4
-# INFO: Number of passed cases : 4
+# INFO: Reading memory file: ../inputs/input4/test1_B.dat
+# INFO: Reading memory file: ../inputs/input4/test1_A.dat
+# INFO: reading ../inputs/output4/test1_C.dat
+# INFO: Number of cases        : 8
+# INFO: Number of passed cases : 8
 # INFO: presentage passed     :  100.00
 # INFO: Test: 1, Result:  100.00
 # 
 # INFO: ######## Running Test: 2 ########
-# INFO: Reading memory file: ../inputs/input3/test2_B.dat
-# INFO: Reading memory file: ../inputs/input3/test2_A.dat
-# INFO: reading ../inputs/output3/test2_C.dat
-# INFO: Number of cases        : 8
-# INFO: Number of passed cases : 8
-# INFO: presentage passed     :  100.00
-# INFO: Test: 2, Result:  100.00
-# 
-# INFO: ######## Running Test: 3 ########
-# INFO: Reading memory file: ../inputs/input3/test3_B.dat
-# INFO: Reading memory file: ../inputs/input3/test3_A.dat
-add wave -position insertpoint  \
-sim:/tb_top/dut/inst_sig_width \
-sim:/tb_top/dut/inst_exp_width \
-sim:/tb_top/dut/inst_ieee_compliance \
-sim:/tb_top/dut/RESET \
-sim:/tb_top/dut/IDLE \
-sim:/tb_top/dut/INITIALIZE \
-sim:/tb_top/dut/CALCULATE_PARAMETERS \
-sim:/tb_top/dut/CALCULATE \
-sim:/tb_top/dut/WRITEBACK1 \
-sim:/tb_top/dut/WRITEBACK2 \
-sim:/tb_top/dut/reset_n \
-sim:/tb_top/dut/clk \
-sim:/tb_top/dut/dut_valid \
-sim:/tb_top/dut/dut_ready \
-sim:/tb_top/dut/q_state_input_sram_write_enable \
-sim:/tb_top/dut/q_state_input_sram_write_address \
-sim:/tb_top/dut/q_state_input_sram_write_data \
-sim:/tb_top/dut/q_state_input_sram_read_address \
-sim:/tb_top/dut/q_state_input_sram_read_data \
-sim:/tb_top/dut/q_state_output_sram_write_enable \
-sim:/tb_top/dut/q_state_output_sram_write_address \
-sim:/tb_top/dut/q_state_output_sram_write_data \
-sim:/tb_top/dut/q_state_output_sram_read_address \
-sim:/tb_top/dut/q_state_output_sram_read_data \
-sim:/tb_top/dut/scratchpad_sram_write_enable \
-sim:/tb_top/dut/scratchpad_sram_write_address \
-sim:/tb_top/dut/scratchpad_sram_write_data \
-sim:/tb_top/dut/scratchpad_sram_read_address \
-sim:/tb_top/dut/scratchpad_sram_read_data \
-sim:/tb_top/dut/q_gates_sram_write_enable \
-sim:/tb_top/dut/q_gates_sram_write_address \
-sim:/tb_top/dut/q_gates_sram_write_data \
-sim:/tb_top/dut/q_gates_sram_read_address \
-sim:/tb_top/dut/q_gates_sram_read_data \
-sim:/tb_top/dut/QM \
-sim:/tb_top/dut/Q \
-sim:/tb_top/dut/M \
-sim:/tb_top/dut/Qshift \
-sim:/tb_top/dut/Qshift_squared \
-sim:/tb_top/dut/bitmask \
-sim:/tb_top/dut/q_gates_offset \
-sim:/tb_top/dut/MCounter \
-sim:/tb_top/dut/Addr_counter_done \
-sim:/tb_top/dut/sum_calculation \
-sim:/tb_top/dut/addr_count_wraparound \
-sim:/tb_top/dut/rdscratch_wrinp \
-sim:/tb_top/dut/dut_ready_r \
-sim:/tb_top/dut/storeQM \
-sim:/tb_top/dut/clr_Addr_Count \
-sim:/tb_top/dut/load_MCounter \
-sim:/tb_top/dut/en_MCounter \
-sim:/tb_top/dut/en_q_gates_offset \
-sim:/tb_top/dut/clr_q_gates_offset \
-sim:/tb_top/dut/clr_sum_reg \
-sim:/tb_top/dut/clr_sum_reg1 \
-sim:/tb_top/dut/clr_sum_reg2 \
-sim:/tb_top/dut/clr_sum_reg3 \
-sim:/tb_top/dut/clr_rdscratch_wrinp \
-sim:/tb_top/dut/en_rdscratch_wrinp \
-sim:/tb_top/dut/state \
-sim:/tb_top/dut/nextState \
-sim:/tb_top/dut/q_input_addr \
-sim:/tb_top/dut/q_output_addr \
-sim:/tb_top/dut/enInput1 \
-sim:/tb_top/dut/enInput2 \
-sim:/tb_top/dut/enInput3
-make build ; restart -f ; run 10000ns
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# Loading work.tb_top(fast)
-# Loading work.sram(fast)
-# Loading work.sram(fast__1)
-# Loading work.sram(fast__2)
-# Loading work.MyDesign(fast)
-# Loading work.Addr_Counter(fast)
-# Loading work.ArithmeticUnit(fast)
-# Loading work.DW_fp_mult_inst(fast)
-# Loading work.DW_fp_mult(fast)
-# Loading work.DW_fp_add_inst(fast)
-# Loading work.DW_fp_add(fast)
-# Loading work.DW_fp_addsub(fast)
-# INFO: number of testcases:           6
-# +CLASS+464
-# INFO: DONE WITH RESETING DUT
-# INFO: ######## Running Test: 1 ########
-# INFO: Reading memory file: ../inputs/input3/test1_B.dat
-# INFO: Reading memory file: ../inputs/input3/test1_A.dat
-# INFO: reading ../inputs/output3/test1_C.dat
+# INFO: Reading memory file: ../inputs/input4/test2_B.dat
+# INFO: Reading memory file: ../inputs/input4/test2_A.dat
+# INFO: reading ../inputs/output4/test2_C.dat
 # INFO: Number of cases        : 4
 # INFO: Number of passed cases : 4
 # INFO: presentage passed     :  100.00
-# INFO: Test: 1, Result:  100.00
-# 
-# INFO: ######## Running Test: 2 ########
-# INFO: Reading memory file: ../inputs/input3/test2_B.dat
-# INFO: Reading memory file: ../inputs/input3/test2_A.dat
-# INFO: reading ../inputs/output3/test2_C.dat
-# INFO: Number of cases        : 8
-# INFO: Number of passed cases : 8
-# INFO: presentage passed     :  100.00
 # INFO: Test: 2, Result:  100.00
 # 
 # INFO: ######## Running Test: 3 ########
-# INFO: Reading memory file: ../inputs/input3/test3_B.dat
-# INFO: Reading memory file: ../inputs/input3/test3_A.dat
-add wave -position insertpoint  \
-{sim:/tb_top/q_state_input_mem/mem[64'h0000000000000000]}
-# (vsim-4027) Logging is not supported for Associative Array item: /tb_top/q_state_input_mem/mem
-add wave -position insertpoint  \
-{sim:/tb_top/q_state_input_mem/mem[64'h0000000000000000][118]}
-# (vsim-4027) Logging is not supported for Associative Array item: /tb_top/q_state_input_mem/mem
-add wave -position insertpoint  \
-{sim:/tb_top/q_state_input_mem/mem[64'h0000000000000000][118]}
-# (vsim-4027) Logging is not supported for Associative Array item: /tb_top/q_state_input_mem/mem
-make build ; restart -f ; run 10000ns
-# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
-# Loading sv_std.std
-# Loading work.tb_top(fast)
-# Loading work.sram(fast)
-# Loading work.sram(fast__1)
-# Loading work.sram(fast__2)
-# Loading work.MyDesign(fast)
-# Loading work.Addr_Counter(fast)
-# Loading work.ArithmeticUnit(fast)
-# Loading work.DW_fp_mult_inst(fast)
-# Loading work.DW_fp_mult(fast)
-# Loading work.DW_fp_add_inst(fast)
-# Loading work.DW_fp_add(fast)
-# Loading work.DW_fp_addsub(fast)
-# INFO: number of testcases:           6
-# +CLASS+464
-# INFO: DONE WITH RESETING DUT
-# INFO: ######## Running Test: 1 ########
-# INFO: Reading memory file: ../inputs/input3/test1_B.dat
-# INFO: Reading memory file: ../inputs/input3/test1_A.dat
-# INFO: reading ../inputs/output3/test1_C.dat
-# INFO: Number of cases        : 4
-# INFO: Number of passed cases : 4
+# INFO: Reading memory file: ../inputs/input4/test3_B.dat
+# INFO: Reading memory file: ../inputs/input4/test3_A.dat
+# INFO: reading ../inputs/output4/test3_C.dat
+# INFO: Number of cases        : 2
+# INFO: Number of passed cases : 2
 # INFO: presentage passed     :  100.00
-# INFO: Test: 1, Result:  100.00
+# INFO: Test: 3, Result:  100.00
 # 
-# INFO: ######## Running Test: 2 ########
-# INFO: Reading memory file: ../inputs/input3/test2_B.dat
-# INFO: Reading memory file: ../inputs/input3/test2_A.dat
-# INFO: reading ../inputs/output3/test2_C.dat
+# INFO: ######## Running Test: 4 ########
+# INFO: Reading memory file: ../inputs/input4/test4_B.dat
+# INFO: Reading memory file: ../inputs/input4/test4_A.dat
+# INFO: reading ../inputs/output4/test4_C.dat
+# INFO: Number of cases        : 16
+# INFO: Number of passed cases : 16
+# INFO: presentage passed     :  100.00
+# INFO: Test: 4, Result:  100.00
+# 
+# INFO: ######## Running Test: 5 ########
+# INFO: Reading memory file: ../inputs/input4/test5_B.dat
+# INFO: Reading memory file: ../inputs/input4/test5_A.dat
+# INFO: reading ../inputs/output4/test5_C.dat
+# INFO: Number of cases        : 16
+# INFO: Number of passed cases : 16
+# INFO: presentage passed     :  100.00
+# INFO: Test: 5, Result:  100.00
+# 
+# INFO: ######## Running Test: 6 ########
+# INFO: Reading memory file: ../inputs/input4/test6_B.dat
+# INFO: Reading memory file: ../inputs/input4/test6_A.dat
+# INFO: reading ../inputs/output4/test6_C.dat
+# INFO: Number of cases        : 2
+# INFO: Number of passed cases : 2
+# INFO: presentage passed     :  100.00
+# INFO: Test: 6, Result:  100.00
+# 
+# INFO: ######## Running Test: 7 ########
+# INFO: Reading memory file: ../inputs/input4/test7_B.dat
+# INFO: Reading memory file: ../inputs/input4/test7_A.dat
+# INFO: reading ../inputs/output4/test7_C.dat
 # INFO: Number of cases        : 8
 # INFO: Number of passed cases : 8
 # INFO: presentage passed     :  100.00
-# INFO: Test: 2, Result:  100.00
+# INFO: Test: 7, Result:  100.00
 # 
-# INFO: ######## Running Test: 3 ########
-# INFO: Reading memory file: ../inputs/input3/test3_B.dat
-# INFO: Reading memory file: ../inputs/input3/test3_A.dat
+# INFO: Total number of cases  : 56
+# INFO: Total number of passes : 56
+# INFO: Finial Results         : 100.00
+# INFO: Finial Time Result     : 29000 ns
+# INFO: Finial Cycle Result    : 5800 cycles
+# 
+# ** Note: $finish    : ../testbench/testbench.sv(348)
+#    Time: 29740 ns  Iteration: 1  Instance: /tb_top
+# End time: 11:09:07 on Nov 14,2023, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
