@@ -7,40 +7,40 @@ Report : timing
         -max_paths 1
 Design : MyDesign
 Version: T-2022.03-SP4
-Date   : Sun Nov 12 18:55:29 2023
+Date   : Mon Nov 13 18:39:51 2023
 ****************************************
 
 Operating Conditions: fast   Library: NangateOpenCellLibrary_PDKv1_2_v2008_10_fast_nldm
 Wire Load Model Mode: top
 
-  Startpoint: address_counter/q_wr_input_addr_reg[0]
+  Startpoint: MCounter_reg[12]
               (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: address_counter/q_wr_input_addr_reg[0]
+  Endpoint: MCounter_reg[12]
             (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: min
 
-  Point                                                   Incr       Path
-  --------------------------------------------------------------------------
-  clock clk (rise edge)                                 0.0000     0.0000
-  clock network delay (ideal)                           0.0000     0.0000
-  address_counter/q_wr_input_addr_reg[0]/CK (DFF_X2)    0.0000     0.0000 r
-  address_counter/q_wr_input_addr_reg[0]/Q (DFF_X2)     0.0521     0.0521 r
-  U57895/ZN (OAI22_X1)                                  0.0145     0.0666 f
-  address_counter/q_wr_input_addr_reg[0]/D (DFF_X2)     0.0000     0.0666 f
-  data arrival time                                                0.0666
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                  0.0000     0.0000
+  clock network delay (ideal)            0.0000     0.0000
+  MCounter_reg[12]/CK (DFF_X1)           0.0000     0.0000 r
+  MCounter_reg[12]/Q (DFF_X1)            0.0553     0.0553 r
+  U57285/ZN (OAI21_X1)                   0.0179     0.0732 f
+  MCounter_reg[12]/D (DFF_X1)            0.0000     0.0732 f
+  data arrival time                                 0.0732
 
-  clock clk (rise edge)                                 0.0000     0.0000
-  clock network delay (ideal)                           0.0000     0.0000
-  clock uncertainty                                     0.0500     0.0500
-  address_counter/q_wr_input_addr_reg[0]/CK (DFF_X2)    0.0000     0.0500 r
-  library hold time                                    -0.0002     0.0498
-  data required time                                               0.0498
-  --------------------------------------------------------------------------
-  data required time                                               0.0498
-  data arrival time                                               -0.0666
-  --------------------------------------------------------------------------
-  slack (MET)                                                      0.0168
+  clock clk (rise edge)                  0.0000     0.0000
+  clock network delay (ideal)            0.0000     0.0000
+  clock uncertainty                      0.0500     0.0500
+  MCounter_reg[12]/CK (DFF_X1)           0.0000     0.0500 r
+  library hold time                      0.0005     0.0505
+  data required time                                0.0505
+  -----------------------------------------------------------
+  data required time                                0.0505
+  data arrival time                                -0.0732
+  -----------------------------------------------------------
+  slack (MET)                                       0.0228
 
 
 1
