@@ -5,7 +5,7 @@ def get_commits_for_file(repo_path, file_path):
     repo = git.Repo(repo_path)
     file_commits = []
 
-    for commit in repo.iter_commits(paths=file_path):
+    for commit in repo.iter_commits():
         file_commits.append(commit)
 
     return file_commits
@@ -66,12 +66,12 @@ def main():
 
             areaPer = CLOCK_PER*area
             if(areaPer<minAreaPer):
-                minAreaPer - areaPer
+                minAreaPer = areaPer
                 minArea = area
                 minPer = CLOCK_PER
                 minCommit = commit.hexsha
 
-            print(minArea, minPer, minAreaPer, minCommit)
+            print(area, CLOCK_PER, areaPer, commit.message)
             # print("\n\n")
             # print(f"Commit: {commit.hexsha}")
             # print(f"Author: {commit.author.name} <{commit.author.email}>")
