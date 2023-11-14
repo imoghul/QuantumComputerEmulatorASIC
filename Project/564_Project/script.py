@@ -40,6 +40,7 @@ def main():
 
 
     for commit in commits:
+        if str(commit.hexsha) == "26aa97b7d2db2955aab5d58292ab5850a760b465" : break;
         # Read the file content at the specific commit
         try:
 
@@ -70,7 +71,7 @@ def main():
                 minPer = CLOCK_PER
                 minCommit = commit.hexsha
 
-            print(commit.hexsha)
+            print(minArea, minPer, minAreaPer, minCommit)
             # print("\n\n")
             # print(f"Commit: {commit.hexsha}")
             # print(f"Author: {commit.author.name} <{commit.author.email}>")
