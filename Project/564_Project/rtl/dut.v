@@ -117,7 +117,7 @@ module Addr_Counter #(
     end
 
     reg done1,done2,done3;
-    always @(posedge clk) begin 
+    always @(posedge clk) begin
       if(!reset_n) begin
         done <= 0;
         done1 <= 0;
