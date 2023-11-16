@@ -783,41 +783,41 @@ endmodule
 
 
 
-//   DW_fp_mac_inst FP_MAC_TERM1 (
-//     .inst_a(AimagNegative_q),
-//     .inst_b(Bimag_q),
-//     .inst_c(prevreal),
-//     .inst_rnd(inst_rnd),
-//     .z_inst(term1_d),
-//     .status_inst(status_term1)
-//   );
+  // DW_fp_mac_inst FP_MAC_TERM1 (
+  //   .inst_a(AimagNegative_q),
+  //   .inst_b(Bimag_q),
+  //   .inst_c(prevreal),
+  //   .inst_rnd(inst_rnd),
+  //   .z_inst(term1_d),
+  //   .status_inst(status_term1)
+  // );
 
-//   DW_fp_mac_inst FP_MAC_TERM2 (
-//     .inst_a(Aimag_q),
-//     .inst_b(Breal_q),
-//     .inst_c(previmag),
-//     .inst_rnd(inst_rnd),
-//     .z_inst(term2_d),
-//     .status_inst(status_term2)
-//   );
+  // DW_fp_mac_inst FP_MAC_TERM2 (
+  //   .inst_a(Aimag_q),
+  //   .inst_b(Breal_q),
+  //   .inst_c(previmag),
+  //   .inst_rnd(inst_rnd),
+  //   .z_inst(term2_d),
+  //   .status_inst(status_term2)
+  // );
 
-//   DW_fp_mac_inst FP_MAC_SUMREAL (
-//     .inst_a(Areal_q_1),
-//     .inst_b(Breal_q_1),
-//     .inst_c(term1_q),
-//     .inst_rnd(inst_rnd),
-//     .z_inst(resultreal_d),
-//     .status_inst(status_resultreal)
-//   );
+  // DW_fp_mac_inst FP_MAC_SUMREAL (
+  //   .inst_a(Areal_q_1),
+  //   .inst_b(Breal_q_1),
+  //   .inst_c(term1_q),
+  //   .inst_rnd(inst_rnd),
+  //   .z_inst(resultreal_d),
+  //   .status_inst(status_resultreal)
+  // );
 
-//   DW_fp_mac_inst FP_MAC_SUMIMAG (
-//     .inst_a(Areal_q_1),
-//     .inst_b(Bimag_q_1),
-//     .inst_c(term2_q),
-//     .inst_rnd(inst_rnd),
-//     .z_inst(resultimag_d),
-//     .status_inst(status_resultimag)
-//   );
+  // DW_fp_mac_inst FP_MAC_SUMIMAG (
+  //   .inst_a(Areal_q_1),
+  //   .inst_b(Bimag_q_1),
+  //   .inst_c(term2_q),
+  //   .inst_rnd(inst_rnd),
+  //   .z_inst(resultimag_d),
+  //   .status_inst(status_resultimag)
+  // );
 
 
 // endmodule

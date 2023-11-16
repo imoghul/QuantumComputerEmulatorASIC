@@ -7,7 +7,7 @@ Report : timing
         -max_paths 1
 Design : MyDesign
 Version: T-2022.03-SP4
-Date   : Tue Nov 14 11:56:00 2023
+Date   : Thu Nov 16 08:33:58 2023
 ****************************************
 
 Operating Conditions: fast   Library: NangateOpenCellLibrary_PDKv1_2_v2008_10_fast_nldm
