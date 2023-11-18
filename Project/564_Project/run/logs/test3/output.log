@@ -3,7 +3,7 @@ Reading pref.tcl
 # 2021.2
 
 # vsim -c -voptargs="+acc" tb_top "+TIMEOUT=1000000000" "+num_of_testcases=6" "+epsilon_mult=" "+input_dir=../inputs/input3" "+output_dir=../inputs/output3" -do "run -all" 
-# Start time: 11:52:30 on Nov 18,2023
+# Start time: 13:27:42 on Nov 18,2023
 # ** Note: (vsim-8009) Loading existing optimized design _opt
 # //  ModelSim SE 2021.2 Apr 14 2021 Linux 3.10.0-1160.102.1.el7.x86_64
 # //
@@ -92,10 +92,10 @@ Reading pref.tcl
 # INFO: Total number of cases  : 50
 # INFO: Total number of passes : 50
 # INFO: Finial Results         : 100.00
-# INFO: Finial Time Result     : 29320 ns
-# INFO: Finial Cycle Result    : 5864 cycles
+# INFO: Finial Time Result     : 29040 ns
+# INFO: Finial Cycle Result    : 5808 cycles
 # 
 # ** Note: $finish    : ../testbench/testbench.sv(348)
-#    Time: 30060 ns  Iteration: 1  Instance: /tb_top
-# End time: 11:52:32 on Nov 18,2023, Elapsed time: 0:00:02
+#    Time: 29780 ns  Iteration: 1  Instance: /tb_top
+# End time: 13:27:43 on Nov 18,2023, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
