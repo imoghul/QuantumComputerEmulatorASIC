@@ -200,7 +200,7 @@ module MyDesign (
   reg [(1<<`MAX_NUM_QUBITS)-1:0] Qshift_squared; // this will equal to 2^2Q
   reg [`MAX_NUM_QUBITS:0] bitmask; // this will max at 2^Q - 1
   reg [`SCRATCHPAD_SRAM_ADDRESS_UPPER_BOUND-1:0] q_gates_offset;
-  reg [(`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND/2)-1:0] MCounter;
+  reg /*[(`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND/2)-1:0]*/[4:0] MCounter;
   wire Addr_counter_done;
   wire [(inst_sig_width+inst_exp_width+1)*2-1:0] sum_calculation;
   wire addr_count_wraparound;

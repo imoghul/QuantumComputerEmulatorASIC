@@ -142,7 +142,7 @@ Inferred memory devices in process
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
-|       QM_reg        | Flip-flop |  67   |  Y  | N  | N  | N  | N  | N  | N  |
+|       QM_reg        | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
 ===============================================================================
 
 Inferred memory devices in process
@@ -151,7 +151,7 @@ Inferred memory devices in process
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
-|    MCounter_reg     | Flip-flop |  64   |  Y  | N  | N  | N  | N  | N  | N  |
+|    MCounter_reg     | Flip-flop |   5   |  Y  | N  | N  | N  | N  | N  | N  |
 ===============================================================================
 
 Inferred memory devices in process

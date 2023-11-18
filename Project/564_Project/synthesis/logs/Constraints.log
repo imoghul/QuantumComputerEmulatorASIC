@@ -617,7 +617,7 @@ set_fix_multiple_port_nets -all -buffer_constants [get_designs]
 #------------------------------------------------------
 ungroup -flatten -all
 Information: Updating graph... (UID-83)
-Warning: Design 'MyDesign' contains 3 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Warning: Design 'MyDesign' contains 2 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
 #---------------------------------------------------------
 # check the design before optimization  
 #---------------------------------------------------------
@@ -631,7 +631,7 @@ check_design
 ****************************************
 check_design summary:
 Version:     T-2022.03-SP4
-Date:        Sat Nov 18 11:28:17 2023
+Date:        Sat Nov 18 12:10:21 2023
 ****************************************
 
                    Name                                            Total
@@ -648,8 +648,8 @@ Nets                                                               64
     Unloaded nets (LINT-2)                                         64
 --------------------------------------------------------------------------------
 
-Warning: In design 'MyDesign', cell 'C644' does not drive any nets. (LINT-1)
-Warning: In design 'MyDesign', cell 'C658' does not drive any nets. (LINT-1)
+Warning: In design 'MyDesign', cell 'C526' does not drive any nets. (LINT-1)
+Warning: In design 'MyDesign', cell 'C540' does not drive any nets. (LINT-1)
 Warning: In design 'MyDesign', cell 'address_counter/C491' does not drive any nets. (LINT-1)
 Warning: In design 'MyDesign', cell 'address_counter/B_3' does not drive any nets. (LINT-1)
 Warning: In design 'MyDesign', cell 'address_counter/B_2' does not drive any nets. (LINT-1)
