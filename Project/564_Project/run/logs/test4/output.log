@@ -2,9 +2,9 @@ Reading pref.tcl
 
 # 2021.2
 
-# vsim -c -voptargs="+acc" tb_top "+TIMEOUT=1000000000" "+num_of_testcases=7" "+epsilon_mult=" "+input_dir=../inputs/input4" "+output_dir=../inputs/output4" -do "run -all" 
-# Start time: 13:27:46 on Nov 18,2023
-# ** Note: (vsim-8009) Loading existing optimized design _opt
+# vsim -c -voptargs="+acc" tb_top "+TIMEOUT=1000000000" "+num_of_testcases=7" "+epsilon_mult=3.0" "+input_dir=../inputs/input4" "+output_dir=../inputs/output4" -do "run -all" 
+# Start time: 21:15:42 on Nov 18,2023
+# ** Note: (vsim-8009) Loading existing optimized design _opt1
 # //  ModelSim SE 2021.2 Apr 14 2021 Linux 3.10.0-1160.102.1.el7.x86_64
 # //
 # //  Copyright 1991-2021 Mentor Graphics Corporation
@@ -23,14 +23,8 @@ Reading pref.tcl
 # Loading work.sram(fast)
 # Loading work.sram(fast__1)
 # Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
 # Loading work.MyDesign(fast)
-# Loading work.Addr_Counter(fast)
-# Loading work.ArithmeticUnit(fast)
-# Loading work.DW_fp_mult_inst(fast)
-# Loading work.DW_fp_mult(fast)
-# Loading work.DW_fp_add_inst(fast)
-# Loading work.DW_fp_add(fast)
-# Loading work.DW_fp_addsub(fast)
 # run -all
 # INFO: number of testcases:           7
 # +CLASS+464
@@ -101,10 +95,10 @@ Reading pref.tcl
 # INFO: Total number of cases  : 56
 # INFO: Total number of passes : 56
 # INFO: Finial Results         : 100.00
-# INFO: Finial Time Result     : 28520 ns
-# INFO: Finial Cycle Result    : 5704 cycles
+# INFO: Finial Time Result     : 53220 ns
+# INFO: Finial Cycle Result    : 5322 cycles
 # 
-# ** Note: $finish    : ../testbench/testbench.sv(348)
-#    Time: 29260 ns  Iteration: 1  Instance: /tb_top
-# End time: 13:27:47 on Nov 18,2023, Elapsed time: 0:00:01
+# ** Note: $finish    : ../testbench/testbench.sv(354)
+#    Time: 53960 ns  Iteration: 1  Instance: /tb_top
+# End time: 21:15:43 on Nov 18,2023, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0

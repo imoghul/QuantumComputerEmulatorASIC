@@ -343,7 +343,13 @@ module tb_top();
       $display("INFO: Total number of passes : %0d",totalNumOfPasses);
       $display("INFO: Finial Results         : %6.2f",(totalNumOfPasses * 100)/totalNumOfCases);
       $display("INFO: Finial Time Result     : %0t ns",endTime-startTime);
-      $display("INFO: Finial Cycle Result    : %0d cycles\n",((endTime-startTime)/CLK_PHASE));
+      $display("INFO: Finial Cycle Result    : %0d cycles\n",((endTime-startTime)/(CLK_PHASE*2)));
+	  if(q_state_input_mem.mem[0] == 128'b0) //beginning of edit
+	  begin
+		$display("###################################");
+		$display("TEST FAILED INPUT SRAM TAMPERED WITH");
+		$display("###################################");
+		end //end of edit
     end
     $finish();
   end
