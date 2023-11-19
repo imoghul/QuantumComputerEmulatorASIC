@@ -1,3 +1,7 @@
+Reading pref.tcl
+
+# 2021.2
+
 # vsim -c -voptargs="+acc" tb_top "+TIMEOUT=1000000000" "+num_of_testcases=4" "+epsilon_mult=3.0" "+input_dir=../inputs/input6" "+output_dir=../inputs/output6" -do "run -all" 
 # Start time: 14:13:45 on Nov 19,2023
 # ** Note: (vsim-8009) Loading existing optimized design _opt1
