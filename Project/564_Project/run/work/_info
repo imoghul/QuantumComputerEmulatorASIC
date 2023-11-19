@@ -6,6 +6,7 @@ R0
 R0
 R0
 R0
+R0
 !s11f vlog 2021.2 2021.04, Apr 14 2021
 13
 !s112 1.1
@@ -26,17 +27,17 @@ n@_opt
 Z5 OE;O;2021.2;73
 R1
 T_opt1
-!s110 1700360128
-V3Of0;<NGOnMKGkYCT9E5R2
+!s110 1700414401
+V[3Kz5lAUdE:h]CS>]FCc@3
 R2
-=1-1866daf7ffe2-65596fbf-2a3a4-7e32
+=1-141877559b84-655a43c0-69c38-2517
 R3
 o-quiet -auto_acc_if_foreign -work work +acc
 R4
 n@_opt1
 R5
 vAddr_Counter
-Z6 !s110 1700360080
+Z6 !s110 1700414395
 !i10b 1
 !s100 ?J4e6_Aj8fE28k7_0Y6=j0
 IQddNzGiiGdTb8]:a`8OhO2
@@ -44,14 +45,14 @@ Z7 d/mnt/ncsudrive/i/immoghul/Programming/ECE564/Project/564_Project/run
 Z8 w1700359724
 Z9 8../rtl/dut.v
 Z10 F../rtl/dut.v
-!i122 6
+!i122 8
 L0 8 133
 Z11 VDg1SIo80bB@j0V0VzS_@n1
 Z12 OE;L;2021.2;73
 r1
 !s85 0
 31
-Z13 !s108 1700360079.000000
+Z13 !s108 1700414394.000000
 Z14 !s107 ../testbench/sram.sv|../testbench/defines.vh|../testbench/testbench.sv|../rtl/dut.v|
 Z15 !s90 +incdir+../testbench|../rtl/dut.v|../testbench/testbench.sv|
 !i113 0
@@ -68,7 +69,7 @@ R7
 R8
 R9
 R10
-!i122 6
+!i122 8
 L0 441 162
 R11
 R12
@@ -138,7 +139,7 @@ R7
 R8
 R9
 R10
-!i122 6
+!i122 8
 L0 663 22
 R11
 R12
@@ -622,7 +623,7 @@ R7
 R8
 R9
 R10
-!i122 6
+!i122 8
 L0 614 24
 R11
 R12
@@ -692,7 +693,7 @@ R7
 R8
 R9
 R10
-!i122 6
+!i122 8
 L0 640 22
 R11
 R12
@@ -939,78 +940,76 @@ R16
 R4
 n@d@w_fp_sum4
 vMyDesign
-Z26 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
-Z27 !s110 1700360120
+R6
 !i10b 1
-!s100 Bn6IMoIL14<cVXe0@PS5Z1
-IJ5AoWKa7UB^^ET1n?K6lZ0
-S1
+!s100 KV]=DK:L@[[l=W@cPYgi;2
+Iz>zICIfe3Lm0gIoKgCi;I0
 R7
-w1693327620
-8../golden_model/dut.sv
-F../golden_model/dut.sv
-!i122 7
-L0 6 346
+R8
+R9
+R10
+!i122 8
+L0 145 295
 R11
 R12
 r1
 !s85 0
 31
-Z28 !s108 1700360119.000000
-Z29 !s107 ../testbench/sram.sv|../testbench/defines.vh|../testbench/testbench.sv|../golden_model/dut.sv|
-Z30 !s90 -sv|+incdir+../testbench|../golden_model/dut.sv|../testbench/testbench.sv|
+R13
+R14
+R15
 !i113 0
-Z31 o-sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
-Z32 !s92 -sv +incdir+../testbench -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R16
+R17
 R4
 n@my@design
 vsram
-R26
-R27
+Z26 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+R6
 !i10b 1
 !s100 94<XlEJJ]kV1J;@Td<Y;F3
-I^X^aAS3WkYc?3hOg717Z:2
+Ie6^9<6nHUVjFbU=RP1`>k2
 S1
 R7
 w1693327612
 8../testbench/sram.sv
 F../testbench/sram.sv
-!i122 7
+!i122 8
 L0 4 105
 R11
 R12
 r1
 !s85 0
 31
-R28
-R29
-R30
+R13
+R14
+R15
 !i113 0
-R31
-R32
+R16
+R17
 R4
 vtb_top
 R26
-R27
+R6
 !i10b 1
 !s100 8UZUglj0Nb9ZG?S:BJ]R80
-I>?6bkID3OJ0Cgan=ZPDN83
+IkW]XjdnlWRi:1o>U1[5gZ0
 S1
 R7
 w1700351208
 8../testbench/testbench.sv
 F../testbench/testbench.sv
-!i122 7
+!i122 8
 L0 3 354
 R11
 R12
 r1
 !s85 0
 31
-R28
-R29
-R30
+R13
+R14
+R15
 !i113 0
-R31
-R32
+R16
+R17
 R4

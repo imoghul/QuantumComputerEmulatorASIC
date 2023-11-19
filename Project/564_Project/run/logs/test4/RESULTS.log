@@ -6,5 +6,5 @@
 # INFO: Test: 6, Result:  100.00
 # INFO: Test: 7, Result:  100.00
 # INFO: Finial Results         : 100.00
-# INFO: Finial Time Result     : 53220 ns
-# INFO: Finial Cycle Result    : 5322 cycles
+# INFO: Finial Time Result     : 29000 ns
+# INFO: Finial Cycle Result    : 2900 cycles
