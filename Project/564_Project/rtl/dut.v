@@ -3,7 +3,141 @@
 `define MAX_NUM_QUBITS          4
 `define LOG2_MAX_NUM_QUBITS     3
 
+// module Addr_Counter #(
+//     parameter ADDR_WIDTH = `Q_STATE_INPUT_SRAM_ADDRESS_UPPER_BOUND,
+//     parameter WIDTH = 16
+// ) (
+//     input wire reset_n,
+//     input wire clk,
+//     input wire clr,
+//     input wire rdscratch_wrinp,
 
+//     input wire [WIDTH-1:0] max,
+//     input wire [3:0] bitmask,
+//     input wire [WIDTH-1:0] q_gates_offset,
+
+//     output reg [ADDR_WIDTH-1:0] q_gates_addr,
+//     output reg [ADDR_WIDTH-1:0] q_input_addr, // this will connect to q_input_states_rd_addr and q_sratchpad_rd_addr, will switch automatically
+//     output reg [ADDR_WIDTH-1:0] q_output_addr, // this will connect to q_output_states_wr_addr and q_scratchpad_wr_addr
+//     output reg [ADDR_WIDTH-1:0] q_wr_input_addr,  // this will connect to q_input_states_wr_addr
+
+//     output reg done,
+//     output reg q_input_wr_en,
+//     output reg q_scratch_wr_en,
+//     output reg q_output_wr_en,
+//     output reg wraparound
+// );
+//   reg inProgress;
+//   reg [ADDR_WIDTH-1:0] Qcounter;
+//   wire isMax;
+//   wire [WIDTH-1:0] QcounterMasked;
+//   assign isMax = Qcounter == max - 1;
+//   assign QcounterMasked = Qcounter & bitmask;
+
+//   always @(posedge clk) begin
+//     if (!reset_n) wraparound = 0;
+//     else wraparound = QcounterMasked == 0;
+//   end
+
+//   always @(posedge clk) begin
+//     if (!reset_n) Qcounter <= 0;
+//     else begin
+//       if (clr) Qcounter <= 0;
+//       else if (isMax) Qcounter <= Qcounter;
+//       else Qcounter <= Qcounter + 1;
+//     end
+//   end
+
+//   always @(posedge clk)
+//     if (!reset_n) inProgress <= 0;
+//     else begin
+//       if (!clr) begin
+//         if (isMax) inProgress <= inProgress;
+//         else inProgress <= 1;
+//       end else inProgress <= 0;
+//     end
+
+//   reg q_input_wr_en_r;
+//   reg q_scratch_wr_en_r;
+//   always @(posedge clk) begin
+//     if (!reset_n) begin
+//       q_input_wr_en <= 0;
+//       q_scratch_wr_en <= 0;
+//       q_output_wr_en <= 0;
+//       q_input_wr_en_r <= 0;
+//       q_scratch_wr_en_r <= 0;
+//     end else begin
+//       if (!clr) begin
+//         q_input_wr_en_r <= rdscratch_wrinp;
+//         q_scratch_wr_en_r <= !rdscratch_wrinp;
+//         q_input_wr_en <= q_input_wr_en_r;
+//         q_scratch_wr_en <= q_scratch_wr_en_r;
+//         q_output_wr_en <= q_input_wr_en_r | q_scratch_wr_en_r;
+//       end else begin
+//         q_input_wr_en <= 0;
+//         q_scratch_wr_en <= 0;
+//         q_output_wr_en <= 0;
+//         q_input_wr_en_r <= 0;
+//         q_scratch_wr_en_r <= 0;
+//       end
+//     end
+//   end
+
+//   reg done1, done2, done3;
+//   always @(posedge clk)
+//     if (!reset_n) begin
+//       done1 <= 0;
+//       done2 <= 0;
+//       done3 <= 0;
+//       done  <= 0;
+//     end else begin
+//       done1 <= clr ? 0 : isMax;
+//       done2 <= clr ? 0 : done1;
+//       done3 <= clr ? 0 : done2;
+//       done  <= clr ? 0 : done3;
+//     end
+//   always @(posedge clk)
+//     if (!reset_n) q_gates_addr <= 0;
+//     else q_gates_addr <= clr ? 0 : (Qcounter + q_gates_offset);
+
+//   always @(posedge clk)
+//     if (!reset_n) q_input_addr <= 0;
+//     else q_input_addr <= clr ? 0 : (QcounterMasked + !rdscratch_wrinp);
+
+//   reg [ADDR_WIDTH-1:0] q_output_addr_r;
+//   always @(posedge clk)
+//     if (!reset_n) q_output_addr_r <= 0;
+//     else if (clr) q_output_addr_r <= 0;
+//     else if (isMax) q_output_addr_r <= q_output_addr_r;
+//     else q_output_addr_r <= QcounterMasked == 0 ? q_output_addr_r + 1 : q_output_addr_r;
+
+//   reg [ADDR_WIDTH-1:0] q_output_addr1, q_output_addr2, q_output_addr3;
+//   reg [ADDR_WIDTH-1:0] q_wr_input_addr1, q_wr_input_addr2, q_wr_input_addr3;
+
+//   reg [ADDR_WIDTH-1:0] q_output_addr_minus_one;
+//   always @(q_output_addr_r) q_output_addr_minus_one = q_output_addr_r - 1;
+//   always @(posedge clk)
+//     if (!reset_n) begin
+//       {q_output_addr, q_wr_input_addr}   <= 0;
+//       {q_output_addr1, q_wr_input_addr1} <= 0;
+//       {q_output_addr2, q_wr_input_addr2} <= 0;
+//       {q_output_addr3, q_wr_input_addr3} <= 0;
+//     end else if (clr) begin
+//       {q_output_addr, q_wr_input_addr}   <= 0;
+//       {q_output_addr1, q_wr_input_addr1} <= 0;
+//       {q_output_addr2, q_wr_input_addr2} <= 0;
+//       {q_output_addr3, q_wr_input_addr3} <= 0;
+//     end else begin
+//       q_output_addr1 <= q_output_addr_minus_one;
+//       q_wr_input_addr1 <= q_output_addr_minus_one + 1;
+//       q_output_addr2 <= q_output_addr1;
+//       q_wr_input_addr2 <= q_wr_input_addr1;
+//       q_output_addr3 <= q_output_addr2;
+//       q_wr_input_addr3 <= q_wr_input_addr2;
+//       q_output_addr <= q_output_addr3;
+//       q_wr_input_addr <= q_wr_input_addr3;
+//     end
+// endmodule
 
 module Addr_Counter #(
     parameter ADDR_WIDTH = `Q_STATE_INPUT_SRAM_ADDRESS_UPPER_BOUND,
@@ -194,14 +328,15 @@ module MyDesign (
 
   // datapath values
   reg [`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1:0] QM;
-  wire [`LOG2_MAX_NUM_QUBITS-1:0] Q;
+  wire [2:0] Q;
   wire [(`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1)/2:0] M;
-  reg [`MAX_NUM_QUBITS:0] Qshift; // this will equal to 2^Q
-  reg [(1<<`MAX_NUM_QUBITS)-1:0] Qshift_squared; // this will equal to 2^2Q
-  reg [`MAX_NUM_QUBITS:0] bitmask; // this will max at 2^Q - 1
-  reg [`SCRATCHPAD_SRAM_ADDRESS_UPPER_BOUND-1:0] q_gates_offset;
-  reg /*[(`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND/2)-1:0]*/[4:0] MCounter;
+  wire [4:0] Qshift;
+  wire [15:0] Qshift_squared;
+  wire [4:0] bitmask;
+  reg [`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1:0] q_gates_offset;
+  reg [(`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1)/2:0] MCounter;
   wire Addr_counter_done;
+  reg [(inst_sig_width+inst_exp_width+1)*2-1:0] sum_reg;
   wire [(inst_sig_width+inst_exp_width+1)*2-1:0] sum_calculation;
   wire addr_count_wraparound;
   reg rdscratch_wrinp;
@@ -221,44 +356,16 @@ module MyDesign (
   reg clr_sum_reg, clr_sum_reg1, clr_sum_reg2, clr_sum_reg3;
   reg clr_rdscratch_wrinp;
   reg en_rdscratch_wrinp;
+  reg squash;
 
 
   // assigns
   assign dut_ready = dut_ready_r;
   assign Q = QM[`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1:1 + (`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1)/2];
   assign M = QM[(`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND/2)-1:0];
-  // assign Qshift = 1 << Q;
-  // assign Qshift_squared = Qshift << Q;
-  // assign bitmask = Qshift - 1;
-  always @ (*) begin // NOTE: This state machine assumes a max of 4 qubits
-    casex(Q)
-      3'bx01: begin
-        Qshift = 2;
-        Qshift_squared = 4;
-        bitmask = 1;
-      end
-      3'bx10: begin
-        Qshift = 4;
-        Qshift_squared = 16;
-        bitmask = 3;
-      end
-      3'bx11: begin
-        Qshift = 8;
-        Qshift_squared = 64;
-        bitmask = 7;
-      end
-      3'b1xx: begin
-        Qshift = 16;
-        Qshift_squared = 256;
-        bitmask = 15;
-      end
-      default: begin
-        Qshift = 1'bx;
-        Qshift_squared = 1'bx;
-        bitmask = 1'bx;
-      end
-    endcase
-  end
+  assign Qshift = 1 << Q;
+  assign Qshift_squared = Qshift << Q;
+  assign bitmask = Qshift - 1;
 
   // controller
   localparam RESET = 0;
@@ -286,6 +393,7 @@ module MyDesign (
     clr_sum_reg = 1;
     clr_rdscratch_wrinp = 1;
     en_rdscratch_wrinp = 0;
+    squash = 1;
     case (state)
       RESET: begin
         nextState = IDLE;
@@ -305,15 +413,14 @@ module MyDesign (
         nextState = CALCULATE;
       end
       CALCULATE: begin
+        squash = 0;
         clr_sum_reg = addr_count_wraparound;
         clr_Addr_Count = 0;
         clr_q_gates_offset = 0;
         clr_rdscratch_wrinp = 0;
         if (Addr_counter_done) begin
           nextState = WRITEBACK1;
-        end else begin
-          nextState = CALCULATE;
-        end
+        end else nextState = CALCULATE;
       end
       WRITEBACK1: begin
         en_MCounter = 0;
@@ -403,6 +510,12 @@ module MyDesign (
       clr_sum_reg2 <= clr_sum_reg1;
       clr_sum_reg3 <= clr_sum_reg2;
     end
+
+  always @(posedge clk)
+    if (!reset_n) sum_reg <= 0;
+    else if (!clr_sum_reg3) sum_reg <= sum_calculation;
+    else sum_reg <= 0;
+
 
   reg enInput1, enInput2, enInput3;
   always @(posedge clk)
@@ -682,150 +795,3 @@ module DW_fp_add_inst #(
   );
 
 endmodule
-
-
-
-
-
-
-
-
-
-
-// module ArithmeticUnit #(
-//     parameter inst_sig_width = 52,
-//     parameter inst_exp_width = 11,
-//     parameter inst_ieee_compliance = 3
-// ) (
-//     input wire clk,
-//     input wire reset_n,
-//     input wire squash,
-//     input wire [2:0] inst_rnd,
-
-//     input wire enInput,
-//     input wire Aselect,
-//     input wire [(inst_sig_width+inst_exp_width+1)*2-1 : 0] A1,
-//     input wire [(inst_sig_width+inst_exp_width+1)*2-1 : 0] A2,
-//     input wire [(inst_sig_width+inst_exp_width+1)*2-1 : 0] B,
-//     input wire [(inst_sig_width+inst_exp_width+1)*2-1 : 0] prev,
-
-//     output wire [(inst_sig_width+inst_exp_width+1)*2-1 : 0] result
-// );
-
-//   wire [inst_sig_width+inst_exp_width : 0] resultreal_d;
-//   reg [inst_sig_width+inst_exp_width : 0] resultreal_q;
-//   wire [7 : 0] status_resultreal;
-//   wire [inst_sig_width+inst_exp_width : 0] resultimag_d;
-//   reg [inst_sig_width+inst_exp_width : 0] resultimag_q;
-//   wire [7 : 0] status_resultimag;
-
-//   wire [(inst_sig_width+inst_exp_width+1)*2-1 : 0] A;
-//   assign A = Aselect? A1:A2;
-//   wire [inst_sig_width+inst_exp_width : 0] Areal, Aimag, Breal, Bimag, prevreal, previmag;
-//   assign Areal = enInput ? A[(inst_sig_width+inst_exp_width+1)*2-1:inst_sig_width+inst_exp_width+1] : 0;
-//   assign Aimag = enInput ? A[inst_sig_width+inst_exp_width:0] : 0;
-//   assign Breal = enInput ? B[(inst_sig_width+inst_exp_width+1)*2-1:inst_sig_width+inst_exp_width+1] : 0;
-//   assign Bimag = enInput ? B[inst_sig_width+inst_exp_width:0] : 0;
-//   assign prevreal = squash ? 128'b0:resultreal_d;
-//   assign previmag = squash ? 128'b0:resultimag_d;
-//   reg [inst_sig_width+inst_exp_width : 0] Areal_q, Aimag_q, AimagNegative_q, Breal_q, Bimag_q, Areal_q_1, Breal_q_1, Bimag_q_1;
-//   always @(posedge clk) begin
-//     if (!reset_n) begin
-//       Areal_q <= 0;
-//       Aimag_q <= 0;
-//       AimagNegative_q <= 0;
-//       Breal_q <= 0;
-//       Bimag_q <= 0;
-//       Areal_q_1 <= 0;
-//       Breal_q_1 <= 0;
-//       Bimag_q_1 <= 0;
-//     end else begin
-//       Areal_q <= Areal;
-//       Aimag_q<=Aimag;
-//       AimagNegative_q <= {~Aimag[inst_sig_width+inst_exp_width],Aimag[inst_sig_width+inst_exp_width-1:0]};
-//       Breal_q <= Breal;
-//       Bimag_q <= Bimag;
-//       Areal_q_1 <= Areal_q;
-//       Breal_q_1 <= Breal_q;
-//       Bimag_q_1 <= Bimag_q;
-//     end
-//   end
-
-//   // pipeline stage 1
-//   wire [inst_sig_width+inst_exp_width : 0] term1_d;
-//   reg [inst_sig_width+inst_exp_width : 0] term1_q;
-//   wire [inst_sig_width+inst_exp_width : 0] term2_d;
-//   reg [inst_sig_width+inst_exp_width : 0] term2_q;
-//   wire [7:0] status_term1,status_term2;
-//   always @(posedge clk) begin
-//     if (!reset_n) begin
-//       term1_q <= 0;
-//       term2_q <= 0;
-//     end else begin
-//       term1_q <= term1_d;
-//       term2_q <= term2_d;
-//     end
-//   end
-
-
-//   // pipeline stage 3
-//   always @(posedge clk) begin
-//     if (!reset_n) begin
-//       resultreal_q <= 0;
-//       resultimag_q <= 0;
-//     end else begin
-//       resultreal_q <= resultreal_d;
-//       resultimag_q <= resultimag_d;
-//     end
-//   end
-
-//   assign result = {resultreal_q, resultimag_q};
-
-
-
-  // DW_fp_mac_inst FP_MAC_TERM1 (
-  //   .inst_a(AimagNegative_q),
-  //   .inst_b(Bimag_q),
-  //   .inst_c(prevreal),
-  //   .inst_rnd(inst_rnd),
-  //   .z_inst(term1_d),
-  //   .status_inst(status_term1)
-  // );
-
-  // DW_fp_mac_inst FP_MAC_TERM2 (
-  //   .inst_a(Aimag_q),
-  //   .inst_b(Breal_q),
-  //   .inst_c(previmag),
-  //   .inst_rnd(inst_rnd),
-  //   .z_inst(term2_d),
-  //   .status_inst(status_term2)
-  // );
-
-  // DW_fp_mac_inst FP_MAC_SUMREAL (
-  //   .inst_a(Areal_q_1),
-  //   .inst_b(Breal_q_1),
-  //   .inst_c(term1_q),
-  //   .inst_rnd(inst_rnd),
-  //   .z_inst(resultreal_d),
-  //   .status_inst(status_resultreal)
-  // );
-
-  // DW_fp_mac_inst FP_MAC_SUMIMAG (
-  //   .inst_a(Areal_q_1),
-  //   .inst_b(Bimag_q_1),
-  //   .inst_c(term2_q),
-  //   .inst_rnd(inst_rnd),
-  //   .z_inst(resultimag_d),
-  //   .status_inst(status_resultimag)
-  // );
-
-
-// endmodule
-
-
-
-
-
-
-
-

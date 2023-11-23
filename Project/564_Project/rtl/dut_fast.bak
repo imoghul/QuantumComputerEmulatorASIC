@@ -1,4 +1,16 @@
-`include "defines.vh"
+
+                                               
+`define Q_STATE_OUTPUT_SRAM_ADDRESS_UPPER_BOUND 32
+`define Q_STATE_OUTPUT_SRAM_DATA_UPPER_BOUND  128
+                                             
+`define Q_STATE_INPUT_SRAM_ADDRESS_UPPER_BOUND 32
+`define Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND    128
+                                             
+`define SCRATCHPAD_SRAM_ADDRESS_UPPER_BOUND    32
+`define SCRATCHPAD_SRAM_DATA_UPPER_BOUND       128
+                                             
+`define Q_GATES_SRAM_ADDRESS_UPPER_BOUND       32
+`define Q_GATES_SRAM_DATA_UPPER_BOUND          128
 
 `define MAX_NUM_QUBITS          4
 `define LOG2_MAX_NUM_QUBITS     3
@@ -196,9 +208,9 @@ module MyDesign (
   reg [`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1:0] QM;
   wire [`LOG2_MAX_NUM_QUBITS-1:0] Q;
   wire [(`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND-1)/2:0] M;
-  reg [`MAX_NUM_QUBITS:0] Qshift; // this will equal to 2^Q
-  reg [(1<<`MAX_NUM_QUBITS)-1:0] Qshift_squared; // this will equal to 2^2Q
-  reg [`MAX_NUM_QUBITS:0] bitmask; // this will max at 2^Q - 1
+  reg [`MAX_NUM_QUBITS:0] Qshift_d, Qshift; // this will equal to 2^Q
+  reg [(1<<`MAX_NUM_QUBITS)-1:0] Qshift_squared_d, Qshift_squared; // this will equal to 2^2Q
+  reg [`MAX_NUM_QUBITS:0] bitmask_d, bitmask; // this will max at 2^Q - 1
   reg [`SCRATCHPAD_SRAM_ADDRESS_UPPER_BOUND-1:0] q_gates_offset;
   reg /*[(`Q_STATE_INPUT_SRAM_DATA_UPPER_BOUND/2)-1:0]*/[4:0] MCounter;
   wire Addr_counter_done;
@@ -230,32 +242,42 @@ module MyDesign (
   // assign Qshift = 1 << Q;
   // assign Qshift_squared = Qshift << Q;
   // assign bitmask = Qshift - 1;
+  always @ (posedge clk)
+    if(!reset_n) begin
+      Qshift <= Qshift_d;
+      Qshift_squared <= Qshift_squared_d;
+      bitmask <= bitmask_d;
+    end else if(load_MCounter) begin
+      Qshift <= Qshift_d;
+      Qshift_squared <= Qshift_squared_d;
+      bitmask <= bitmask_d;
+    end
   always @ (*) begin // NOTE: This state machine assumes a max of 4 qubits
     casex(Q)
       3'bx01: begin
-        Qshift = 2;
-        Qshift_squared = 4;
-        bitmask = 1;
+        Qshift_d = 2;
+        Qshift_squared_d = 4;
+        bitmask_d = 1;
       end
       3'bx10: begin
-        Qshift = 4;
-        Qshift_squared = 16;
-        bitmask = 3;
+        Qshift_d = 4;
+        Qshift_squared_d = 16;
+        bitmask_d = 3;
       end
       3'bx11: begin
-        Qshift = 8;
-        Qshift_squared = 64;
-        bitmask = 7;
+        Qshift_d = 8;
+        Qshift_squared_d = 64;
+        bitmask_d = 7;
       end
       3'b1xx: begin
-        Qshift = 16;
-        Qshift_squared = 256;
-        bitmask = 15;
+        Qshift_d = 16;
+        Qshift_squared_d = 256;
+        bitmask_d = 15;
       end
       default: begin
-        Qshift = 1'bx;
-        Qshift_squared = 1'bx;
-        bitmask = 1'bx;
+        Qshift_d = 1'bx;
+        Qshift_squared_d = 1'bx;
+        bitmask_d = 1'bx;
       end
     endcase
   end
@@ -269,7 +291,7 @@ module MyDesign (
   localparam WRITEBACK1 = 5;
   localparam WRITEBACK2 = 6;
 
-  reg [3:0] state, nextState;
+  reg [2:0] state, nextState;
   always @(posedge clk) begin
     if (!reset_n) state = RESET;
     else state = nextState;
