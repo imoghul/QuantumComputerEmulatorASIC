@@ -3,7 +3,7 @@ Reading pref.tcl
 # 2021.2
 
 # vsim -c -voptargs="+acc" tb_top "+TIMEOUT=1000000000" "+num_of_testcases=8" "+epsilon_mult=3.0" "+input_dir=../inputs/input2" "+output_dir=../inputs/output2" -do "run -all" 
-# Start time: 11:49:28 on Nov 23,2023
+# Start time: 11:41:24 on Nov 24,2023
 # ** Note: (vsim-8009) Loading existing optimized design _opt1
 # //  ModelSim SE 2021.2 Apr 14 2021 Linux 3.10.0-1160.102.1.el7.x86_64
 # //
@@ -25,15 +25,12 @@ Reading pref.tcl
 # Loading work.sram(fast__2)
 # Loading work.sram(fast__3)
 # Loading work.MyDesign(fast)
-# Loading work.Addr_Counter(fast)
 # Loading work.ArithmeticUnit(fast)
 # Loading work.DW_fp_mult_inst(fast)
 # Loading work.DW_fp_mult(fast)
 # Loading work.DW_fp_add_inst(fast)
 # Loading work.DW_fp_add(fast)
 # Loading work.DW_fp_addsub(fast)
-# ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (128) for port 'q_gates_offset'. The port definition is at: ../rtl/dut.v(153).
-#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/address_counter File: ../rtl/dut.v Line: 484
 # run -all
 # INFO: number of testcases:           8
 # +CLASS+464
@@ -118,5 +115,5 @@ Reading pref.tcl
 # 
 # ** Note: $finish    : ../testbench/testbench.sv(354)
 #    Time: 60740 ns  Iteration: 1  Instance: /tb_top
-# End time: 11:49:29 on Nov 23,2023, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 1
+# End time: 11:41:27 on Nov 24,2023, Elapsed time: 0:00:03
+# Errors: 0, Warnings: 0
